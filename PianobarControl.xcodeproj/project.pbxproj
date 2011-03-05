@@ -11,7 +11,6 @@
 		256AC3DA0F4B6AC300CF3369 /* PianobarControlAppDelegate.m in Sources */ = {isa = PBXBuildFile; fileRef = 256AC3D90F4B6AC300CF3369 /* PianobarControlAppDelegate.m */; };
 		5C91A2641322D04400F2E054 /* PianobarControl.icns in Resources */ = {isa = PBXBuildFile; fileRef = 5C91A2631322D04400F2E054 /* PianobarControl.icns */; };
 		5C91A26C1322D18E00F2E054 /* pandora-logo-16.png in Resources */ = {isa = PBXBuildFile; fileRef = 5C91A26B1322D18E00F2E054 /* pandora-logo-16.png */; };
-		5C91A28E1322D5CE00F2E054 /* pianobar-choose-station in Resources */ = {isa = PBXBuildFile; fileRef = 5C91A28D1322D5CE00F2E054 /* pianobar-choose-station */; };
 		5C91A3111322E1E000F2E054 /* thumbs_down.png in Resources */ = {isa = PBXBuildFile; fileRef = 5C91A30F1322E1E000F2E054 /* thumbs_down.png */; };
 		5C91A3121322E1E000F2E054 /* thumbs_up.png in Resources */ = {isa = PBXBuildFile; fileRef = 5C91A3101322E1E000F2E054 /* thumbs_up.png */; };
 		5C91A31A1322E38F00F2E054 /* media_play_pause_resume.png in Resources */ = {isa = PBXBuildFile; fileRef = 5C91A3151322E38F00F2E054 /* media_play_pause_resume.png */; };
@@ -19,6 +18,7 @@
 		5C91A31C1322E38F00F2E054 /* information.png in Resources */ = {isa = PBXBuildFile; fileRef = 5C91A3171322E38F00F2E054 /* information.png */; };
 		5C91A31E1322E38F00F2E054 /* view_choose.png in Resources */ = {isa = PBXBuildFile; fileRef = 5C91A3191322E38F00F2E054 /* view_choose.png */; };
 		5C91A3491322E55800F2E054 /* exit.png in Resources */ = {isa = PBXBuildFile; fileRef = 5C91A3481322E55800F2E054 /* exit.png */; };
+		5CE369E31322EBF9004F3AF4 /* pianobar-choose-station in Resources */ = {isa = PBXBuildFile; fileRef = 5CE369E21322EBF9004F3AF4 /* pianobar-choose-station */; };
 		8D11072B0486CEB800E47090 /* InfoPlist.strings in Resources */ = {isa = PBXBuildFile; fileRef = 089C165CFE840E0CC02AAC07 /* InfoPlist.strings */; };
 		8D11072D0486CEB800E47090 /* main.m in Sources */ = {isa = PBXBuildFile; fileRef = 29B97316FDCFA39411CA2CEA /* main.m */; settings = {ATTRIBUTES = (); }; };
 		8D11072F0486CEB800E47090 /* Cocoa.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = 1058C7A1FEA54F0111CA2CBB /* Cocoa.framework */; };
@@ -37,7 +37,6 @@
 		29B97325FDCFA39411CA2CEA /* Foundation.framework */ = {isa = PBXFileReference; lastKnownFileType = wrapper.framework; name = Foundation.framework; path = /System/Library/Frameworks/Foundation.framework; sourceTree = "<absolute>"; };
 		5C91A2631322D04400F2E054 /* PianobarControl.icns */ = {isa = PBXFileReference; lastKnownFileType = image.icns; path = PianobarControl.icns; sourceTree = "<group>"; };
 		5C91A26B1322D18E00F2E054 /* pandora-logo-16.png */ = {isa = PBXFileReference; lastKnownFileType = image.png; path = "pandora-logo-16.png"; sourceTree = "<group>"; };
-		5C91A28D1322D5CE00F2E054 /* pianobar-choose-station */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = text.script.sh; name = "pianobar-choose-station"; path = "../pianobar-scripts/pianobar-choose-station"; sourceTree = SOURCE_ROOT; };
 		5C91A30F1322E1E000F2E054 /* thumbs_down.png */ = {isa = PBXFileReference; lastKnownFileType = image.png; path = thumbs_down.png; sourceTree = "<group>"; };
 		5C91A3101322E1E000F2E054 /* thumbs_up.png */ = {isa = PBXFileReference; lastKnownFileType = image.png; path = thumbs_up.png; sourceTree = "<group>"; };
 		5C91A3151322E38F00F2E054 /* media_play_pause_resume.png */ = {isa = PBXFileReference; lastKnownFileType = image.png; path = media_play_pause_resume.png; sourceTree = "<group>"; };
@@ -45,6 +44,7 @@
 		5C91A3171322E38F00F2E054 /* information.png */ = {isa = PBXFileReference; lastKnownFileType = image.png; path = information.png; sourceTree = "<group>"; };
 		5C91A3191322E38F00F2E054 /* view_choose.png */ = {isa = PBXFileReference; lastKnownFileType = image.png; path = view_choose.png; sourceTree = "<group>"; };
 		5C91A3481322E55800F2E054 /* exit.png */ = {isa = PBXFileReference; lastKnownFileType = image.png; path = exit.png; sourceTree = "<group>"; };
+		5CE369E21322EBF9004F3AF4 /* pianobar-choose-station */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = text.script.sh; path = "pianobar-choose-station"; sourceTree = "<group>"; };
 		8D1107310486CEB800E47090 /* PianobarControl-Info.plist */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = text.plist.xml; path = "PianobarControl-Info.plist"; sourceTree = "<group>"; };
 		8D1107320486CEB800E47090 /* PianobarControl.app */ = {isa = PBXFileReference; explicitFileType = wrapper.application; includeInIndex = 0; path = PianobarControl.app; sourceTree = BUILT_PRODUCTS_DIR; };
 /* End PBXFileReference section */
@@ -165,7 +165,7 @@
 		5C91A3041322E10200F2E054 /* Scripts */ = {
 			isa = PBXGroup;
 			children = (
-				5C91A28D1322D5CE00F2E054 /* pianobar-choose-station */,
+				5CE369E21322EBF9004F3AF4 /* pianobar-choose-station */,
 			);
 			name = Scripts;
 			sourceTree = "<group>";
@@ -217,7 +217,6 @@
 				1DDD58160DA1D0A300B32029 /* MainMenu.xib in Resources */,
 				5C91A2641322D04400F2E054 /* PianobarControl.icns in Resources */,
 				5C91A26C1322D18E00F2E054 /* pandora-logo-16.png in Resources */,
-				5C91A28E1322D5CE00F2E054 /* pianobar-choose-station in Resources */,
 				5C91A3111322E1E000F2E054 /* thumbs_down.png in Resources */,
 				5C91A3121322E1E000F2E054 /* thumbs_up.png in Resources */,
 				5C91A31A1322E38F00F2E054 /* media_play_pause_resume.png in Resources */,
@@ -225,6 +224,7 @@
 				5C91A31C1322E38F00F2E054 /* information.png in Resources */,
 				5C91A31E1322E38F00F2E054 /* view_choose.png in Resources */,
 				5C91A3491322E55800F2E054 /* exit.png in Resources */,
+				5CE369E31322EBF9004F3AF4 /* pianobar-choose-station in Resources */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;
 		};
