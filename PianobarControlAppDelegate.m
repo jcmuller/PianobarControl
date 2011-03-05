@@ -35,11 +35,11 @@
 
 - (void)addSubMenus {
 	// Instantiate Menu items
-	quit   = [[NSMenuItem allocWithZone:[NSMenu menuZone]] initWithTitle:@"Quit"         action:@selector(quitAction:)      keyEquivalent:@""];
-	play   = [[NSMenuItem allocWithZone:[NSMenu menuZone]] initWithTitle:@"Play - Pause" action:@selector(playAction:)      keyEquivalent:@""];
-	next   = [[NSMenuItem allocWithZone:[NSMenu menuZone]] initWithTitle:@"Next"         action:@selector(nextAction:)      keyEquivalent:@""];
-	love   = [[NSMenuItem allocWithZone:[NSMenu menuZone]] initWithTitle:@"Love"         action:@selector(loveAction:)      keyEquivalent:@""];
-	ban    = [[NSMenuItem allocWithZone:[NSMenu menuZone]] initWithTitle:@"Ban"          action:@selector(banAction:)       keyEquivalent:@""];
+	quit   = [[NSMenuItem allocWithZone:[NSMenu menuZone]] initWithTitle:@"Quit"         action:@selector(quitAction:) keyEquivalent:@""];
+	play   = [[NSMenuItem allocWithZone:[NSMenu menuZone]] initWithTitle:@"Play - Pause" action:@selector(playAction:) keyEquivalent:@""];
+	next   = [[NSMenuItem allocWithZone:[NSMenu menuZone]] initWithTitle:@"Next"         action:@selector(nextAction:) keyEquivalent:@""];
+	love   = [[NSMenuItem allocWithZone:[NSMenu menuZone]] initWithTitle:@"Love"         action:@selector(loveAction:) keyEquivalent:@""];
+	ban    = [[NSMenuItem allocWithZone:[NSMenu menuZone]] initWithTitle:@"Ban"          action:@selector(banAction:)  keyEquivalent:@""];
 
 	about  = [[NSMenuItem allocWithZone:[NSMenu menuZone]] initWithTitle:@"About Pianobar Control" action:@selector(aboutDockAction:) keyEquivalent:@""];
 	choose = [[NSMenuItem allocWithZone:[NSMenu menuZone]] initWithTitle:@"Choose Station"         action:@selector(chooseStationAction:) keyEquivalent:@""];
