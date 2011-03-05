@@ -9,10 +9,9 @@
 #import <Cocoa/Cocoa.h>
 
 @interface PianobarControlAppDelegate : NSObject <NSApplicationDelegate> {
-    NSWindow *window;
-	NSStatusItem *theItem;
-	NSMenu *theMenu;
-	NSStatusBar *bar;
+    NSWindow     *window;
+	NSStatusItem *statusItem;
+	NSMenu       *statusMenu;
 	
 	NSMenuItem *about;
 	NSMenuItem *play;

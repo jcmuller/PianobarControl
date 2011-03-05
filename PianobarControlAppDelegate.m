@@ -12,7 +12,7 @@
 
 @synthesize window;
 
-- (void)applicationDidFinishLaunching:(NSNotification *)aNotification {
+- (void)awakeFromNib {
 	[self activateStatusMenu];
 }
 
@@ -21,16 +21,15 @@
 }
 
 - (void)activateStatusMenu {
-	bar     = [NSStatusBar systemStatusBar];
-	theItem = [bar statusItemWithLength:NSVariableStatusItemLength];
-	theMenu = [[NSMenu alloc] initWithTitle: @"Hello, world!"];
-	[self addSubMenus];
+	statusItem = [[[NSStatusBar systemStatusBar] statusItemWithLength:NSVariableStatusItemLength] retain];
+	statusMenu = [[NSMenu alloc] init];
 	
-	[theMenu setAutoenablesItems:NO];
-	[theItem retain];
-	[theItem setImage:[NSImage imageNamed:@"pandora-logo-16.png"]];
-	[theItem setHighlightMode:YES];
-	[theItem setMenu:theMenu];
+	[statusMenu setAutoenablesItems:NO];
+	[statusItem setImage:[NSImage imageNamed:@"pandora-logo-16.png"]];
+	[statusItem setHighlightMode:YES];
+	[self addSubMenus];
+
+	[statusItem setMenu:statusMenu];	
 }
 
 - (void)addSubMenus {
@@ -59,27 +58,26 @@
 	[choose setImage:[NSImage imageNamed:@"view_choose.png"]];
 	
 	// Add menu items
-	[theMenu addItem:play];
-	[theMenu addItem:next];
-	[theMenu addItem:love];
-	[theMenu addItem:ban];
-	[theMenu addItem:choose];
-	[theMenu addItem:info];
-	[theMenu addItem:[NSMenuItem separatorItem]];
-	[theMenu addItem:about];
-	[theMenu addItem:[NSMenuItem separatorItem]];
-	[theMenu addItem:quit];
+	[statusMenu addItem:play];
+	[statusMenu addItem:next];
+	[statusMenu addItem:love];
+	[statusMenu addItem:ban];
+	[statusMenu addItem:choose];
+	[statusMenu addItem:info];
+	[statusMenu addItem:[NSMenuItem separatorItem]];
+	[statusMenu addItem:about];
+	[statusMenu addItem:[NSMenuItem separatorItem]];
+	[statusMenu addItem:quit];
 
 	// Release items
-	[about release];
-	[play release];
-	[next release];
-	[love release];
-	[ban release];
+	[about  release];
+	[play   release];
+	[next   release];
+	[love   release];
+	[ban    release];
 	[choose release];
-	[info release];
-	[quit release];
-
+	[info   release];
+	[quit   release];
 }
 
 - (void)aboutDockAction:(id)sender {
