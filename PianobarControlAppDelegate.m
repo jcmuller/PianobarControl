@@ -110,6 +110,7 @@
 - (void)chooseStationAction:(id)sender {
 	// Construct script path string
 	NSString* scriptFilePath = [NSString stringWithFormat:@"%@/%@ &", [[NSBundle mainBundle] bundlePath], @"Contents/Resources/pianobar-choose-station"];
+	NSLog(@"Script file path: %@", scriptFilePath);
 	system([scriptFilePath UTF8String]);
 
 	// Force X11 to come up front.
