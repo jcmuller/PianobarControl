@@ -83,6 +83,7 @@
 }
 
 - (void)aboutDockAction:(id)sender {
+	[[NSRunningApplication currentApplication] activateWithOptions:NSApplicationActivateIgnoringOtherApps];
     [[NSApplication sharedApplication] orderFrontStandardAboutPanel:self];
 }
 
