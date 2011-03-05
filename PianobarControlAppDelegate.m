@@ -108,11 +108,13 @@
 }
 
 - (void)chooseStationAction:(id)sender {
-	system("PianobarControl.app/Contents/Resources/pianobar-choose-station &");
+	// Construct script path string
+	NSString* scriptFilePath = [NSString stringWithFormat:@"%@/%@ &", [[NSBundle mainBundle] bundlePath], @"Contents/Resources/pianobar-choose-station"];
+	system([scriptFilePath UTF8String]);
 
+	// Force X11 to come up front.
 	NSArray *apps;
 	apps = [NSRunningApplication runningApplicationsWithBundleIdentifier:@"org.x.X11"];
-	
 	[[apps objectAtIndex:0] activateWithOptions:NSApplicationActivateIgnoringOtherApps];
 }
 
