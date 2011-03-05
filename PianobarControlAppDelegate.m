@@ -108,13 +108,12 @@
 }
 
 - (void)chooseStationAction:(id)sender {
-	system("PianobarControl.app/Contents/Resources/pianobar-choose-station");
+	system("PianobarControl.app/Contents/Resources/pianobar-choose-station &");
 
 	NSArray *apps;
 	apps = [NSRunningApplication runningApplicationsWithBundleIdentifier:@"org.x.X11"];
 	
-	NSRunningApplication *x11 = [apps objectAtIndex:0];
-	[x11 activateWithOptions:NSApplicationActivateAllWindows];
+	[[apps objectAtIndex:0] activateWithOptions:NSApplicationActivateIgnoringOtherApps];
 }
 
 - (void)showInfoAction:(id)sender {
