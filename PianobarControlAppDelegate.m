@@ -53,8 +53,8 @@
 	EventHotKeyRef myHotKeyRef;
 	EventHotKeyID  myHotKeyID;
 	EventTypeSpec  eventType;
-	
-    eventType.eventClass = kEventClassKeyboard;
+
+	eventType.eventClass = kEventClassKeyboard;
 	eventType.eventKind  = kEventHotKeyPressed;
 	InstallApplicationEventHandler(&myHotKeyHandler, 1, &eventType, NULL, NULL);
 
@@ -84,7 +84,7 @@ OSStatus myHotKeyHandler(EventHandlerCallRef nextHandler, EventRef anEvent, void
 - (void)chooseStationAction:(id)sender {
 	// Execute script
 	NSString *pianobarChooseStationScript = [NSString stringWithFormat:@"%@/%@ &",
-											 [[NSBundle mainBundle] bundlePath], @"Contents/Resources/pianobar-choose-station"];
+			 [[NSBundle mainBundle] bundlePath], @"Contents/Resources/pianobar-choose-station"];
 	NSLog(@"Pianobar choose station script file path: %@", pianobarChooseStationScript);
 
 	system([pianobarChooseStationScript UTF8String]);
@@ -97,6 +97,7 @@ OSStatus myHotKeyHandler(EventHandlerCallRef nextHandler, EventRef anEvent, void
 
 - (void) chooseStationNative:(id)sender {
 	[stationSelection setIsVisible:YES];
+	[stationSelection center];
 	[self raiseApplication];
 	[filterBy setStringValue:@""];
 

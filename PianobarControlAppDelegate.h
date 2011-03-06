@@ -13,13 +13,13 @@
 	IBOutlet NSPanel *stationSelection;
 	IBOutlet NSTableView *stationsTable;
 	IBOutlet NSSearchField *filterBy;
-	
+
 	NSArray *stations;
 	NSInteger stationsCount;
-	
+
 	NSStatusItem *statusItem;
 }
- 
+
 - (void) performAction:(NSString *)action;
 
 - (void) playAction:(id)sender;
