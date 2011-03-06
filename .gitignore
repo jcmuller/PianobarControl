@@ -7,6 +7,8 @@ build/*
 *.pbxuser
 *.mode1v3
 *.perspectivev3
+project.xcworkspace
+xcuserdata/
 
 # osx noise
 .DS_Store
