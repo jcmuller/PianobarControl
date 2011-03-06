@@ -20,34 +20,43 @@
 	NSStatusItem *statusItem;
 }
 
-- (void) performAction:(NSString *)action;
-
-- (void) playAction:(id)sender;
-- (void) nextAction:(id)sender;
-- (void) loveAction:(id)sender;
-- (void) banAction:(id)sender;
-- (void) showInfoAction:(id)sender;
-- (void) chooseStationAction:(id)sender;
-
-- (void) playStation:(NSString*)stationId;
-- (void) playStationAndHideSelector:(NSString*)stationString;
-
-- (void) raiseApplication;
-
-- (void) showAboutPanel:(id)sender;
-
-- (void) chooseStationNative:(id)sender;
-- (void) choseStation:(id)sender;
+#pragma mark Actions
+- (IBAction) playAction:(id)sender;
+- (IBAction) nextAction:(id)sender;
+- (IBAction) loveAction:(id)sender;
+- (IBAction) banAction:(id)sender;
+- (IBAction) showInfoAction:(id)sender;
+- (IBAction) chooseStationAction:(id)sender;
+- (IBAction) chooseStationNative:(id)sender;
+- (IBAction) choseStation:(id)sender;
 - (IBAction) tableViewSelected:(id)sender;
 - (IBAction) filterStations:(id)sender;
+- (IBAction) showAboutPanel:(id)sender;
+#pragma mark -
 
+#pragma mark Utility Methods
+- (void) performAction:(NSString *)action;
+- (void) playStation:(NSString*)stationId;
+- (void) playStationAndHideSelector:(NSString*)stationString;
+- (void) raiseApplication;
 - (void) getStations;
+#pragma mark -
 
+#pragma mark Hotkeys
 - (void) registerKeys;
 - (void) showMenu;
+#pragma mark -
+
+@property(nonatomic, retain) NSMenu *statusMenu;
+@property(nonatomic, retain) NSPanel *stationSelection;
+@property(nonatomic, retain) NSTableView *stationsTable;
+@property(nonatomic, retain) NSSearchField *filterBy;
+@property(nonatomic, retain) NSArray *stations;
+@property(nonatomic, retain) NSStatusItem *statusItem;
 
 @end
 
+#pragma mark C-functions for Hotkey support
 void *refToSelf;
 OSStatus myHotKeyHandler(EventHandlerCallRef nextHandler, EventRef anEvent, void *userData);
-
+#pragma mark -
