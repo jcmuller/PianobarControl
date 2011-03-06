@@ -77,6 +77,9 @@
 	[stationSelection center];
 	[stationSelection setIsVisible:YES];
 	
+	// Bring to front
+	[stationSelection makeKeyAndOrderFront:nil];
+
 	// Bring application forward
 	[self raiseApplication];
 }
@@ -112,6 +115,9 @@
 	// Position it nicely and display it
 	[aboutPanel center];
 	[aboutPanel setIsVisible:YES];
+	
+	// Bring to front
+	[aboutPanel makeKeyAndOrderFront:nil];
 	
 	// Bring application forward
 	[self raiseApplication];	
