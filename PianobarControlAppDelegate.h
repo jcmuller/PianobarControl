@@ -8,19 +8,40 @@
 #import <Cocoa/Cocoa.h>
 #import <Carbon/Carbon.h>
 
-@interface PianobarControlAppDelegate : NSObject <NSApplicationDelegate> {
-  IBOutlet NSMenu *statusMenu;
-  NSStatusItem *statusItem;
+@interface PianobarControlAppDelegate : NSObject <NSApplicationDelegate, NSTableViewDataSource> {
+	IBOutlet NSMenu *statusMenu;
+	IBOutlet NSPanel *stationSelection;
+	IBOutlet NSTableView *stationsTable;
+	IBOutlet NSSearchField *filterBy;
+	
+	NSArray *stations;
+	NSInteger stationsCount;
+	
+	NSStatusItem *statusItem;
 }
+ 
+- (void) performAction:(NSString *)action;
 
-- (void) performAction:(id)action;
-- (void) showAboutPanel:(id)sender;
 - (void) playAction:(id)sender;
 - (void) nextAction:(id)sender;
 - (void) loveAction:(id)sender;
 - (void) banAction:(id)sender;
 - (void) showInfoAction:(id)sender;
 - (void) chooseStationAction:(id)sender;
+
+- (void) playStation:(NSString*)stationId;
+- (void) playStationAndHideSelector:(NSString*)stationString;
+
+- (void) raiseApplication;
+
+- (void) showAboutPanel:(id)sender;
+
+- (void) chooseStationNative:(id)sender;
+- (void) choseStation:(id)sender;
+- (IBAction) tableViewSelected:(id)sender;
+- (IBAction) filterStations:(id)sender;
+
+- (void) getStations;
 
 - (void) registerKeys;
 - (void) showMenu;
