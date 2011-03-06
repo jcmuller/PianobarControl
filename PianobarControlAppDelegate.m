@@ -3,113 +3,46 @@
 //  PianobarControl
 //
 //  Created by Juan C. Müller on 3/5/11.
-//  Copyright 2011 Challenge Post. All rights reserved.
 //
 
 #import "PianobarControlAppDelegate.h"
 
 @implementation PianobarControlAppDelegate
 
-@synthesize window;
-
-- (void)awakeFromNib {
-	[self activateStatusMenu];
-}
-
-- (void)applicationWillFinishLaunching:(NSNotification *)notification {
-	[window close];
-}
-
-- (void)activateStatusMenu {
-	statusItem = [[[NSStatusBar systemStatusBar] statusItemWithLength:NSVariableStatusItemLength] retain];
-	statusMenu = [[NSMenu alloc] init];
 	
-	[statusMenu setAutoenablesItems:NO];
+- (void)awakeFromNib {
+	statusItem = [[[NSStatusBar systemStatusBar] statusItemWithLength:NSVariableStatusItemLength] retain];
 	[statusItem setImage:[NSImage imageNamed:@"pandora-logo-16.png"]];
 	[statusItem setHighlightMode:YES];
-	[self addSubMenus];
-
 	[statusItem setMenu:statusMenu];	
 }
 
-- (void)addSubMenus {
-	// Instantiate Menu items
-	quit   = [[NSMenuItem allocWithZone:[NSMenu menuZone]] initWithTitle:@"Quit"         action:@selector(quitAction:) keyEquivalent:@""];
-	play   = [[NSMenuItem allocWithZone:[NSMenu menuZone]] initWithTitle:@"Play - Pause" action:@selector(playAction:) keyEquivalent:@""];
-	next   = [[NSMenuItem allocWithZone:[NSMenu menuZone]] initWithTitle:@"Next"         action:@selector(nextAction:) keyEquivalent:@""];
-	love   = [[NSMenuItem allocWithZone:[NSMenu menuZone]] initWithTitle:@"Love"         action:@selector(loveAction:) keyEquivalent:@""];
-	ban    = [[NSMenuItem allocWithZone:[NSMenu menuZone]] initWithTitle:@"Ban"          action:@selector(banAction:)  keyEquivalent:@""];
-
-	about  = [[NSMenuItem allocWithZone:[NSMenu menuZone]] initWithTitle:@"About Pianobar Control" action:@selector(aboutDockAction:) keyEquivalent:@""];
-	choose = [[NSMenuItem allocWithZone:[NSMenu menuZone]] initWithTitle:@"Choose Station"         action:@selector(chooseStationAction:) keyEquivalent:@""];
-	info   = [[NSMenuItem allocWithZone:[NSMenu menuZone]] initWithTitle:@"Show Song Info"         action:@selector(showInfoAction:) keyEquivalent:@""];
-	
-	// Set targets
-	[about setTarget: self];
-
-	// Set icons
-	[about  setImage:[NSImage imageNamed:@"pandora-logo-16.png"]];
-	[love   setImage:[NSImage imageNamed:@"thumbs_up.png"]];
-	[ban    setImage:[NSImage imageNamed:@"thumbs_down.png"]];
-	[play   setImage:[NSImage imageNamed:@"media_play_pause_resume.png"]];
-	[next   setImage:[NSImage imageNamed:@"media_next.png"]];
-	[info   setImage:[NSImage imageNamed:@"information.png"]];
-	[quit   setImage:[NSImage imageNamed:@"exit.png"]];
-	[choose setImage:[NSImage imageNamed:@"view_choose.png"]];
-	
-	// Add menu items
-	[statusMenu addItem:play];
-	[statusMenu addItem:next];
-	[statusMenu addItem:love];
-	[statusMenu addItem:ban];
-	[statusMenu addItem:choose];
-	[statusMenu addItem:info];
-	[statusMenu addItem:[NSMenuItem separatorItem]];
-	[statusMenu addItem:about];
-	[statusMenu addItem:[NSMenuItem separatorItem]];
-	[statusMenu addItem:quit];
-
-	// Release items
-	[about  release];
-	[play   release];
-	[next   release];
-	[love   release];
-	[ban    release];
-	[choose release];
-	[info   release];
-	[quit   release];
-}
-
-- (void)aboutDockAction:(id)sender {
-	[[NSRunningApplication currentApplication] activateWithOptions:NSApplicationActivateIgnoringOtherApps];
-    [[NSApplication sharedApplication] orderFrontStandardAboutPanel:self];
-}
-
 - (void)playAction:(id)sender {
-	NSString *action = @"p";
-	[self performAction:action];
+	[self performAction:@"p"];
 }
 
 - (void)nextAction:(id)sender {
-	NSString *action = @"n";
-	[self performAction:action];
+	[self performAction:@"n"];
 }
 
 - (void)loveAction:(id)sender {
-	NSString *action = @"+";
-	[self performAction:action];
+	[self performAction:@"+"];
 }
 
 - (void)banAction:(id)sender {
-	NSString *action = @"-";
-	[self performAction:action];
+	[self performAction:@"-"];
+}
+
+- (void)showInfoAction:(id)sender {
+	[self performAction:@"e"];
 }
 
 - (void)chooseStationAction:(id)sender {
-	// Construct script path string
-	NSString* scriptFilePath = [NSString stringWithFormat:@"%@/%@ &", [[NSBundle mainBundle] bundlePath], @"Contents/Resources/pianobar-choose-station"];
-	NSLog(@"Script file path: %@", scriptFilePath);
-	system([scriptFilePath UTF8String]);
+	// Execute script
+	NSString *pianobarChooseStationScript = [NSString stringWithFormat:@"%@/%@ &", [[NSBundle mainBundle] bundlePath], @"Contents/Resources/pianobar-choose-station"];
+	//NSLog(@"Pianobar choose station script file path: %@", pianobarChooseStationScript);
+
+	system([pianobarChooseStationScript UTF8String]);
 
 	// Force X11 to come up front.
 	NSArray *apps;
@@ -117,20 +50,12 @@
 	[[apps objectAtIndex:0] activateWithOptions:NSApplicationActivateIgnoringOtherApps];
 }
 
-- (void)showInfoAction:(id)sender {
-	NSString *action = @"e";
-	[self performAction:action];
-}
-
-- (void)quitAction:(id)sender {
-	exit(0);
-}
-
-- (void)performAction:(id)action {
-	NSString *filenameStr = [NSString stringWithFormat:@"%@/%@", NSHomeDirectory(), @".config/pianobar/ctl"];
-	NSError	 *error;
+- (void)performAction:(NSString*)action {
+	NSError	 *error;	
+	NSString *pianobarFifo = [NSString stringWithFormat:@"%@/%@", NSHomeDirectory(), @".config/pianobar/ctl"];
+	//NSLog(@"Pianobar fifo path: %@", pianobarFifo);
 	
-	if(![action writeToFile:filenameStr atomically:NO encoding:NSUTF8StringEncoding error:&error]) {
+	if(![action writeToFile:pianobarFifo atomically:NO encoding:NSUTF8StringEncoding error:&error]) {
 		NSLog(@"We have a problem: %@\r\n", [error localizedFailureReason]);
 	}
 }
