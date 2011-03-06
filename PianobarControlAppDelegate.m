@@ -17,6 +17,11 @@
 	[statusItem setMenu:statusMenu];	
 }
 
+- (void)showAboutPanel:(id)sender {
+	[[NSRunningApplication currentApplication] activateWithOptions:NSApplicationActivateIgnoringOtherApps];
+	[[NSApplication sharedApplication] orderFrontStandardAboutPanel:self];
+}
+
 - (void)playAction:(id)sender {
 	[self performAction:@"p"];
 }

@@ -13,6 +13,7 @@
 }
 
 - (void) performAction:(id)action;
+- (void) showAboutPanel:(id)sender;
 - (void) playAction:(id)sender;
 - (void) nextAction:(id)sender;
 - (void) loveAction:(id)sender;
