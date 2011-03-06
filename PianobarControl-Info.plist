@@ -16,12 +16,10 @@
 	<string>Pianobar Control</string>
 	<key>CFBundlePackageType</key>
 	<string>APPL</string>
-	<key>CFBundleShortVersionString</key>
-	<string>0.2</string>
 	<key>CFBundleSignature</key>
 	<string>????</string>
 	<key>CFBundleVersion</key>
-	<string>0.2</string>
+	<string>0.3</string>
 	<key>LSMinimumSystemVersion</key>
 	<string>${MACOSX_DEPLOYMENT_TARGET}</string>
 	<key>LSMultipleInstancesProhibited</key>
@@ -29,10 +27,12 @@
 	<key>LSUIElement</key>
 	<true/>
 	<key>NSHumanReadableCopyright</key>
-	<string>© 2011, Juan C. Müller</string>
+	<string>© 2011, Juan C. Müller</string>
 	<key>NSMainNibFile</key>
 	<string>MainMenu</string>
 	<key>NSPrincipalClass</key>
 	<string>NSApplication</string>
+	<key>CFBundleGetInfoString</key>
+	<string>https://github.com/jcmuller/PianobarControl</string>
 </dict>
 </plist>

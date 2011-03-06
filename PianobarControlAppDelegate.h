@@ -10,9 +10,15 @@
 
 @interface PianobarControlAppDelegate : NSObject <NSApplicationDelegate, NSTableViewDataSource> {
 	IBOutlet NSMenu *statusMenu;
+	
 	IBOutlet NSPanel *stationSelection;
 	IBOutlet NSTableView *stationsTable;
 	IBOutlet NSSearchField *filterBy;
+	
+	IBOutlet NSPanel *aboutPanel;
+	IBOutlet NSTextField *aboutVersion;
+	IBOutlet NSTextField *aboutCopyRight;
+	IBOutlet NSTextField *aboutUrl;
 
 	NSArray *stations;
 	NSInteger stationsCount;
@@ -29,7 +35,6 @@
 - (IBAction) chooseStationAction:(id)sender;
 - (IBAction) chooseStationNative:(id)sender;
 - (IBAction) choseStation:(id)sender;
-- (IBAction) tableViewSelected:(id)sender;
 - (IBAction) filterStations:(id)sender;
 - (IBAction) showAboutPanel:(id)sender;
 #pragma mark -
@@ -40,6 +45,8 @@
 - (void) playStationAndHideSelector:(NSString*)stationString;
 - (void) raiseApplication;
 - (void) getStations;
+- (void) refreshTableData;
+- (void) setHyperlinkForTextField:(NSTextField*)aTextField url:(NSURL*)anUrl string:(NSString*)aString;
 #pragma mark -
 
 #pragma mark Hotkeys
@@ -47,6 +54,12 @@
 - (void) showMenu;
 #pragma mark -
 
+#pragma mark NSTableViewDataSource delegate methods....
+// for some reason, we have to mark 'em actions...
+- (IBAction) tableViewSelected:(id)sender;
+#pragma mark -
+
+#pragma mark properties
 @property(nonatomic, retain) NSMenu *statusMenu;
 @property(nonatomic, retain) NSPanel *stationSelection;
 @property(nonatomic, retain) NSTableView *stationsTable;
@@ -54,9 +67,15 @@
 @property(nonatomic, retain) NSArray *stations;
 @property(nonatomic, retain) NSStatusItem *statusItem;
 
+@property(nonatomic, retain) NSPanel *aboutPanel;
+@property(nonatomic, retain) NSTextField *aboutVersion;
+@property(nonatomic, retain) NSTextField *aboutCopyRight;
+@property(nonatomic, retain) NSTextField *aboutUrl;
+#pragma mark -
+
 @end
 
-#pragma mark C-functions for Hotkey support
+#pragma mark C elements for Hotkey support
 void *refToSelf;
 OSStatus myHotKeyHandler(EventHandlerCallRef nextHandler, EventRef anEvent, void *userData);
 #pragma mark -

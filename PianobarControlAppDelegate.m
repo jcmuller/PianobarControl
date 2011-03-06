@@ -6,15 +6,22 @@
 //
 
 #import "PianobarControlAppDelegate.h"
+#import "NSAttributedString+Hyperlink.h"
 
 @implementation PianobarControlAppDelegate
 
 @synthesize statusMenu;
+
 @synthesize stationSelection;
 @synthesize stationsTable;
 @synthesize filterBy;
 @synthesize stations;
 @synthesize statusItem;
+
+@synthesize aboutPanel;
+@synthesize aboutVersion;
+@synthesize aboutCopyRight;
+@synthesize aboutUrl;
 
 #pragma mark NSApplicationDelegate methods
 - (void)awakeFromNib {
@@ -26,6 +33,7 @@
 	[statusItem setMenu:statusMenu];
 	[self registerKeys];
 	[stationsTable setDataSource:self];
+	[stationsTable setDoubleAction:@selector(doubleClicked:)];
 }
 #pragma mark -
 
@@ -72,19 +80,13 @@
 	[filterBy becomeFirstResponder];
 	
 	// Load data
-	[self getStations];
-	[stationsTable reloadData];
-	
-	// Select first row
-	[stationsTable selectRowIndexes:[NSIndexSet indexSetWithIndex:0] byExtendingSelection:NO];
-	
+	[self refreshTableData];
+
 	// Restore the default size of the window
 	NSRect newFrame = NSMakeRect(1, 1, 450, 500);
 	[stationSelection setFrame:newFrame display:NO animate:NO];
 	
-	// Scroll to top
-	[stationsTable scrollRowToVisible:0];
-	
+
 	// Position it nicely and display it
 	[stationSelection center];
 	[stationSelection setIsVisible:YES];
@@ -101,23 +103,32 @@
 	{
 		NSString *selected = [stations objectAtIndex:selectedRow];
 		[self playStationAndHideSelector:selected];
-	}	
-}
-
-- (IBAction) tableViewSelected:(id)sender {
-	int row = [sender selectedRow];
-	NSString *selected = [stations objectAtIndex:row];
-	[self playStationAndHideSelector:selected];
+	}
 }
 
 - (IBAction) filterStations:(id)sender {
-	[self getStations];
-	[stationsTable reloadData];
+	[self refreshTableData];
 }
 
 - (IBAction) showAboutPanel:(id)sender {
-	[self raiseApplication];
-	[[NSApplication sharedApplication] orderFrontStandardAboutPanel:self];
+//	[[NSApplication sharedApplication] orderFrontStandardAboutPanel:self];
+
+	[aboutCopyRight setStringValue:[NSString stringWithFormat:@"Copyright %@", [[[NSBundle mainBundle] infoDictionary] objectForKey:@"NSHumanReadableCopyright"]]];
+	[aboutVersion setStringValue:[NSString stringWithFormat:@"Version %@", [[[NSBundle mainBundle] infoDictionary] objectForKey:@"CFBundleVersion"]]];
+	//[aboutUrl setStringValue:[[[NSBundle mainBundle] infoDictionary] objectForKey:@"CFBundleGetInfoString"]];
+
+	NSString *urlString = [[[NSBundle mainBundle] infoDictionary] objectForKey:@"CFBundleGetInfoString"];
+	NSURL *url = [NSURL URLWithString:[urlString stringByAddingPercentEscapesUsingEncoding:NSUTF8StringEncoding]];
+
+	NSLog(@"urlString: %@ url: %@", urlString, url);
+	[self setHyperlinkForTextField:aboutUrl url:url string:(NSString*)urlString];
+	
+	// Position it nicely and display it
+	[aboutPanel center];
+	[aboutPanel setIsVisible:YES];
+	
+	// Bring application forward
+	[self raiseApplication];	
 }
 #pragma mark -
 
@@ -150,15 +161,38 @@
 	NSString* stationsFromFile = [NSString stringWithContentsOfFile:@"/tmp/pianobar_stations" encoding:NSUTF8StringEncoding error:nil];
 	NSArray* stationsNotFiltered = [stationsFromFile componentsSeparatedByString:@"\n"];
 	
-	if ([[filterBy stringValue] length] > 0) {
+	if ([[filterBy stringValue] isEqual:@""])
+		[self setStations:stationsNotFiltered];
+	else {
 		NSPredicate *regextest = [NSPredicate predicateWithFormat:@"SELF contains[c] %@", [filterBy stringValue]];
 		[self setStations:[stationsNotFiltered filteredArrayUsingPredicate:regextest]];
 	}
-	else {
-		[self setStations:stationsNotFiltered];
-	}
 
 	stationsCount = [stations count];
+}
+
+- (void) refreshTableData {
+	// Refresh stations
+	[self getStations];
+	[stationsTable reloadData];
+	
+	// Select first row
+	[stationsTable selectRowIndexes:[NSIndexSet indexSetWithIndex:0] byExtendingSelection:NO];
+	// Scroll to top
+	[stationsTable scrollRowToVisible:0];	
+}
+
+- (void) setHyperlinkForTextField:(NSTextField*)aTextField url:(NSURL*)anUrl string:(NSString*)aString {
+    // both are needed, otherwise hyperlink won't accept mousedown
+    [aTextField setAllowsEditingTextAttributes: YES];
+    [aTextField setSelectable: YES];
+	[aTextField setAlignment:NSCenterTextAlignment];
+		
+    NSMutableAttributedString* string = [[NSMutableAttributedString alloc] init];
+    [string appendAttributedString: [NSAttributedString hyperlinkFromString:aString withURL:anUrl]];
+	
+    // set the attributed string to the NSTextField
+    [aTextField setAttributedStringValue: string];
 }
 #pragma mark -
 
@@ -183,7 +217,7 @@
 }
 #pragma mark -
 
-#pragma mark C-functions for Hotkey support
+#pragma mark C elements for Hotkey support
 OSStatus myHotKeyHandler(EventHandlerCallRef nextHandler, EventRef anEvent, void *userData) {
 	EventHotKeyID hkRef;
 	GetEventParameter(anEvent, kEventParamDirectObject, typeEventHotKeyID, NULL, sizeof(hkRef), NULL, &hkRef);
@@ -209,10 +243,22 @@ OSStatus myHotKeyHandler(EventHandlerCallRef nextHandler, EventRef anEvent, void
 	else 
 		return nil;
 }
+
+- (IBAction) tableViewSelected:(id)sender {
+}
+
+- (IBAction) doubleClicked:(id)sender {
+	int row = [sender selectedRow];
+	NSString *selected = [stations objectAtIndex:row];
+	[self playStationAndHideSelector:selected];
+}
 #pragma mark -
 
 #pragma mark destructor
 - (void)dealloc {
+	[aboutVersion release];
+	[aboutCopyRight release];
+	[aboutUrl release];
 	[statusItem release];
 	[statusMenu release];
 	[stationSelection release];
