@@ -3,7 +3,6 @@
 //  PianobarControl
 //
 //  Created by Juan C. Müller on 3/6/11.
-//  Copyright 2011 Challenge Post. All rights reserved.
 //
 
 #import "NSAttributedString+Hyperlink.h"
