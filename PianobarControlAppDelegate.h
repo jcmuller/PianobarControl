@@ -33,7 +33,6 @@
 - (IBAction) banAction:(id)sender;
 - (IBAction) showInfoAction:(id)sender;
 - (IBAction) chooseStationAction:(id)sender;
-- (IBAction) chooseStationNative:(id)sender;
 - (IBAction) choseStation:(id)sender;
 - (IBAction) filterStations:(id)sender;
 - (IBAction) showAboutPanel:(id)sender;
@@ -51,7 +50,7 @@
 
 #pragma mark Hotkeys
 - (void) registerKeys;
-- (void) showMenu;
+- (id) showMenu;
 #pragma mark -
 
 #pragma mark NSTableViewDataSource delegate methods....

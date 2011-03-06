@@ -6,6 +6,8 @@
 	<string>English</string>
 	<key>CFBundleExecutable</key>
 	<string>${EXECUTABLE_NAME}</string>
+	<key>CFBundleGetInfoString</key>
+	<string>https://github.com/jcmuller/PianobarControl</string>
 	<key>CFBundleIconFile</key>
 	<string>PianobarControl.icns</string>
 	<key>CFBundleIdentifier</key>
@@ -20,6 +22,8 @@
 	<string>????</string>
 	<key>CFBundleVersion</key>
 	<string>0.3</string>
+	<key>LSApplicationCategoryType</key>
+	<string>public.app-category.music</string>
 	<key>LSMinimumSystemVersion</key>
 	<string>${MACOSX_DEPLOYMENT_TARGET}</string>
 	<key>LSMultipleInstancesProhibited</key>
@@ -32,7 +36,5 @@
 	<string>MainMenu</string>
 	<key>NSPrincipalClass</key>
 	<string>NSApplication</string>
-	<key>CFBundleGetInfoString</key>
-	<string>https://github.com/jcmuller/PianobarControl</string>
 </dict>
 </plist>

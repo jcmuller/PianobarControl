@@ -19,7 +19,6 @@
 		5C91A31C1322E38F00F2E054 /* information.png in Resources */ = {isa = PBXBuildFile; fileRef = 5C91A3171322E38F00F2E054 /* information.png */; };
 		5C91A31E1322E38F00F2E054 /* view_choose.png in Resources */ = {isa = PBXBuildFile; fileRef = 5C91A3191322E38F00F2E054 /* view_choose.png */; };
 		5C91A3491322E55800F2E054 /* exit.png in Resources */ = {isa = PBXBuildFile; fileRef = 5C91A3481322E55800F2E054 /* exit.png */; };
-		5CE369E31322EBF9004F3AF4 /* pianobar-choose-station in Resources */ = {isa = PBXBuildFile; fileRef = 5CE369E21322EBF9004F3AF4 /* pianobar-choose-station */; };
 		5CF2990513241B8500704EB8 /* NSAttributedString+Hyperlink.m in Sources */ = {isa = PBXBuildFile; fileRef = 5CF2990413241B8500704EB8 /* NSAttributedString+Hyperlink.m */; };
 		8D11072B0486CEB800E47090 /* InfoPlist.strings in Resources */ = {isa = PBXBuildFile; fileRef = 089C165CFE840E0CC02AAC07 /* InfoPlist.strings */; };
 		8D11072D0486CEB800E47090 /* main.m in Sources */ = {isa = PBXBuildFile; fileRef = 29B97316FDCFA39411CA2CEA /* main.m */; settings = {ATTRIBUTES = (); }; };
@@ -47,7 +46,6 @@
 		5C91A3171322E38F00F2E054 /* information.png */ = {isa = PBXFileReference; lastKnownFileType = image.png; path = information.png; sourceTree = "<group>"; };
 		5C91A3191322E38F00F2E054 /* view_choose.png */ = {isa = PBXFileReference; lastKnownFileType = image.png; path = view_choose.png; sourceTree = "<group>"; };
 		5C91A3481322E55800F2E054 /* exit.png */ = {isa = PBXFileReference; lastKnownFileType = image.png; path = exit.png; sourceTree = "<group>"; };
-		5CE369E21322EBF9004F3AF4 /* pianobar-choose-station */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = text.script.sh; path = "pianobar-choose-station"; sourceTree = "<group>"; };
 		5CF2990313241B8500704EB8 /* NSAttributedString+Hyperlink.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = "NSAttributedString+Hyperlink.h"; sourceTree = "<group>"; };
 		5CF2990413241B8500704EB8 /* NSAttributedString+Hyperlink.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = "NSAttributedString+Hyperlink.m"; sourceTree = "<group>"; };
 		8D1107310486CEB800E47090 /* PianobarControl-Info.plist */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = text.plist.xml; path = "PianobarControl-Info.plist"; sourceTree = "<group>"; };
@@ -130,7 +128,6 @@
 			children = (
 				5C91A3031322E0FC00F2E054 /* Icons */,
 				5C91A3021322E0EF00F2E054 /* Images */,
-				5C91A3041322E10200F2E054 /* Scripts */,
 				8D1107310486CEB800E47090 /* PianobarControl-Info.plist */,
 				089C165CFE840E0CC02AAC07 /* InfoPlist.strings */,
 				1DDD58140DA1D0A300B32029 /* MainMenu.xib */,
@@ -168,14 +165,6 @@
 				5C91A2631322D04400F2E054 /* PianobarControl.icns */,
 			);
 			name = Icons;
-			sourceTree = "<group>";
-		};
-		5C91A3041322E10200F2E054 /* Scripts */ = {
-			isa = PBXGroup;
-			children = (
-				5CE369E21322EBF9004F3AF4 /* pianobar-choose-station */,
-			);
-			name = Scripts;
 			sourceTree = "<group>";
 		};
 		5CF2990213241B6600704EB8 /* Categories */ = {
@@ -248,7 +237,6 @@
 				5C91A31C1322E38F00F2E054 /* information.png in Resources */,
 				5C91A31E1322E38F00F2E054 /* view_choose.png in Resources */,
 				5C91A3491322E55800F2E054 /* exit.png in Resources */,
-				5CE369E31322EBF9004F3AF4 /* pianobar-choose-station in Resources */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;
 		};
@@ -298,8 +286,11 @@
 				GCC_OPTIMIZATION_LEVEL = 0;
 				GCC_PRECOMPILE_PREFIX_HEADER = YES;
 				GCC_PREFIX_HEADER = PianobarControl_Prefix.pch;
+				GCC_VERSION = com.apple.compilers.llvm.clang.1_0;
 				INFOPLIST_FILE = "PianobarControl-Info.plist";
 				INSTALL_PATH = "$(HOME)/Applications";
+				MACOSX_DEPLOYMENT_TARGET = 10.5;
+				ONLY_ACTIVE_ARCH = NO;
 				PRODUCT_NAME = PianobarControl;
 			};
 			name = Debug;
@@ -312,8 +303,11 @@
 				GCC_MODEL_TUNING = G5;
 				GCC_PRECOMPILE_PREFIX_HEADER = YES;
 				GCC_PREFIX_HEADER = PianobarControl_Prefix.pch;
+				GCC_VERSION = com.apple.compilers.llvm.clang.1_0;
 				INFOPLIST_FILE = "PianobarControl-Info.plist";
 				INSTALL_PATH = "$(HOME)/Applications";
+				MACOSX_DEPLOYMENT_TARGET = 10.5;
+				ONLY_ACTIVE_ARCH = YES;
 				PRODUCT_NAME = PianobarControl;
 			};
 			name = Release;
@@ -321,7 +315,7 @@
 		C01FCF4F08A954540054247B /* Debug */ = {
 			isa = XCBuildConfiguration;
 			buildSettings = {
-				ARCHS = "$(ARCHS_STANDARD_64_BIT)";
+				ARCHS = "$(ARCHS_STANDARD_32_64_BIT)";
 				GCC_C_LANGUAGE_STANDARD = gnu99;
 				GCC_OPTIMIZATION_LEVEL = 0;
 				GCC_WARN_ABOUT_RETURN_TYPE = YES;

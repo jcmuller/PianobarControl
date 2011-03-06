@@ -59,20 +59,6 @@
 }
 
 - (IBAction) chooseStationAction:(id)sender {
-	// Execute script
-	NSString *pianobarChooseStationScript = [NSString stringWithFormat:@"%@/%@ &",
-											 [[NSBundle mainBundle] bundlePath], @"Contents/Resources/pianobar-choose-station"];
-	NSLog(@"Pianobar choose station script file path: %@", pianobarChooseStationScript);
-	
-	system([pianobarChooseStationScript UTF8String]);
-	
-	// Force X11 to come up front.
-	NSArray *apps;
-	apps = [NSRunningApplication runningApplicationsWithBundleIdentifier:@"org.x.X11"];
-	[[apps objectAtIndex:0] activateWithOptions:NSApplicationActivateIgnoringOtherApps];
-}
-
-- (IBAction) chooseStationNative:(id)sender {
 	// Reset filter
 	[filterBy setStringValue:@""];
 	
@@ -193,6 +179,7 @@
 	
     // set the attributed string to the NSTextField
     [aTextField setAttributedStringValue: string];
+    [string release];
 }
 #pragma mark -
 
@@ -212,8 +199,9 @@
 	RegisterEventHotKey(35, shiftKey+optionKey, myHotKeyID, GetApplicationEventTarget(), 0, &myHotKeyRef);
 }
 
-- (void) showMenu {
+- (id) showMenu {
 	[statusItem popUpStatusItemMenu:statusMenu];
+    return nil;
 }
 #pragma mark -
 
