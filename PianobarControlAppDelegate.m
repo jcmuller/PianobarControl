@@ -15,7 +15,6 @@
 @synthesize stationSelection;
 @synthesize stationsTable;
 @synthesize filterBy;
-@synthesize stations;
 @synthesize statusItem;
 
 @synthesize aboutPanel;
@@ -23,39 +22,45 @@
 @synthesize aboutCopyRight;
 @synthesize aboutUrl;
 
+@synthesize model;
+@synthesize controller;
+
 #pragma mark NSApplicationDelegate methods
 - (void)awakeFromNib {
 	refToSelf = self;
+	
+	model = [[PianobarControlModel alloc] init];
+	controller = [[PianobarControlController alloc] init];
 
 	statusItem = [[[NSStatusBar systemStatusBar] statusItemWithLength:NSVariableStatusItemLength] retain];
 	[statusItem setImage:[NSImage imageNamed:@"pandora-logo-16.png"]];
 	[statusItem setHighlightMode:YES];
 	[statusItem setMenu:statusMenu];
 	[self registerKeys];
-	[stationsTable setDataSource:self];
+	[stationsTable setDataSource:model];
 	[stationsTable setDoubleAction:@selector(doubleClicked:)];
 }
 #pragma mark -
 
 #pragma mark Actions
 - (IBAction) playAction:(id)sender {
-	[self performAction:@"p"];
+	[controller performAction:@"p"];
 }
 
 - (IBAction) nextAction:(id)sender {
-	[self performAction:@"n"];
+	[controller performAction:@"n"];
 }
 
 - (IBAction) loveAction:(id)sender {
-	[self performAction:@"+"];
+	[controller performAction:@"+"];
 }
 
 - (IBAction) banAction:(id)sender {
-	[self performAction:@"-"];
+	[controller performAction:@"-"];
 }
 
 - (IBAction) showInfoAction:(id)sender {
-	[self performAction:@"e"];
+	[controller performAction:@"e"];
 }
 
 - (IBAction) chooseStationAction:(id)sender {
@@ -66,8 +71,16 @@
 	[filterBy becomeFirstResponder];
 	
 	// Load data
-	[self refreshTableData];
+	[model loadStations:[filterBy stringValue]];
 
+	// Mark table as needing update
+	[stationsTable reloadData];
+	
+	// Select first row
+	[stationsTable selectRowIndexes:[NSIndexSet indexSetWithIndex:0] byExtendingSelection:NO];
+	// Scroll to top
+	[stationsTable scrollRowToVisible:0];		
+	
 	// Restore the default size of the window
 	NSRect newFrame = NSMakeRect(1, 1, 450, 500);
 	[stationSelection setFrame:newFrame display:NO animate:NO];
@@ -90,13 +103,13 @@
 	// Sanity check...
 	if (selectedRow > -1)
 	{
-		NSString *selected = [stations objectAtIndex:selectedRow];
+		NSString *selected = [[model stations] objectAtIndex:selectedRow];
 		[self playStationAndHideSelector:selected];
 	}
 }
 
 - (IBAction) filterStations:(id)sender {
-	[self refreshTableData];
+	[model loadStations:[filterBy stringValue]];
 }
 
 - (IBAction) showAboutPanel:(id)sender {
@@ -125,53 +138,15 @@
 #pragma mark -
 
 #pragma mark Utility Methods
-- (void) playStation:(NSString*)stationId {
-	[self performAction:[NSString stringWithFormat:@"s%@\n", stationId]];
-}
-
 - (void) playStationAndHideSelector:(NSString *)stationString {
 	NSArray* elements = [stationString componentsSeparatedByString:@". "];
-	[self playStation:[elements objectAtIndex:0]];
+	[controller playStation:[elements objectAtIndex:0]];
 	[stationSelection setIsVisible:NO];
 }
 
-- (void) performAction:(NSString*)action {
-	NSError	 *error;	
-	NSString *pianobarFifo = [NSString stringWithFormat:@"%@/%@", NSHomeDirectory(), @".config/pianobar/ctl"];
-	//NSLog(@"Pianobar fifo path: %@", pianobarFifo);
-	
-	if(![action writeToFile:pianobarFifo atomically:NO encoding:NSUTF8StringEncoding error:&error]) {
-		NSLog(@"We have a problem: %@\r\n", [error localizedFailureReason]);
-	}
-}
 
 - (void) raiseApplication {
 	[[NSRunningApplication currentApplication] activateWithOptions:NSApplicationActivateIgnoringOtherApps];
-}
-
-- (void) getStations {
-	NSString* stationsFromFile = [NSString stringWithContentsOfFile:@"/tmp/pianobar_stations" encoding:NSUTF8StringEncoding error:nil];
-	NSArray* stationsNotFiltered = [stationsFromFile componentsSeparatedByString:@"\n"];
-	
-	if ([[filterBy stringValue] isEqual:@""])
-		[self setStations:stationsNotFiltered];
-	else {
-		NSPredicate *regextest = [NSPredicate predicateWithFormat:@"SELF contains[c] %@", [filterBy stringValue]];
-		[self setStations:[stationsNotFiltered filteredArrayUsingPredicate:regextest]];
-	}
-
-	stationsCount = [stations count];
-}
-
-- (void) refreshTableData {
-	// Refresh stations
-	[self getStations];
-	[stationsTable reloadData];
-	
-	// Select first row
-	[stationsTable selectRowIndexes:[NSIndexSet indexSetWithIndex:0] byExtendingSelection:NO];
-	// Scroll to top
-	[stationsTable scrollRowToVisible:0];	
 }
 
 - (void) setHyperlinkForTextField:(NSTextField*)aTextField url:(NSURL*)anUrl string:(NSString*)aString {
@@ -186,6 +161,15 @@
     // set the attributed string to the NSTextField
     [aTextField setAttributedStringValue: string];
     [string release];
+}
+
+- (IBAction) tableViewSelected:(id)sender {
+}
+
+- (IBAction) doubleClicked:(id)sender {
+	int row = [sender selectedRow];
+	NSString *selected = [[model stations] objectAtIndex:row];
+	[self playStationAndHideSelector:selected];
 }
 #pragma mark -
 
@@ -226,28 +210,6 @@ OSStatus myHotKeyHandler(EventHandlerCallRef nextHandler, EventRef anEvent, void
 }
 #pragma mark -
 
-#pragma mark NSTableViewDataSource protocol methods
-- (NSInteger)numberOfRowsInTableView:(NSTableView *)aTableView {
-	return [stations count];
-}
-
-- (id)tableView:(NSTableView *)aTableView objectValueForTableColumn:(NSTableColumn *)aTableColumn row:(NSInteger)rowIndex {
-	if (rowIndex > -1 && rowIndex < stationsCount)
-		return [stations objectAtIndex:rowIndex];
-	else 
-		return nil;
-}
-
-- (IBAction) tableViewSelected:(id)sender {
-}
-
-- (IBAction) doubleClicked:(id)sender {
-	int row = [sender selectedRow];
-	NSString *selected = [stations objectAtIndex:row];
-	[self playStationAndHideSelector:selected];
-}
-#pragma mark -
-
 #pragma mark destructor
 - (void)dealloc {
 	[aboutVersion release];
@@ -258,7 +220,8 @@ OSStatus myHotKeyHandler(EventHandlerCallRef nextHandler, EventRef anEvent, void
 	[stationSelection release];
 	[stationsTable release];
 	[filterBy release];
-	[stations release];
+	[model release];
+	[controller release];
 	[super dealloc];
 }
 #pragma mark -

@@ -7,8 +7,10 @@
 
 #import <Cocoa/Cocoa.h>
 #import <Carbon/Carbon.h>
+#include "PianobarControlModel.h"
+#include "PianobarControlController.h"
 
-@interface PianobarControlAppDelegate : NSObject <NSApplicationDelegate, NSTableViewDataSource> {
+@interface PianobarControlAppDelegate : NSObject <NSApplicationDelegate> {
 	IBOutlet NSMenu *statusMenu;
 	
 	IBOutlet NSPanel *stationSelection;
@@ -20,10 +22,10 @@
 	IBOutlet NSTextField *aboutCopyRight;
 	IBOutlet NSTextField *aboutUrl;
 
-	NSArray *stations;
-	NSInteger stationsCount;
-
 	NSStatusItem *statusItem;
+	
+	PianobarControlModel *model;
+	PianobarControlController *controller;
 }
 
 #pragma mark Actions
@@ -39,12 +41,8 @@
 #pragma mark -
 
 #pragma mark Utility Methods
-- (void) performAction:(NSString *)action;
-- (void) playStation:(NSString*)stationId;
 - (void) playStationAndHideSelector:(NSString*)stationString;
 - (void) raiseApplication;
-- (void) getStations;
-- (void) refreshTableData;
 - (void) setHyperlinkForTextField:(NSTextField*)aTextField url:(NSURL*)anUrl string:(NSString*)aString;
 #pragma mark -
 
@@ -53,23 +51,23 @@
 - (id) showMenu;
 #pragma mark -
 
-#pragma mark NSTableViewDataSource delegate methods....
-// for some reason, we have to mark 'em actions...
+
 - (IBAction) tableViewSelected:(id)sender;
-#pragma mark -
 
 #pragma mark properties
 @property(nonatomic, retain) NSMenu *statusMenu;
 @property(nonatomic, retain) NSPanel *stationSelection;
 @property(nonatomic, retain) NSTableView *stationsTable;
 @property(nonatomic, retain) NSSearchField *filterBy;
-@property(nonatomic, retain) NSArray *stations;
 @property(nonatomic, retain) NSStatusItem *statusItem;
 
 @property(nonatomic, retain) NSPanel *aboutPanel;
 @property(nonatomic, retain) NSTextField *aboutVersion;
 @property(nonatomic, retain) NSTextField *aboutCopyRight;
 @property(nonatomic, retain) NSTextField *aboutUrl;
+
+@property(nonatomic, retain) PianobarControlModel *model;
+@property(nonatomic, retain) PianobarControlController *controller;
 #pragma mark -
 
 @end
