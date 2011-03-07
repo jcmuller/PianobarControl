@@ -109,7 +109,10 @@
 }
 
 - (IBAction) filterStations:(id)sender {
+	// Load data
 	[model loadStations:[filterBy stringValue]];
+	// Mark table as needing update
+	[stationsTable reloadData];
 }
 
 - (IBAction) showAboutPanel:(id)sender {
