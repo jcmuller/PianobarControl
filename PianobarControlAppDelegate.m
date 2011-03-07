@@ -153,17 +153,17 @@
 }
 
 - (void) setHyperlinkForTextField:(NSTextField*)aTextField url:(NSURL*)anUrl string:(NSString*)aString {
-    // both are needed, otherwise hyperlink won't accept mousedown
-    [aTextField setAllowsEditingTextAttributes: YES];
-    [aTextField setSelectable: YES];
+	// both are needed, otherwise hyperlink won't accept mousedown
+	[aTextField setAllowsEditingTextAttributes: YES];
+	[aTextField setSelectable: YES];
 	[aTextField setAlignment:NSCenterTextAlignment];
-		
-    NSMutableAttributedString* string = [[NSMutableAttributedString alloc] init];
-    [string appendAttributedString: [NSAttributedString hyperlinkFromString:aString withURL:anUrl]];
-	
-    // set the attributed string to the NSTextField
-    [aTextField setAttributedStringValue: string];
-    [string release];
+
+	NSMutableAttributedString* string = [[NSMutableAttributedString alloc] init];
+	[string appendAttributedString: [NSAttributedString hyperlinkFromString:aString withURL:anUrl]];
+
+	// set the attributed string to the NSTextField
+	[aTextField setAttributedStringValue: string];
+	[string release];
 }
 
 - (IBAction) tableViewSelected:(id)sender {
@@ -178,23 +178,58 @@
 
 #pragma mark Hotkeys
 - (void) registerKeys {
-	EventHotKeyRef myHotKeyRef;
-	EventHotKeyID  myHotKeyID;
+	EventHotKeyRef menuDisplayHotKeyRef;
+	EventHotKeyID  menuDisplayHotKeyID;
+
+	EventHotKeyRef nextSongHotKeyRef;
+	EventHotKeyID  nextSongHotKeyID;
+
+	EventHotKeyRef loveHotKeyRef;
+	EventHotKeyID  loveHotKeyID;
+
+	EventHotKeyRef playPauseHotKeyRef;
+	EventHotKeyID  playPauseHotKeyID;
+
+	EventHotKeyRef chooseStationHotKeyRef;
+	EventHotKeyID  chooseStationHotKeyID;
+
 	EventTypeSpec  eventType;
 	
 	eventType.eventClass = kEventClassKeyboard;
 	eventType.eventKind  = kEventHotKeyPressed;
 	InstallApplicationEventHandler(&myHotKeyHandler, 1, &eventType, NULL, NULL);
 	
-	myHotKeyID.signature='mhk1';
-	myHotKeyID.id=1;
+	menuDisplayHotKeyID.signature = 'pbchk1';
+	menuDisplayHotKeyID.id = 1;
 	
-	RegisterEventHotKey(35, shiftKey+optionKey, myHotKeyID, GetApplicationEventTarget(), 0, &myHotKeyRef);
+	nextSongHotKeyID.signature = 'pbchk2';
+	nextSongHotKeyID.id = 2;
+	
+	loveHotKeyID.signature = 'pbchk3';
+	loveHotKeyID.id = 3;
+	
+	playPauseHotKeyID.signature = 'pbchk4';
+	playPauseHotKeyID.id = 4;
+	
+	chooseStationHotKeyID.signature = 'pbchk5';
+	chooseStationHotKeyID.id = 5;
+	
+	// Look at Events.h for the keycodes (~ line 198)
+	// /Developer/SDKs/MacOSX10.6.sdk/System/Library/Frameworks/Carbon.framework/Versions/A/Frameworks/HIToolbox.framework/Versions/A/Headers/Events.h
+	// P
+	RegisterEventHotKey(35, shiftKey+optionKey, menuDisplayHotKeyID, GetApplicationEventTarget(), 0, &menuDisplayHotKeyRef);
+	// N
+	RegisterEventHotKey(45, shiftKey+optionKey, nextSongHotKeyID, GetApplicationEventTarget(), 0, &nextSongHotKeyRef);
+	// L
+	RegisterEventHotKey(37, shiftKey+optionKey, loveHotKeyID, GetApplicationEventTarget(), 0, &loveHotKeyRef);
+	// O
+	RegisterEventHotKey(31, shiftKey+optionKey, playPauseHotKeyID, GetApplicationEventTarget(), 0, &playPauseHotKeyRef);
+	RegisterEventHotKey(1, shiftKey+optionKey, chooseStationHotKeyID, GetApplicationEventTarget(), 0, &chooseStationHotKeyRef);
 }
 
 - (id) showMenu {
 	[statusItem popUpStatusItemMenu:statusMenu];
-    return nil;
+	return nil;
 }
 #pragma mark -
 
@@ -206,6 +241,18 @@ OSStatus myHotKeyHandler(EventHandlerCallRef nextHandler, EventRef anEvent, void
 	switch (hkRef.id) {
 		case 1:
 			[refToSelf showMenu];
+			break;
+		case 2:
+			[refToSelf nextAction:nil];
+			break;
+		case 3:
+			[refToSelf loveAction:nil];
+			break;
+		case 4:
+			[refToSelf playAction:nil];
+			break;
+		case 5:
+			[refToSelf chooseStationAction:nil];
 			break;
 	}
 
