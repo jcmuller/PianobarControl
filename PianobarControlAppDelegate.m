@@ -224,6 +224,7 @@
 	RegisterEventHotKey(37, shiftKey+optionKey, loveHotKeyID, GetApplicationEventTarget(), 0, &loveHotKeyRef);
 	// O
 	RegisterEventHotKey(31, shiftKey+optionKey, playPauseHotKeyID, GetApplicationEventTarget(), 0, &playPauseHotKeyRef);
+	// S
 	RegisterEventHotKey(1, shiftKey+optionKey, chooseStationHotKeyID, GetApplicationEventTarget(), 0, &chooseStationHotKeyRef);
 }
 
