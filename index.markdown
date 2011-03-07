@@ -1,5 +1,6 @@
 ---
 layout: default
+title: Pianobar Control Information Page
 ---
 PianobarControl
 ===============
