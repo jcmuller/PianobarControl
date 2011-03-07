@@ -1,10 +1,12 @@
 <!DOCType html>
 <html>
   <head>
-    <title>{{ title }}</title>
+    <title>{{ page.title }}</title>
     <link type="text/css" rel="stylesheet" href="https://assets2.github.com/stylesheets/bundle_common.css" media="screen" />
   </head>
   <body>
-    {{ content }}
+    <div class="wikistyle">
+      {{ content }}
+    </div>
   </body>
 </html>
