@@ -6,7 +6,6 @@
 //
 
 #import "PianobarControlAppDelegate.h"
-#import "NSAttributedString+Hyperlink.h"
 
 @implementation PianobarControlAppDelegate
 
@@ -192,40 +191,64 @@
 
 	EventHotKeyRef chooseStationHotKeyRef;
 	EventHotKeyID  chooseStationHotKeyID;
-
+	
+	EventHotKeyRef banHotKeyRef;
+	EventHotKeyID  banHotKeyID;
+	
+	EventHotKeyRef songInfoHotKeyRef;
+	EventHotKeyID  songInfoHotKeyID;
+	
+	EventHotKeyRef quitHotKeyRef;
+	EventHotKeyID  quitHotKeyID;
+	
 	EventTypeSpec  eventType;
 	
 	eventType.eventClass = kEventClassKeyboard;
 	eventType.eventKind  = kEventHotKeyPressed;
 	InstallApplicationEventHandler(&myHotKeyHandler, 1, &eventType, NULL, NULL);
 	
-	menuDisplayHotKeyID.signature = 'pbchk1';
+	menuDisplayHotKeyID.signature = 'phk1';
 	menuDisplayHotKeyID.id = 1;
 	
-	nextSongHotKeyID.signature = 'pbchk2';
+	nextSongHotKeyID.signature = 'phk2';
 	nextSongHotKeyID.id = 2;
 	
-	loveHotKeyID.signature = 'pbchk3';
+	loveHotKeyID.signature = 'phk3';
 	loveHotKeyID.id = 3;
 	
-	playPauseHotKeyID.signature = 'pbchk4';
+	playPauseHotKeyID.signature = 'phk4';
 	playPauseHotKeyID.id = 4;
 	
-	chooseStationHotKeyID.signature = 'pbchk5';
+	chooseStationHotKeyID.signature = 'phk5';
 	chooseStationHotKeyID.id = 5;
+	
+	banHotKeyID.signature = 'phk6';
+	banHotKeyID.id = 6;
+	
+	songInfoHotKeyID.signature = 'phk7';
+	songInfoHotKeyID.id = 7;
+	
+	quitHotKeyID.signature = 'phk8';
+	quitHotKeyID.id = 8;
 	
 	// Look at Events.h for the keycodes (~ line 198)
 	// /Developer/SDKs/MacOSX10.6.sdk/System/Library/Frameworks/Carbon.framework/Versions/A/Frameworks/HIToolbox.framework/Versions/A/Headers/Events.h
 	// P
-	RegisterEventHotKey(35, shiftKey+optionKey, menuDisplayHotKeyID, GetApplicationEventTarget(), 0, &menuDisplayHotKeyRef);
+	RegisterEventHotKey(0x23, shiftKey+optionKey, menuDisplayHotKeyID,   GetApplicationEventTarget(), 0, &menuDisplayHotKeyRef);
 	// N
-	RegisterEventHotKey(45, shiftKey+optionKey, nextSongHotKeyID, GetApplicationEventTarget(), 0, &nextSongHotKeyRef);
+	RegisterEventHotKey(0x2D, shiftKey+optionKey, nextSongHotKeyID,      GetApplicationEventTarget(), 0, &nextSongHotKeyRef);
 	// L
-	RegisterEventHotKey(37, shiftKey+optionKey, loveHotKeyID, GetApplicationEventTarget(), 0, &loveHotKeyRef);
+	RegisterEventHotKey(0x25, shiftKey+optionKey, loveHotKeyID,          GetApplicationEventTarget(), 0, &loveHotKeyRef);
 	// O
-	RegisterEventHotKey(31, shiftKey+optionKey, playPauseHotKeyID, GetApplicationEventTarget(), 0, &playPauseHotKeyRef);
+	RegisterEventHotKey(0x1F, shiftKey+optionKey, playPauseHotKeyID,     GetApplicationEventTarget(), 0, &playPauseHotKeyRef);
 	// S
-	RegisterEventHotKey(1, shiftKey+optionKey, chooseStationHotKeyID, GetApplicationEventTarget(), 0, &chooseStationHotKeyRef);
+	RegisterEventHotKey(0x01, shiftKey+optionKey, chooseStationHotKeyID, GetApplicationEventTarget(), 0, &chooseStationHotKeyRef);
+	// B
+	RegisterEventHotKey(0x0B, shiftKey+optionKey, banHotKeyID,           GetApplicationEventTarget(), 0, &banHotKeyRef);
+	// I
+	RegisterEventHotKey(0x22, shiftKey+optionKey, songInfoHotKeyID,      GetApplicationEventTarget(), 0, &songInfoHotKeyRef);
+	// Q
+	RegisterEventHotKey(0x0C, shiftKey+optionKey, quitHotKeyID,          GetApplicationEventTarget(), 0, &quitHotKeyRef);
 }
 
 - (id) showMenu {
@@ -254,6 +277,15 @@ OSStatus myHotKeyHandler(EventHandlerCallRef nextHandler, EventRef anEvent, void
 			break;
 		case 5:
 			[refToSelf chooseStationAction:nil];
+			break;
+		case 6:
+			[refToSelf banAction:nil];
+			break;
+		case 7:
+			[refToSelf showInfoAction:nil];
+			break;
+		case 8:
+			exit(0);
 			break;
 	}
 

@@ -8,13 +8,12 @@
 
 #import "PianobarControlController.h"
 
-
 @implementation PianobarControlController
 
 - (void) performAction:(NSString*)action {
 	NSError	 *error;	
 	NSString *pianobarFifo = [NSString stringWithFormat:@"%@/%@", NSHomeDirectory(), @".config/pianobar/ctl"];
-	//NSLog(@"Pianobar fifo path: %@ action: %@", pianobarFifo, action);
+	NSLog(@"Pianobar fifo path: %@ action: %@", pianobarFifo, action);
 	
 	if(![action writeToFile:pianobarFifo atomically:NO encoding:NSUTF8StringEncoding error:&error]) {
 		NSLog(@"We have a problem: %@\r\n", [error localizedFailureReason]);

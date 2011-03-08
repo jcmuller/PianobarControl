@@ -9,6 +9,7 @@
 #import <Carbon/Carbon.h>
 #include "PianobarControlModel.h"
 #include "PianobarControlController.h"
+#import "NSAttributedString+Hyperlink.h"
 
 @interface PianobarControlAppDelegate : NSObject <NSApplicationDelegate> {
 	IBOutlet NSMenu *statusMenu;
@@ -73,6 +74,6 @@
 @end
 
 #pragma mark C elements for Hotkey support
-void *refToSelf;
+id refToSelf;
 OSStatus myHotKeyHandler(EventHandlerCallRef nextHandler, EventRef anEvent, void *userData);
 #pragma mark -
