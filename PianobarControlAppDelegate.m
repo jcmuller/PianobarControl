@@ -113,6 +113,10 @@
 - (IBAction) choseStation:(id)sender {
 	int selectedRow = [stationsTable selectedRow];
 
+	// If there is just one station in the search box, select it
+	if ([stationsTable numberOfRows] == 1)
+		[stationsTable selectRowIndexes:[NSIndexSet indexSetWithIndex:0] byExtendingSelection:NO];
+
 	// Sanity check...
 	if (selectedRow > -1)
 	{
@@ -126,6 +130,10 @@
 	[model loadStations:[filterBy stringValue]];
 	// Mark table as needing update
 	[stationsTable reloadData];
+	
+	// Select first result if nothing is selected
+	if ([stationsTable selectedRow] < 0)
+		[stationsTable selectRowIndexes:[NSIndexSet indexSetWithIndex:0] byExtendingSelection:NO];
 }
 
 - (IBAction) showAboutPanel:(id)sender {
