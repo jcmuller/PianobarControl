@@ -3,13 +3,11 @@
 //  PianobarControl
 //
 //  Created by Juan C. Müller on 3/7/11.
-//  Copyright 2011 Challenge Post. All rights reserved.
 //
 
 #import <Cocoa/Cocoa.h>
 
-
-@interface PianobarControlModel : NSObject <NSTableViewDataSource> {	
+@interface PianobarControlModel : NSObject <NSTableViewDataSource> {
 	NSArray *stations;
 	NSInteger stationsCount;
 }

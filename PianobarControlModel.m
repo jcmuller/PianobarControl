@@ -3,7 +3,6 @@
 //  PianobarControl
 //
 //  Created by Juan C. Müller on 3/7/11.
-//  Copyright 2011 Challenge Post. All rights reserved.
 //
 
 #import "PianobarControlModel.h"
@@ -16,14 +15,14 @@
 - (void) loadStations:(NSString*)filterBy {
 	NSString* stationsFromFile = [NSString stringWithContentsOfFile:@"/tmp/pianobar_stations" encoding:NSUTF8StringEncoding error:nil];
 	NSArray* stationsNotFiltered = [stationsFromFile componentsSeparatedByString:@"\n"];
-	
+
 	if ([filterBy isEqual:@""])
 		[self setStations:stationsNotFiltered];
 	else {
 		NSPredicate *regextest = [NSPredicate predicateWithFormat:@"SELF contains[c] %@", filterBy];
 		[self setStations:[stationsNotFiltered filteredArrayUsingPredicate:regextest]];
 	}
-	
+
 	stationsCount = [stations count];
 }
 #pragma mark -
