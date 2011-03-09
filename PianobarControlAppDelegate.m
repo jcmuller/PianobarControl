@@ -76,32 +76,33 @@
 }
 
 - (IBAction) chooseStationAction:(id)sender {
-	// Reset filter
-	[filterBy setStringValue:@""];
+	if (![stationSelection isVisible]) {
+		// Reset filter
+		[filterBy setStringValue:@""];
 
-	// Set focus to filter
-	[filterBy becomeFirstResponder];
+		// Set focus to filter
+		[filterBy becomeFirstResponder];
 
-	// Load data
-	[model loadStations:[filterBy stringValue]];
+		// Load data
+		[model loadStations:[filterBy stringValue]];
 
-	// Mark table as needing update
-	[stationsTable reloadData];
+		// Mark table as needing update
+		[stationsTable reloadData];
 
-	// Select first row
-	[stationsTable selectRowIndexes:[NSIndexSet indexSetWithIndex:0] byExtendingSelection:NO];
-	// Scroll to top
-	[stationsTable scrollRowToVisible:0];
+		// Select first row
+		[stationsTable selectRowIndexes:[NSIndexSet indexSetWithIndex:0] byExtendingSelection:NO];
+		// Scroll to top
+		[stationsTable scrollRowToVisible:0];
 
-	// Restore the default size of the window
-	NSRect newFrame = NSMakeRect(1, 1, 450, 500);
-	[stationSelection setFrame:newFrame display:NO animate:NO];
+		// Restore the default size of the window
+		NSRect newFrame = NSMakeRect(1, 1, 450, 500);
+		[stationSelection setFrame:newFrame display:NO animate:NO];
 
-
-	// Position it nicely and display it
-	[stationSelection center];
-	[stationSelection setIsVisible:YES];
-
+		// Position it nicely and display it
+		[stationSelection center];
+		[stationSelection setIsVisible:YES];
+	}
+	
 	// Bring to front
 	[stationSelection makeKeyAndOrderFront:nil];
 
@@ -120,6 +121,38 @@
 	}
 }
 
+- (IBAction) filterStations:(id)sender {
+	// Load data
+	[model loadStations:[filterBy stringValue]];
+	// Mark table as needing update
+	[stationsTable reloadData];
+}
+
+- (IBAction) showAboutPanel:(id)sender {
+	if (![aboutPanel isVisible]) {
+		[aboutCopyRight setStringValue:[NSString stringWithFormat:@"Copyright %@", [[[NSBundle mainBundle] infoDictionary] objectForKey:@"NSHumanReadableCopyright"]]];
+		[aboutVersion setStringValue:[NSString stringWithFormat:@"Version %@", [[[NSBundle mainBundle] infoDictionary] objectForKey:@"CFBundleVersion"]]];
+		//[aboutUrl setStringValue:[[[NSBundle mainBundle] infoDictionary] objectForKey:@"CFBundleGetInfoString"]];
+
+		NSString *urlString = [[[NSBundle mainBundle] infoDictionary] objectForKey:@"CFBundleGetInfoString"];
+		NSURL *url = [NSURL URLWithString:[urlString stringByAddingPercentEscapesUsingEncoding:NSUTF8StringEncoding]];
+
+		NSLog(@"urlString: %@ url: %@", urlString, url);
+		[self setHyperlinkForTextField:aboutUrl url:url string:(NSString*)urlString];
+
+		// Position it nicely and display it
+		[aboutPanel center];
+		[aboutPanel setIsVisible:YES];
+	}
+
+	// Bring to front
+	[aboutPanel makeKeyAndOrderFront:nil];
+
+	// Bring application forward
+	[self raiseApplication];
+}
+
+
 #pragma mark Utility Methods
 - (void) playStationAndHideSelector:(NSString *)stationString {
 	NSArray* elements = [stationString componentsSeparatedByString:@". "];
@@ -134,37 +167,6 @@
 
 - (void) raiseApplication {
 	[[NSRunningApplication currentApplication] activateWithOptions:NSApplicationActivateIgnoringOtherApps];
-}
-
-- (IBAction) filterStations:(id)sender {
-	// Load data
-	[model loadStations:[filterBy stringValue]];
-	// Mark table as needing update
-	[stationsTable reloadData];
-}
-
-- (IBAction) showAboutPanel:(id)sender {
-	//	[[NSApplication sharedApplication] orderFrontStandardAboutPanel:self];
-
-	[aboutCopyRight setStringValue:[NSString stringWithFormat:@"Copyright %@", [[[NSBundle mainBundle] infoDictionary] objectForKey:@"NSHumanReadableCopyright"]]];
-	[aboutVersion setStringValue:[NSString stringWithFormat:@"Version %@", [[[NSBundle mainBundle] infoDictionary] objectForKey:@"CFBundleVersion"]]];
-	//[aboutUrl setStringValue:[[[NSBundle mainBundle] infoDictionary] objectForKey:@"CFBundleGetInfoString"]];
-
-	NSString *urlString = [[[NSBundle mainBundle] infoDictionary] objectForKey:@"CFBundleGetInfoString"];
-	NSURL *url = [NSURL URLWithString:[urlString stringByAddingPercentEscapesUsingEncoding:NSUTF8StringEncoding]];
-
-	NSLog(@"urlString: %@ url: %@", urlString, url);
-	[self setHyperlinkForTextField:aboutUrl url:url string:(NSString*)urlString];
-
-	// Position it nicely and display it
-	[aboutPanel center];
-	[aboutPanel setIsVisible:YES];
-
-	// Bring to front
-	[aboutPanel makeKeyAndOrderFront:nil];
-
-	// Bring application forward
-	[self raiseApplication];
 }
 #pragma mark -
 
