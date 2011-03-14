@@ -9,6 +9,7 @@
 
 @implementation PianobarControlAppDelegate
 
+#pragma mark Attributes
 @synthesize model;
 
 @synthesize statusMenu;
@@ -22,6 +23,7 @@
 @synthesize aboutVersion;
 @synthesize aboutCopyRight;
 @synthesize aboutUrl;
+#pragma mark -
 
 #pragma mark NSApplicationDelegate methods
 - (void)awakeFromNib {
@@ -39,20 +41,6 @@
 	[self registerKeys];
 }
 #pragma mark -
-
-- (void) performAction:(NSString*)action {
-	NSError	 *error;
-	NSString *pianobarFifo = [NSString stringWithFormat:@"%@/%@", NSHomeDirectory(), @".config/pianobar/ctl"];
-	NSLog(@"Pianobar fifo path: %@ action: %@", pianobarFifo, action);
-
-	if(![action writeToFile:pianobarFifo atomically:NO encoding:NSUTF8StringEncoding error:&error]) {
-		NSLog(@"We have a problem: %@\r\n", [error localizedFailureReason]);
-	}
-}
-
-- (void) playStation:(NSString*)stationId {
-	[self performAction:[NSString stringWithFormat:@"s%@\n", stationId]];
-}
 
 #pragma mark Actions
 - (IBAction) playAction:(id)sender {
@@ -159,7 +147,7 @@
 	// Bring application forward
 	[self raiseApplication];
 }
-
+#pragma mark -
 
 #pragma mark Utility Methods
 - (void) playStationAndHideSelector:(NSString *)stationString {
@@ -176,7 +164,20 @@
 - (void) raiseApplication {
 	[[NSRunningApplication currentApplication] activateWithOptions:NSApplicationActivateIgnoringOtherApps];
 }
-#pragma mark -
+
+- (void) performAction:(NSString*)action {
+	NSError	 *error;
+	NSString *pianobarFifo = [NSString stringWithFormat:@"%@/%@", NSHomeDirectory(), @".config/pianobar/ctl"];
+	NSLog(@"Pianobar fifo path: %@ action: %@", pianobarFifo, action);
+	
+	if(![action writeToFile:pianobarFifo atomically:NO encoding:NSUTF8StringEncoding error:&error]) {
+		NSLog(@"We have a problem: %@\r\n", [error localizedFailureReason]);
+	}
+}
+
+- (void) playStation:(NSString*)stationId {
+	[self performAction:[NSString stringWithFormat:@"s%@\n", stationId]];
+}
 
 - (void) setHyperlinkForTextField:(NSTextField*)aTextField url:(NSURL*)anUrl string:(NSString*)aString {
 	// both are needed, otherwise hyperlink won't accept mousedown
@@ -191,7 +192,9 @@
 	[aTextField setAttributedStringValue: string];
 	[string release];
 }
+#pragma mark -
 
+#pragma mark Methods for NSTableView
 - (IBAction) tableViewSelected:(id)sender {
 }
 
@@ -200,6 +203,7 @@
 	NSString *selected = [[model stations] objectAtIndex:row];
 	[self playStationAndHideSelector:selected];
 }
+#pragma mark -
 
 #pragma mark Hotkeys
 - (void) registerKeys {
@@ -277,7 +281,6 @@
 	RegisterEventHotKey(0x0C, shiftKey+optionKey, quitHotKeyID,          GetApplicationEventTarget(), 0, &quitHotKeyRef);
 }
 
-#pragma mark C elements for Hotkey support
 OSStatus myHotKeyHandler(EventHandlerCallRef nextHandler, EventRef anEvent, void *userData) {
 	EventHotKeyID hkRef;
 	GetEventParameter(anEvent, kEventParamDirectObject, typeEventHotKeyID, NULL, sizeof(hkRef), NULL, &hkRef);
@@ -313,7 +316,7 @@ OSStatus myHotKeyHandler(EventHandlerCallRef nextHandler, EventRef anEvent, void
 }
 #pragma mark -
 
-
+#pragma mark NSObject
 - (void)dealloc {
 	[aboutVersion release];
 	[aboutCopyRight release];
@@ -326,6 +329,7 @@ OSStatus myHotKeyHandler(EventHandlerCallRef nextHandler, EventRef anEvent, void
 	[model release];
 	[super dealloc];
 }
+#pragma mark -
 
 @end
 

@@ -31,7 +31,6 @@
 - (void) playStation:(NSString*)stationId;
 - (void) playStationAndHideSelector:(NSString*)stationString;
 - (void) raiseApplication;
-
 - (void) setHyperlinkForTextField:(NSTextField*)aTextField url:(NSURL*)anUrl string:(NSString*)aString;
 
 - (id) showMenu;
@@ -47,6 +46,7 @@
 - (IBAction) showAboutPanel:(id)sender;
 
 - (IBAction) tableViewSelected:(id)sender;
+- (IBAction) doubleClicked:(id)sender;
 
 - (void) registerKeys;
 
