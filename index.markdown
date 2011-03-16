@@ -14,6 +14,5 @@ The source can be browsed [here](https://github.com/jcmuller/PianobarControl).
 A built binary [here](releases/PianobarControl.0.4.zip).
 
 ### Screen shots: ###
-<img src="/images/status_menu.png" height="261" width="370" alt="Status menu" align="left" />
-
-<img src="/images/station_selection.png" height="516" width="450" alt="Station selection" align="left" />
+<img src="images/status_menu.png" height="261" width="370" alt="Status menu" align="left" style="margin: 10px;" />
+<img src="images/station_selection.png" height="516" width="450" alt="Station selection" align="left" style="margin: 10px;" />
