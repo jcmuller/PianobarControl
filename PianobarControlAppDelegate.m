@@ -23,6 +23,8 @@
 @synthesize aboutVersion;
 @synthesize aboutCopyRight;
 @synthesize aboutUrl;
+
+@synthesize currentSong;
 #pragma mark -
 
 #pragma mark NSApplicationDelegate methods
@@ -39,6 +41,14 @@
 	refToSelf = self;
 
 	[self registerKeys];
+
+	[self setCurrentSongTitle:nil];
+	
+	[NSTimer scheduledTimerWithTimeInterval:2.0
+									 target:self
+								   selector:@selector(setCurrentSongTitle:)
+								   userInfo:nil
+									repeats:YES];
 }
 #pragma mark -
 
@@ -61,6 +71,13 @@
 
 - (IBAction) showInfoAction:(id)sender {
 	[self performAction:@"e"];
+	[self setCurrentSongTitle:nil];
+}
+
+- (void) setCurrentSongTitle:(id)sender {
+	NSString* currentSongString = [NSString stringWithContentsOfFile:@"/tmp/current_song" encoding:NSUTF8StringEncoding error:nil];
+	[currentSong setTitle:currentSongString];
+	[statusItem setTitle:currentSongString];
 }
 
 - (IBAction) chooseStationAction:(id)sender {

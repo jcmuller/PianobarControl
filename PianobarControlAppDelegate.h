@@ -25,6 +25,7 @@
 	IBOutlet NSTextField *aboutUrl;
 
 	NSStatusItem *statusItem;
+	IBOutlet NSMenuItem *currentSong;
 }
 
 - (void) performAction:(NSString *)action;
@@ -32,7 +33,7 @@
 - (void) playStationAndHideSelector:(NSString*)stationString;
 - (void) raiseApplication;
 - (void) setHyperlinkForTextField:(NSTextField*)aTextField url:(NSURL*)anUrl string:(NSString*)aString;
-
+- (void) setCurrentSongTitle:(id)sender;
 - (id) showMenu;
 
 - (IBAction) playAction:(id)sender;
@@ -61,6 +62,8 @@
 @property(nonatomic, retain) NSTextField *aboutVersion;
 @property(nonatomic, retain) NSTextField *aboutCopyRight;
 @property(nonatomic, retain) NSTextField *aboutUrl;
+
+@property(nonatomic, retain) NSMenuItem *currentSong;
 
 @end
 
