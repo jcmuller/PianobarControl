@@ -6,6 +6,8 @@
 //
 
 #import <Cocoa/Cocoa.h>
+#import "NSArray+customSort.h"
+
 
 @interface PianobarControlModel : NSObject <NSTableViewDataSource> {
 	NSArray *stations;

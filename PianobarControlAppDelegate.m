@@ -24,6 +24,8 @@
 @synthesize aboutCopyRight;
 @synthesize aboutUrl;
 
+@synthesize preferencesPanel;
+
 @synthesize currentSong;
 #pragma mark -
 
@@ -77,7 +79,6 @@
 - (void) setCurrentSongTitle:(id)sender {
 	NSString* currentSongString = [NSString stringWithContentsOfFile:@"/tmp/current_song" encoding:NSUTF8StringEncoding error:nil];
 	[currentSong setTitle:currentSongString];
-	[statusItem setTitle:currentSongString];
 }
 
 - (IBAction) chooseStationAction:(id)sender {
@@ -112,6 +113,14 @@
 	[stationSelection makeKeyAndOrderFront:nil];
 
 	// Bring application forward
+	[self raiseApplication];
+}
+
+- (IBAction) showPreferencesPanel:(id)sender {
+	// Position it nicely and display it
+	[preferencesPanel center];
+	[preferencesPanel setIsVisible:YES];
+	
 	[self raiseApplication];
 }
 

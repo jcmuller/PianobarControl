@@ -10,6 +10,8 @@
 		1DDD58160DA1D0A300B32029 /* MainMenu.xib in Resources */ = {isa = PBXBuildFile; fileRef = 1DDD58140DA1D0A300B32029 /* MainMenu.xib */; };
 		256AC3DA0F4B6AC300CF3369 /* PianobarControlAppDelegate.m in Sources */ = {isa = PBXBuildFile; fileRef = 256AC3D90F4B6AC300CF3369 /* PianobarControlAppDelegate.m */; };
 		5C3AB7951323151400D09BF3 /* Carbon.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = 5C3AB7941323151400D09BF3 /* Carbon.framework */; };
+		5C5F379E1337D93C00BD1208 /* NSString+Levenshtein.m in Sources */ = {isa = PBXBuildFile; fileRef = 5C5F379D1337D93C00BD1208 /* NSString+Levenshtein.m */; };
+		5C5F37FE1337DEAF00BD1208 /* NSArray+customSort.m in Sources */ = {isa = PBXBuildFile; fileRef = 5C5F37FD1337DEAF00BD1208 /* NSArray+customSort.m */; };
 		5C91A2641322D04400F2E054 /* PianobarControl.icns in Resources */ = {isa = PBXBuildFile; fileRef = 5C91A2631322D04400F2E054 /* PianobarControl.icns */; };
 		5C91A26C1322D18E00F2E054 /* pandora-logo-16.png in Resources */ = {isa = PBXBuildFile; fileRef = 5C91A26B1322D18E00F2E054 /* pandora-logo-16.png */; };
 		5C91A3111322E1E000F2E054 /* thumbs_down.png in Resources */ = {isa = PBXBuildFile; fileRef = 5C91A30F1322E1E000F2E054 /* thumbs_down.png */; };
@@ -19,6 +21,8 @@
 		5C91A31C1322E38F00F2E054 /* information.png in Resources */ = {isa = PBXBuildFile; fileRef = 5C91A3171322E38F00F2E054 /* information.png */; };
 		5C91A31E1322E38F00F2E054 /* view_choose.png in Resources */ = {isa = PBXBuildFile; fileRef = 5C91A3191322E38F00F2E054 /* view_choose.png */; };
 		5C91A3491322E55800F2E054 /* exit.png in Resources */ = {isa = PBXBuildFile; fileRef = 5C91A3481322E55800F2E054 /* exit.png */; };
+		5CA1141F13410A2C00FF5FFC /* NSString+DamerauLevenshtein.m in Sources */ = {isa = PBXBuildFile; fileRef = 5CA1141E13410A2C00FF5FFC /* NSString+DamerauLevenshtein.m */; };
+		5CA114A913410AAB00FF5FFC /* JXLDStringDistanceUtilities.m in Sources */ = {isa = PBXBuildFile; fileRef = 5CA114A813410AAB00FF5FFC /* JXLDStringDistanceUtilities.m */; };
 		5CE4A76213251D4D00A332C4 /* PianobarControlModel.m in Sources */ = {isa = PBXBuildFile; fileRef = 5CE4A76113251D4D00A332C4 /* PianobarControlModel.m */; };
 		5CF2990513241B8500704EB8 /* NSAttributedString+Hyperlink.m in Sources */ = {isa = PBXBuildFile; fileRef = 5CF2990413241B8500704EB8 /* NSAttributedString+Hyperlink.m */; };
 		8D11072B0486CEB800E47090 /* InfoPlist.strings in Resources */ = {isa = PBXBuildFile; fileRef = 089C165CFE840E0CC02AAC07 /* InfoPlist.strings */; };
@@ -38,6 +42,10 @@
 		29B97324FDCFA39411CA2CEA /* AppKit.framework */ = {isa = PBXFileReference; lastKnownFileType = wrapper.framework; name = AppKit.framework; path = /System/Library/Frameworks/AppKit.framework; sourceTree = "<absolute>"; };
 		29B97325FDCFA39411CA2CEA /* Foundation.framework */ = {isa = PBXFileReference; lastKnownFileType = wrapper.framework; name = Foundation.framework; path = /System/Library/Frameworks/Foundation.framework; sourceTree = "<absolute>"; };
 		5C3AB7941323151400D09BF3 /* Carbon.framework */ = {isa = PBXFileReference; lastKnownFileType = wrapper.framework; name = Carbon.framework; path = System/Library/Frameworks/Carbon.framework; sourceTree = SDKROOT; };
+		5C5F379C1337D93C00BD1208 /* NSString+Levenshtein.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = "NSString+Levenshtein.h"; sourceTree = "<group>"; };
+		5C5F379D1337D93C00BD1208 /* NSString+Levenshtein.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = "NSString+Levenshtein.m"; sourceTree = "<group>"; };
+		5C5F37FC1337DEAF00BD1208 /* NSArray+customSort.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = "NSArray+customSort.h"; sourceTree = "<group>"; };
+		5C5F37FD1337DEAF00BD1208 /* NSArray+customSort.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = "NSArray+customSort.m"; sourceTree = "<group>"; };
 		5C91A2631322D04400F2E054 /* PianobarControl.icns */ = {isa = PBXFileReference; lastKnownFileType = image.icns; path = PianobarControl.icns; sourceTree = "<group>"; };
 		5C91A26B1322D18E00F2E054 /* pandora-logo-16.png */ = {isa = PBXFileReference; lastKnownFileType = image.png; path = "pandora-logo-16.png"; sourceTree = "<group>"; };
 		5C91A30F1322E1E000F2E054 /* thumbs_down.png */ = {isa = PBXFileReference; lastKnownFileType = image.png; path = thumbs_down.png; sourceTree = "<group>"; };
@@ -47,6 +55,11 @@
 		5C91A3171322E38F00F2E054 /* information.png */ = {isa = PBXFileReference; lastKnownFileType = image.png; path = information.png; sourceTree = "<group>"; };
 		5C91A3191322E38F00F2E054 /* view_choose.png */ = {isa = PBXFileReference; lastKnownFileType = image.png; path = view_choose.png; sourceTree = "<group>"; };
 		5C91A3481322E55800F2E054 /* exit.png */ = {isa = PBXFileReference; lastKnownFileType = image.png; path = exit.png; sourceTree = "<group>"; };
+		5CA1141013410A1700FF5FFC /* JXLDStringDistance.h */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.h; path = JXLDStringDistance.h; sourceTree = "<group>"; };
+		5CA1141D13410A2C00FF5FFC /* NSString+DamerauLevenshtein.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = "NSString+DamerauLevenshtein.h"; sourceTree = "<group>"; };
+		5CA1141E13410A2C00FF5FFC /* NSString+DamerauLevenshtein.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = "NSString+DamerauLevenshtein.m"; sourceTree = "<group>"; };
+		5CA114A713410AAB00FF5FFC /* JXLDStringDistanceUtilities.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = JXLDStringDistanceUtilities.h; sourceTree = "<group>"; };
+		5CA114A813410AAB00FF5FFC /* JXLDStringDistanceUtilities.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = JXLDStringDistanceUtilities.m; sourceTree = "<group>"; };
 		5CE4A76013251D4D00A332C4 /* PianobarControlModel.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = PianobarControlModel.h; sourceTree = "<group>"; };
 		5CE4A76113251D4D00A332C4 /* PianobarControlModel.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = PianobarControlModel.m; sourceTree = "<group>"; };
 		5CF2990313241B8500704EB8 /* NSAttributedString+Hyperlink.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = "NSAttributedString+Hyperlink.h"; sourceTree = "<group>"; };
@@ -172,11 +185,44 @@
 			name = Icons;
 			sourceTree = "<group>";
 		};
+		5CA1140E13410A0700FF5FFC /* DamerauLevenshtein */ = {
+			isa = PBXGroup;
+			children = (
+				5CA1141C13410A2C00FF5FFC /* Classes */,
+				5CA1140F13410A1700FF5FFC /* Shared */,
+			);
+			name = DamerauLevenshtein;
+			sourceTree = "<group>";
+		};
+		5CA1140F13410A1700FF5FFC /* Shared */ = {
+			isa = PBXGroup;
+			children = (
+				5CA1141013410A1700FF5FFC /* JXLDStringDistance.h */,
+				5CA114A713410AAB00FF5FFC /* JXLDStringDistanceUtilities.h */,
+				5CA114A813410AAB00FF5FFC /* JXLDStringDistanceUtilities.m */,
+			);
+			name = Shared;
+			sourceTree = "<group>";
+		};
+		5CA1141C13410A2C00FF5FFC /* Classes */ = {
+			isa = PBXGroup;
+			children = (
+				5CA1141D13410A2C00FF5FFC /* NSString+DamerauLevenshtein.h */,
+				5CA1141E13410A2C00FF5FFC /* NSString+DamerauLevenshtein.m */,
+			);
+			name = Classes;
+			sourceTree = "<group>";
+		};
 		5CF2990213241B6600704EB8 /* Categories */ = {
 			isa = PBXGroup;
 			children = (
+				5CA1140E13410A0700FF5FFC /* DamerauLevenshtein */,
 				5CF2990313241B8500704EB8 /* NSAttributedString+Hyperlink.h */,
 				5CF2990413241B8500704EB8 /* NSAttributedString+Hyperlink.m */,
+				5C5F379C1337D93C00BD1208 /* NSString+Levenshtein.h */,
+				5C5F379D1337D93C00BD1208 /* NSString+Levenshtein.m */,
+				5C5F37FC1337DEAF00BD1208 /* NSArray+customSort.h */,
+				5C5F37FD1337DEAF00BD1208 /* NSArray+customSort.m */,
 			);
 			name = Categories;
 			sourceTree = "<group>";
@@ -256,6 +302,10 @@
 				256AC3DA0F4B6AC300CF3369 /* PianobarControlAppDelegate.m in Sources */,
 				5CF2990513241B8500704EB8 /* NSAttributedString+Hyperlink.m in Sources */,
 				5CE4A76213251D4D00A332C4 /* PianobarControlModel.m in Sources */,
+				5C5F379E1337D93C00BD1208 /* NSString+Levenshtein.m in Sources */,
+				5C5F37FE1337DEAF00BD1208 /* NSArray+customSort.m in Sources */,
+				5CA1141F13410A2C00FF5FFC /* NSString+DamerauLevenshtein.m in Sources */,
+				5CA114A913410AAB00FF5FFC /* JXLDStringDistanceUtilities.m in Sources */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;
 		};
