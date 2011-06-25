@@ -24,8 +24,6 @@
 @synthesize aboutCopyRight;
 @synthesize aboutUrl;
 
-@synthesize preferencesPanel;
-
 @synthesize currentSong;
 #pragma mark -
 
@@ -113,14 +111,6 @@
 	[stationSelection makeKeyAndOrderFront:nil];
 
 	// Bring application forward
-	[self raiseApplication];
-}
-
-- (IBAction) showPreferencesPanel:(id)sender {
-	// Position it nicely and display it
-	[preferencesPanel center];
-	[preferencesPanel setIsVisible:YES];
-	
 	[self raiseApplication];
 }
 

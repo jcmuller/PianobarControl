@@ -24,8 +24,6 @@
 	IBOutlet NSTextField *aboutCopyRight;
 	IBOutlet NSTextField *aboutUrl;
 
-	IBOutlet NSPanel *preferencesPanel;
-
 	NSStatusItem *statusItem;
 	IBOutlet NSMenuItem *currentSong;
 }
@@ -50,8 +48,6 @@
 - (IBAction) filterStations:(id)sender;
 - (IBAction) showAboutPanel:(id)sender;
 
-- (IBAction) showPreferencesPanel:(id)sender;
-
 - (IBAction) tableViewSelected:(id)sender;
 - (IBAction) doubleClicked:(id)sender;
 
@@ -68,8 +64,6 @@
 @property(nonatomic, retain) NSTextField *aboutVersion;
 @property(nonatomic, retain) NSTextField *aboutCopyRight;
 @property(nonatomic, retain) NSTextField *aboutUrl;
-
-@property(nonatomic, retain) NSPanel *preferencesPanel;
 
 @property(nonatomic, retain) NSMenuItem *currentSong;
 

@@ -22,6 +22,4 @@
  */
 - (int) smallestOf: (int) a andOf: (int) b andOf: (int) c;
 
-- (int) compareWithString_2: (NSString *) stringB;
-
 @end
