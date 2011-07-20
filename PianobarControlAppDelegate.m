@@ -76,7 +76,8 @@
 
 - (void) setCurrentSongTitle:(id)sender {
 	NSString* currentSongString = [NSString stringWithContentsOfFile:@"/tmp/current_song" encoding:NSUTF8StringEncoding error:nil];
-	[currentSong setTitle:currentSongString];
+    if (currentSongString != nil)
+        [currentSong setTitle:currentSongString];
 }
 
 - (IBAction) chooseStationAction:(id)sender {
