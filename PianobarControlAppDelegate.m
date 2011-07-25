@@ -84,13 +84,10 @@
 	if (![stationSelection isVisible]) {
 		// Reset filter
 		[filterBy setStringValue:@""];
-
 		// Set focus to filter
 		[filterBy becomeFirstResponder];
-
 		// Load data
 		[model loadStations:[filterBy stringValue]];
-
 		// Mark table as needing update
 		[stationsTable reloadData];
 
@@ -98,11 +95,8 @@
 		[stationsTable selectRowIndexes:[NSIndexSet indexSetWithIndex:0] byExtendingSelection:NO];
 		// Scroll to top
 		[stationsTable scrollRowToVisible:0];
-
 		// Restore the default size of the window
-		NSRect newFrame = NSMakeRect(1, 1, 450, 500);
-		[stationSelection setFrame:newFrame display:NO animate:NO];
-
+		[stationSelection setFrame:NSMakeRect(1, 1, 350, 700) display:NO animate:NO];
 		// Position it nicely and display it
 		[stationSelection center];
 		[stationSelection setIsVisible:YES];
