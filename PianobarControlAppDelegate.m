@@ -74,6 +74,10 @@
 	[self setCurrentSongTitle:nil];
 }
 
+- (IBAction) showLyricsAction:(id)sender {
+    system("~/bin/pianobar-lyrics");
+}
+
 - (void) setCurrentSongTitle:(id)sender {
 	NSString* currentSongString = [NSString stringWithContentsOfFile:@"/tmp/current_song" encoding:NSUTF8StringEncoding error:nil];
     if (currentSongString != nil)
@@ -97,7 +101,12 @@
 		[stationsTable scrollRowToVisible:0];
 		// Restore the default size of the window
 		[stationSelection setFrame:NSMakeRect(1, 1, 350, 700) display:NO animate:NO];
-		// Position it nicely and display it
+        
+        [stationSelection setMovableByWindowBackground:YES];
+        [stationSelection setMovable:YES];
+        [stationSelection setHasShadow:YES];
+		
+        // Position it nicely and display it
 		[stationSelection center];
 		[stationSelection setIsVisible:YES];
 	}
@@ -238,7 +247,10 @@
 
 	EventHotKeyRef songInfoHotKeyRef;
 	EventHotKeyID  songInfoHotKeyID;
-
+    
+	EventHotKeyRef songLyricsHotKeyRef;
+	EventHotKeyID  songLyricsHotKeyID;
+    
 	EventHotKeyRef quitHotKeyRef;
 	EventHotKeyID  quitHotKeyID;
 
@@ -268,9 +280,13 @@
 
 	songInfoHotKeyID.signature = 'phk7';
 	songInfoHotKeyID.id = 7;
-
+    
 	quitHotKeyID.signature = 'phk8';
 	quitHotKeyID.id = 8;
+
+    songLyricsHotKeyID.signature = 'phk9';
+	songLyricsHotKeyID.id = 9;
+    
 
 	// Look at Events.h for the keycodes (~ line 198)
 	// /Developer/SDKs/MacOSX10.6.sdk/System/Library/Frameworks/Carbon.framework/Versions/A/Frameworks/HIToolbox.framework/Versions/A/Headers/Events.h
@@ -290,6 +306,8 @@
 	RegisterEventHotKey(0x22, shiftKey+optionKey, songInfoHotKeyID,      GetApplicationEventTarget(), 0, &songInfoHotKeyRef);
 	// Q
 	RegisterEventHotKey(0x0C, shiftKey+optionKey, quitHotKeyID,          GetApplicationEventTarget(), 0, &quitHotKeyRef);
+	// Y
+	RegisterEventHotKey(0x10, shiftKey+optionKey, songLyricsHotKeyID,    GetApplicationEventTarget(), 0, &songLyricsHotKeyRef);
 }
 
 OSStatus myHotKeyHandler(EventHandlerCallRef nextHandler, EventRef anEvent, void *userData) {
@@ -321,6 +339,9 @@ OSStatus myHotKeyHandler(EventHandlerCallRef nextHandler, EventRef anEvent, void
 		case 8:
 			exit(0);
 			break;
+        case 9:
+            [refToSelf showLyricsAction:nil];
+            break;
 	}
 
 	return noErr;

@@ -43,6 +43,7 @@
 - (IBAction) loveAction:(id)sender;
 - (IBAction) banAction:(id)sender;
 - (IBAction) showInfoAction:(id)sender;
+- (IBAction) showLyricsAction:(id)sender;
 - (IBAction) chooseStationAction:(id)sender;
 - (IBAction) choseStation:(id)sender;
 - (IBAction) filterStations:(id)sender;
