@@ -9,6 +9,7 @@
 #import <Carbon/Carbon.h>
 #import "PianobarControlModel.h"
 #import "NSAttributedString+Hyperlink.h"
+#import "JMSongInfoParser.h"
 
 @interface PianobarControlAppDelegate : NSObject <NSApplicationDelegate> {
 	PianobarControlModel *model;
@@ -26,6 +27,8 @@
 
 	NSStatusItem *statusItem;
 	IBOutlet NSMenuItem *currentSong;
+    
+    JMSongInfoParser *songInfo;
 }
 
 - (void) performAction:(NSString *)action;
@@ -67,6 +70,8 @@
 @property(nonatomic, retain) NSTextField *aboutUrl;
 
 @property(nonatomic, retain) NSMenuItem *currentSong;
+
+@property(nonatomic, retain) JMSongInfoParser *songInfo;
 
 @end
 

@@ -25,6 +25,9 @@
 @synthesize aboutUrl;
 
 @synthesize currentSong;
+
+@synthesize songInfo;
+
 #pragma mark -
 
 #pragma mark NSApplicationDelegate methods
@@ -49,6 +52,8 @@
 								   selector:@selector(setCurrentSongTitle:)
 								   userInfo:nil
 									repeats:YES];
+    
+    songInfo = [[JMSongInfoParser alloc] init];
 }
 #pragma mark -
 
@@ -75,13 +80,17 @@
 }
 
 - (IBAction) showLyricsAction:(id)sender {
-    system("~/bin/pianobar-lyrics");
+    [songInfo parse];
+    NSString *q         = [NSString stringWithFormat:@"%@ %@ lyrics", [songInfo artist], [songInfo title]];
+    NSString *encodedQ  = [q stringByAddingPercentEscapesUsingEncoding:NSUTF8StringEncoding];
+    NSURL    *searchUrl = [NSURL URLWithString:[NSString stringWithFormat:@"http://google.com/search?q=%@", encodedQ]];
+    [[NSWorkspace sharedWorkspace] openURL:searchUrl];
 }
 
 - (void) setCurrentSongTitle:(id)sender {
-	NSString* currentSongString = [NSString stringWithContentsOfFile:@"/tmp/current_song" encoding:NSUTF8StringEncoding error:nil];
-    if (currentSongString != nil)
-        [currentSong setTitle:currentSongString];
+    [songInfo parse];
+    if ([songInfo currentSongString] != nil)
+        [currentSong setTitle:[songInfo currentSongString]];
 }
 
 - (IBAction) chooseStationAction:(id)sender {
