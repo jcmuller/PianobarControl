@@ -16,13 +16,14 @@
 
 #pragma mark Model methods
 - (void) loadStations:(NSString*)filterBy {
-	NSString* stationsFromFile = [NSString stringWithContentsOfFile:@"/tmp/pianobar_stations" encoding:NSUTF8StringEncoding error:nil];
+	NSString* stationsFromFile = [NSString stringWithContentsOfFile:@"/tmp/pianobar_stations"
+                                                           encoding:NSUTF8StringEncoding error:nil];
 	NSMutableArray* stationsNotFiltered = [NSMutableArray arrayWithArray:[stationsFromFile componentsSeparatedByString:@"\n"]];
 	
 	if ([filterBy isEqual:@""])
 		[self setStations:stationsNotFiltered];
 	else {
-		// First, find any occurrences on filterBy in stationsNotFiltered. Then, sort by Levinshtein's distance
+		// First, find any occurrences on filterBy in stationsNotFiltered. Then, sort by Levenshtein's distance
 		NSPredicate *predicate = [NSPredicate predicateWithFormat:@"SELF contains[cd] %@", filterBy];
 		NSMutableArray *stationsFromSearch = [NSMutableArray arrayWithArray:[stationsNotFiltered filteredArrayUsingPredicate:predicate]];
 		

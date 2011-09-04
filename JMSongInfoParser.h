@@ -16,6 +16,7 @@
 }
 
 - (void) parse;
+- (NSURL*) searchLyricsURL;
 
 - (NSString*) artist;
 - (NSString*) title;

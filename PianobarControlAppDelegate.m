@@ -80,11 +80,7 @@
 }
 
 - (IBAction) showLyricsAction:(id)sender {
-    [songInfo parse];
-    NSString *q         = [NSString stringWithFormat:@"%@ %@ lyrics", [songInfo artist], [songInfo title]];
-    NSString *encodedQ  = [q stringByAddingPercentEscapesUsingEncoding:NSUTF8StringEncoding];
-    NSURL    *searchUrl = [NSURL URLWithString:[NSString stringWithFormat:@"http://google.com/search?q=%@", encodedQ]];
-    [[NSWorkspace sharedWorkspace] openURL:searchUrl];
+    [[NSWorkspace sharedWorkspace] openURL:[songInfo searchLyricsURL]];
 }
 
 - (void) setCurrentSongTitle:(id)sender {

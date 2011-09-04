@@ -62,6 +62,15 @@
     return [songDataDictionary objectForKey:@"current_song_string"];
 }
 
+- (NSURL*) searchLyricsURL
+{
+    [self parse];
+    NSString *arguments = [NSString stringWithFormat:@"%@ %@ lyrics", [self artist], [self title]];
+    NSString *enc       = [arguments stringByAddingPercentEscapesUsingEncoding:NSUTF8StringEncoding];
+    NSURL    *searchUrl = [NSURL URLWithString:[NSString stringWithFormat:@"http://google.com/search?q=%@", enc]];
+    return searchUrl;
+}
+
 - (void) dealloc
 {
     [fileName release];
