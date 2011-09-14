@@ -13,30 +13,31 @@
 @implementation PianobarControlModel
 
 @synthesize stations;
+@synthesize stationPlaying;
 
 #pragma mark Model methods
 - (void) loadStations:(NSString*)filterBy {
 	NSString* stationsFromFile = [NSString stringWithContentsOfFile:@"/tmp/pianobar_stations"
-                                                           encoding:NSUTF8StringEncoding error:nil];
+														   encoding:NSUTF8StringEncoding error:nil];
 	NSMutableArray* stationsNotFiltered = [NSMutableArray arrayWithArray:[stationsFromFile componentsSeparatedByString:@"\n"]];
-	
+
 	if ([filterBy isEqual:@""])
 		[self setStations:stationsNotFiltered];
 	else {
 		// First, find any occurrences on filterBy in stationsNotFiltered. Then, sort by Levenshtein's distance
 		NSPredicate *predicate = [NSPredicate predicateWithFormat:@"SELF contains[cd] %@", filterBy];
 		NSMutableArray *stationsFromSearch = [NSMutableArray arrayWithArray:[stationsNotFiltered filteredArrayUsingPredicate:predicate]];
-		
+
 		NSEnumerator *enumerator = [stationsFromSearch objectEnumerator];
 		NSString *station = NULL;
 		while (station = [enumerator nextObject]) {
 			[stationsNotFiltered removeObject:station];
 		}
 		[station release];
-		
+
 		NSMutableArray *stationsLike = [NSMutableArray array];
 		float maxWeight = 0;
-		
+
 		enumerator = [stationsNotFiltered objectEnumerator];
 		NSString *str = NULL;
 		while (str = [enumerator nextObject]) {
@@ -47,9 +48,9 @@
 			[stationsLike addObject:[NSArray arrayWithObjects:weight, str, nil]];
 		}
 		[str release];
-		
+
 		[stationsLike sortUsingSelector:@selector(myCompare:)];
-		
+
 		NSArray *arr = NULL;
 		enumerator = [stationsLike objectEnumerator];
 		while (arr = [enumerator nextObject]) {
@@ -58,8 +59,18 @@
 				[stationsFromSearch addObject:[NSString stringWithFormat:@"%@ (%@)", [arr objectAtIndex:1], weight]];
 		}
 		[arr release];
-		
+
 		[self setStations:stationsFromSearch];
+	}
+
+	NSRegularExpression *regex = [NSRegularExpression regularExpressionWithPattern:@"\\[playing\\]" options:0 error:nil];
+	for (int i = 0; i < [stations count]; i++) {
+		NSString *station = (NSString*)[stations objectAtIndex:i];
+
+		if ([regex numberOfMatchesInString:station options:0 range:NSMakeRange(0, [station length])] == 1) {
+  stationPlaying = [NSNumber numberWithInt:i];
+  break;
+		}
 	}
 
 	stationsCount = [stations count];
@@ -74,7 +85,7 @@
 - (id)tableView:(NSTableView *)aTableView objectValueForTableColumn:(NSTableColumn *)aTableColumn row:(NSInteger)rowIndex {
 	if (rowIndex > -1 && rowIndex < stationsCount)
 		return [stations objectAtIndex:rowIndex];
-	else 
+	else
 		return nil;
 }
 

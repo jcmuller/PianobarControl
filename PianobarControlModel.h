@@ -12,6 +12,7 @@
 @interface PianobarControlModel : NSObject <NSTableViewDataSource> {
 	NSArray *stations;
 	NSInteger stationsCount;
+	NSNumber *stationPlaying;
 }
 
 - (void) loadStations:(NSString *)filterBy;
@@ -20,5 +21,6 @@
 - (IBAction) tableViewSelected:(id)sender;
 
 @property(nonatomic, retain) NSArray *stations;
+@property(nonatomic, retain) NSNumber *stationPlaying;
 
 @end

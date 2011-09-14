@@ -46,14 +46,15 @@
 	[self registerKeys];
 
 	[self setCurrentSongTitle:nil];
-	
+
+	// UGLY
 	[NSTimer scheduledTimerWithTimeInterval:2.0
 									 target:self
 								   selector:@selector(setCurrentSongTitle:)
 								   userInfo:nil
 									repeats:YES];
-    
-    songInfo = [[JMSongInfoParser alloc] init];
+
+	songInfo = [[JMSongInfoParser alloc] init];
 }
 #pragma mark -
 
@@ -71,22 +72,22 @@
 }
 
 - (IBAction) banAction:(id)sender {
-	[self performAction:@"-"];
+   [self performAction:@"-"];
 }
 
 - (IBAction) showInfoAction:(id)sender {
-	[self performAction:@"e"];
-	[self setCurrentSongTitle:nil];
+		[self performAction:@"e"];
+		[self setCurrentSongTitle:nil];
 }
 
 - (IBAction) showLyricsAction:(id)sender {
-    [[NSWorkspace sharedWorkspace] openURL:[songInfo searchLyricsURL]];
+	[[NSWorkspace sharedWorkspace] openURL:[songInfo searchLyricsURL]];
 }
 
 - (void) setCurrentSongTitle:(id)sender {
-    [songInfo parse];
-    if ([songInfo currentSongString] != nil)
-        [currentSong setTitle:[songInfo currentSongString]];
+	[songInfo parse];
+	if ([songInfo currentSongString] != nil)
+		[currentSong setTitle:[songInfo currentSongString]];
 }
 
 - (IBAction) chooseStationAction:(id)sender {
@@ -100,22 +101,30 @@
 		// Mark table as needing update
 		[stationsTable reloadData];
 
-		// Select first row
-		[stationsTable selectRowIndexes:[NSIndexSet indexSetWithIndex:0] byExtendingSelection:NO];
-		// Scroll to top
-		[stationsTable scrollRowToVisible:0];
+		// Select first row or playing station
+		if ([model stationPlaying] != nil) {
+			[stationsTable selectRowIndexes:[NSIndexSet indexSetWithIndex:[[model stationPlaying] intValue]] byExtendingSelection:NO];
+			// Scroll to station
+			[stationsTable scrollRowToVisible:[[model stationPlaying] intValue]];
+		}
+		else {
+			[stationsTable selectRowIndexes:[NSIndexSet indexSetWithIndex:0] byExtendingSelection:NO];
+			// Scroll to top
+			[stationsTable scrollRowToVisible:0];
+		}
+
 		// Restore the default size of the window
 		[stationSelection setFrame:NSMakeRect(1, 1, 350, 700) display:NO animate:NO];
-        
-        [stationSelection setMovableByWindowBackground:YES];
-        [stationSelection setMovable:YES];
-        [stationSelection setHasShadow:YES];
-		
-        // Position it nicely and display it
+
+		[stationSelection setMovableByWindowBackground:YES];
+		[stationSelection setMovable:YES];
+		[stationSelection setHasShadow:YES];
+
+		// Position it nicely and display it
 		[stationSelection center];
 		[stationSelection setIsVisible:YES];
 	}
-	
+
 	// Bring to front
 	[stationSelection makeKeyAndOrderFront:nil];
 
@@ -143,7 +152,7 @@
 	[model loadStations:[filterBy stringValue]];
 	// Mark table as needing update
 	[stationsTable reloadData];
-	
+
 	// Select first result if nothing is selected
 	if ([stationsTable selectedRow] < 0)
 		[stationsTable selectRowIndexes:[NSIndexSet indexSetWithIndex:0] byExtendingSelection:NO];
@@ -194,14 +203,14 @@
 	NSError	 *error;
 	NSString *pianobarFifo = [NSString stringWithFormat:@"%@/%@", NSHomeDirectory(), @".config/pianobar/ctl"];
 	NSLog(@"Pianobar fifo path: %@ action: %@", pianobarFifo, action);
-	
+
 	if(![action writeToFile:pianobarFifo atomically:NO encoding:NSUTF8StringEncoding error:&error]) {
-		NSLog(@"We have a problem: %@\r\n", [error localizedFailureReason]);
+  NSLog(@"We have a problem: %@\r\n", [error localizedFailureReason]);
 	}
 }
 
 - (void) playStation:(NSString*)stationId {
-	[self performAction:[NSString stringWithFormat:@"s%@\n", stationId]];
+ [self performAction:[NSString stringWithFormat:@"s%@\n", stationId]];
 }
 
 - (void) setHyperlinkForTextField:(NSTextField*)aTextField url:(NSURL*)anUrl string:(NSString*)aString {
@@ -252,10 +261,10 @@
 
 	EventHotKeyRef songInfoHotKeyRef;
 	EventHotKeyID  songInfoHotKeyID;
-    
+
 	EventHotKeyRef songLyricsHotKeyRef;
 	EventHotKeyID  songLyricsHotKeyID;
-    
+
 	EventHotKeyRef quitHotKeyRef;
 	EventHotKeyID  quitHotKeyID;
 
@@ -285,13 +294,13 @@
 
 	songInfoHotKeyID.signature = 'phk7';
 	songInfoHotKeyID.id = 7;
-    
+
 	quitHotKeyID.signature = 'phk8';
 	quitHotKeyID.id = 8;
 
-    songLyricsHotKeyID.signature = 'phk9';
+	songLyricsHotKeyID.signature = 'phk9';
 	songLyricsHotKeyID.id = 9;
-    
+
 
 	// Look at Events.h for the keycodes (~ line 198)
 	// /Developer/SDKs/MacOSX10.6.sdk/System/Library/Frameworks/Carbon.framework/Versions/A/Frameworks/HIToolbox.framework/Versions/A/Headers/Events.h
@@ -344,9 +353,9 @@ OSStatus myHotKeyHandler(EventHandlerCallRef nextHandler, EventRef anEvent, void
 		case 8:
 			exit(0);
 			break;
-        case 9:
-            [refToSelf showLyricsAction:nil];
-            break;
+		case 9:
+			[refToSelf showLyricsAction:nil];
+			break;
 	}
 
 	return noErr;
