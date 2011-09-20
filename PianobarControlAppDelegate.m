@@ -35,7 +35,7 @@
 	model = [[PianobarControlModel alloc] init];
 
 	statusItem = [[[NSStatusBar systemStatusBar] statusItemWithLength:NSVariableStatusItemLength] retain];
-	[statusItem setImage:[NSImage imageNamed:@"pandora-logo-16.png"]];
+	[statusItem setImage:[NSImage imageNamed:@"pandora-logo-16_gray.png"]];
 	[statusItem setHighlightMode:YES];
 	[statusItem setMenu:statusMenu];
 	[stationsTable setDoubleAction:@selector(doubleClicked:)];

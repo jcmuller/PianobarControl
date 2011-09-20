@@ -21,6 +21,7 @@
 		5C91A31C1322E38F00F2E054 /* information.png in Resources */ = {isa = PBXBuildFile; fileRef = 5C91A3171322E38F00F2E054 /* information.png */; };
 		5C91A31E1322E38F00F2E054 /* view_choose.png in Resources */ = {isa = PBXBuildFile; fileRef = 5C91A3191322E38F00F2E054 /* view_choose.png */; };
 		5C91A3491322E55800F2E054 /* exit.png in Resources */ = {isa = PBXBuildFile; fileRef = 5C91A3481322E55800F2E054 /* exit.png */; };
+		5CB00E541428393600DBB65E /* pandora-logo-16_gray.png in Resources */ = {isa = PBXBuildFile; fileRef = 5CB00E531428393600DBB65E /* pandora-logo-16_gray.png */; };
 		5CBD99D11413B9AF00FEA63D /* NSObject+SBJson.m in Sources */ = {isa = PBXBuildFile; fileRef = 5CBD99B91413B9AF00FEA63D /* NSObject+SBJson.m */; };
 		5CBD99D21413B9AF00FEA63D /* SBJsonParser.m in Sources */ = {isa = PBXBuildFile; fileRef = 5CBD99BC1413B9AF00FEA63D /* SBJsonParser.m */; };
 		5CBD99D31413B9AF00FEA63D /* SBJsonStreamParser.m in Sources */ = {isa = PBXBuildFile; fileRef = 5CBD99BE1413B9AF00FEA63D /* SBJsonStreamParser.m */; };
@@ -66,6 +67,7 @@
 		5C91A3171322E38F00F2E054 /* information.png */ = {isa = PBXFileReference; lastKnownFileType = image.png; path = information.png; sourceTree = "<group>"; };
 		5C91A3191322E38F00F2E054 /* view_choose.png */ = {isa = PBXFileReference; lastKnownFileType = image.png; path = view_choose.png; sourceTree = "<group>"; };
 		5C91A3481322E55800F2E054 /* exit.png */ = {isa = PBXFileReference; lastKnownFileType = image.png; path = exit.png; sourceTree = "<group>"; };
+		5CB00E531428393600DBB65E /* pandora-logo-16_gray.png */ = {isa = PBXFileReference; lastKnownFileType = image.png; path = "pandora-logo-16_gray.png"; sourceTree = "<group>"; };
 		5CBD99B81413B9AF00FEA63D /* NSObject+SBJson.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = "NSObject+SBJson.h"; sourceTree = "<group>"; };
 		5CBD99B91413B9AF00FEA63D /* NSObject+SBJson.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = "NSObject+SBJson.m"; sourceTree = "<group>"; };
 		5CBD99BA1413B9AF00FEA63D /* SBJson.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = SBJson.h; sourceTree = "<group>"; };
@@ -201,6 +203,7 @@
 		5C91A3021322E0EF00F2E054 /* Images */ = {
 			isa = PBXGroup;
 			children = (
+				5CB00E531428393600DBB65E /* pandora-logo-16_gray.png */,
 				5C91A3481322E55800F2E054 /* exit.png */,
 				5C91A3151322E38F00F2E054 /* media_play_pause_resume.png */,
 				5C91A3161322E38F00F2E054 /* media_next.png */,
@@ -331,6 +334,7 @@
 				5C91A31C1322E38F00F2E054 /* information.png in Resources */,
 				5C91A31E1322E38F00F2E054 /* view_choose.png in Resources */,
 				5C91A3491322E55800F2E054 /* exit.png in Resources */,
+				5CB00E541428393600DBB65E /* pandora-logo-16_gray.png in Resources */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;
 		};
