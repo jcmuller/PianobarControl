@@ -13,22 +13,18 @@
 
 @interface PianobarControlAppDelegate : NSObject <NSApplicationDelegate> {
 	PianobarControlModel *model;
+	NSStatusItem *statusItem;    
+    JMSongInfoParser *songInfo;
 
 	IBOutlet NSMenu *statusMenu;
-
 	IBOutlet NSPanel *stationSelection;
 	IBOutlet NSTableView *stationsTable;
 	IBOutlet NSSearchField *filterBy;
-
 	IBOutlet NSPanel *aboutPanel;
 	IBOutlet NSTextField *aboutVersion;
 	IBOutlet NSTextField *aboutCopyRight;
 	IBOutlet NSTextField *aboutUrl;
-
-	NSStatusItem *statusItem;
 	IBOutlet NSMenuItem *currentSong;
-    
-    JMSongInfoParser *songInfo;
 }
 
 - (void) performAction:(NSString *)action;
@@ -51,7 +47,6 @@
 - (IBAction) choseStation:(id)sender;
 - (IBAction) filterStations:(id)sender;
 - (IBAction) showAboutPanel:(id)sender;
-
 - (IBAction) tableViewSelected:(id)sender;
 - (IBAction) doubleClicked:(id)sender;
 
