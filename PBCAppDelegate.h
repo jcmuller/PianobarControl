@@ -15,8 +15,8 @@
 @interface PBCAppDelegate : NSObject <NSApplicationDelegate>
 {
 	PBCModel *model;
-	NSStatusItem *statusItem;    
-    PBCSongInfoParser *songInfo;
+	NSStatusItem *statusItem;
+	PBCSongInfoParser *songInfo;
 
 	IBOutlet NSMenu *statusMenu;
 	IBOutlet NSPanel *stationSelection;
@@ -33,9 +33,9 @@
 - (void) playStation:(NSString*)stationId;
 - (void) playStationAndHideSelector:(NSString*)stationString;
 - (void) raiseApplication;
-- (void) setHyperlinkForTextField:(NSTextField*)aTextField 
-                              url:(NSURL*)anUrl
-                           string:(NSString*)aString;
+- (void) setHyperlinkForTextField:(NSTextField*)aTextField
+							  url:(NSURL*)anUrl
+						   string:(NSString*)aString;
 
 /* This will, how did you guess, set the current song title */
 - (void) setCurrentSongTitle:(id)sender;

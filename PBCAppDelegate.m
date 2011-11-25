@@ -35,13 +35,13 @@
 - (void) awakeFromNib
 {
 	model = [[PBCModel alloc] init];
-    
-    [NSApp setDelegate:self];
+
+	[NSApp setDelegate:self];
 
 	statusItem = [[[NSStatusBar systemStatusBar] statusItemWithLength:NSVariableStatusItemLength] retain];
 	[statusItem setImage:[NSImage imageNamed:@"pandora-logo-16_gray.png"]];
-    [statusItem setAlternateImage:[NSImage imageNamed:@"pandora-logo-16.png"]];
-    [statusItem setHighlightMode:YES];
+	[statusItem setAlternateImage:[NSImage imageNamed:@"pandora-logo-16.png"]];
+	[statusItem setHighlightMode:YES];
 
 	[statusItem setMenu:statusMenu];
 	[stationsTable setDoubleAction:@selector(doubleClicked:)];
@@ -82,13 +82,13 @@
 
 - (IBAction) banAction:(id)sender
 {
-   [self performAction:@"-"];
+	[self performAction:@"-"];
 }
 
-- (IBAction) showInfoAction:(id)sender 
+- (IBAction) showInfoAction:(id)sender
 {
-    [self performAction:@"e"];
-    [self setCurrentSongTitle:nil];
+	[self performAction:@"e"];
+	[self setCurrentSongTitle:nil];
 }
 
 - (IBAction) showLyricsAction:(id)sender
@@ -106,31 +106,31 @@
 - (IBAction) chooseStationAction:(id)sender
 {
 	if (![stationSelection isVisible])
-    {
+	{
 		// Reset filter
 		[filterBy setStringValue:@""];
-        
+
 		// Set focus to filter
 		[filterBy becomeFirstResponder];
-        
-        [filterBy setRecentsAutosaveName:@"PianobarControlSearch"];
-        NSLog(@"saved searches: %@", [filterBy recentSearches]);
+
+		[filterBy setRecentsAutosaveName:@"PianobarControlSearch"];
+		NSLog(@"saved searches: %@", [filterBy recentSearches]);
 
 		// Load data
 		[model loadStations:[filterBy stringValue]];
-        
+
 		// Mark table as needing update
 		[stationsTable reloadData];
 
 		// Select first row or playing station
 		if ([model stationPlaying] != nil)
-        {
+		{
 			[stationsTable selectRowIndexes:[NSIndexSet indexSetWithIndex:[[model stationPlaying] intValue]] byExtendingSelection:NO];
 			// Scroll to station
 			[stationsTable scrollRowToVisible:[[model stationPlaying] intValue]];
 		}
 		else
-        {
+		{
 			[stationsTable selectRowIndexes:[NSIndexSet indexSetWithIndex:0] byExtendingSelection:NO];
 			// Scroll to top
 			[stationsTable scrollRowToVisible:0];
@@ -173,26 +173,26 @@
 - (IBAction) filterStations:(id)sender {
 	// Load data
 	[model loadStations:[filterBy stringValue]];
-    
+
 	// Mark table as needing update
 	[stationsTable reloadData];
 
 	// Select first result if nothing is selected
 	if ([stationsTable selectedRow] < 0)
-		[stationsTable selectRowIndexes:[NSIndexSet indexSetWithIndex:0] 
-                   byExtendingSelection:NO];
+		[stationsTable selectRowIndexes:[NSIndexSet indexSetWithIndex:0]
+				   byExtendingSelection:NO];
 }
 
 - (IBAction) showAboutPanel:(id)sender
 {
 	if (![aboutPanel isVisible])
-    {
+	{
 		[aboutCopyRight setStringValue:[NSString stringWithFormat:
-                                        @"Copyright %@", [[[NSBundle mainBundle] infoDictionary]
-                                                          objectForKey:@"NSHumanReadableCopyright"]]];
+			@"Copyright %@", [[[NSBundle mainBundle] infoDictionary]
+			objectForKey:@"NSHumanReadableCopyright"]]];
 		[aboutVersion setStringValue:[NSString stringWithFormat:
-                                      @"Version %@", [[[NSBundle mainBundle] infoDictionary]
-                                                      objectForKey:@"CFBundleVersion"]]];
+			@"Version %@", [[[NSBundle mainBundle] infoDictionary]
+			objectForKey:@"CFBundleVersion"]]];
 
 		NSString *urlString = [[[NSBundle mainBundle] infoDictionary] objectForKey:@"CFBundleGetInfoString"];
 		NSURL *url = [NSURL URLWithString:[urlString stringByAddingPercentEscapesUsingEncoding:NSUTF8StringEncoding]];
@@ -217,30 +217,30 @@
 
 - (BOOL)control:(NSControl *)control textView:(NSTextView *)textView doCommandBySelector:(SEL)command
 {
-    NSLog(@"command:%s", (char*)command);
-    
-    NSInteger currentRow = [stationsTable selectedRow];
-    
-    if (command == @selector(moveDown:))
-        currentRow++;
-    else if (command == @selector(moveUp:))
-        currentRow--;
-    else if (command == @selector(scrollPageUp:))
-        currentRow -= 15;
-    else if (command == @selector(scrollPageDown:))
-        currentRow += 15;
-    else
-        return NO;
+	NSLog(@"command:%s", (char*)command);
 
-    if (currentRow >= [stationsTable numberOfRows])
-        currentRow = [stationsTable numberOfRows] - 1;
-    if (currentRow < 0)
-        currentRow = 0;
+	NSInteger currentRow = [stationsTable selectedRow];
 
-    [stationsTable selectRowIndexes:[NSIndexSet indexSetWithIndex:currentRow] byExtendingSelection:NO];
-    [stationsTable scrollRowToVisible:currentRow];
+	if (command == @selector(moveDown:))
+		currentRow++;
+	else if (command == @selector(moveUp:))
+		currentRow--;
+	else if (command == @selector(scrollPageUp:))
+		currentRow -= 15;
+	else if (command == @selector(scrollPageDown:))
+		currentRow += 15;
+	else
+		return NO;
 
-    return YES;
+	if (currentRow >= [stationsTable numberOfRows])
+		currentRow = [stationsTable numberOfRows] - 1;
+	if (currentRow < 0)
+		currentRow = 0;
+
+	[stationsTable selectRowIndexes:[NSIndexSet indexSetWithIndex:currentRow] byExtendingSelection:NO];
+	[stationsTable scrollRowToVisible:currentRow];
+
+	return YES;
 }
 
 #pragma mark -
@@ -271,12 +271,12 @@
 	NSLog(@"Pianobar fifo path: %@ action: %@", pianobarFifo, action);
 
 	if (![action writeToFile:pianobarFifo atomically:NO encoding:NSUTF8StringEncoding error:&error])
-        NSLog(@"We have a problem: %@\r\n", [error localizedFailureReason]);
+   NSLog(@"We have a problem: %@\r\n", [error localizedFailureReason]);
 }
 
 - (void) playStation:(NSString*)stationId
 {
-    [self performAction:[NSString stringWithFormat:@"s%@\n", stationId]];
+	[self performAction:[NSString stringWithFormat:@"s%@\n", stationId]];
 }
 
 - (void) setHyperlinkForTextField:(NSTextField*)aTextField url:(NSURL*)anUrl string:(NSString*)aString
@@ -376,38 +376,38 @@
 	// /Developer/SDKs/MacOSX10.6.sdk/System/Library/Frameworks/Carbon.framework/Versions/A/Frameworks/HIToolbox.framework/Versions/A/Headers/Events.h
 	// P
 	RegisterEventHotKey(0x23, shiftKey+optionKey, menuDisplayHotKeyID,
-                        GetApplicationEventTarget(), 0, &menuDisplayHotKeyRef);
+			GetApplicationEventTarget(), 0, &menuDisplayHotKeyRef);
 	// N
 	RegisterEventHotKey(0x2D, shiftKey+optionKey, nextSongHotKeyID,
-                        GetApplicationEventTarget(), 0, &nextSongHotKeyRef);
+			GetApplicationEventTarget(), 0, &nextSongHotKeyRef);
 	// L
 	RegisterEventHotKey(0x25, shiftKey+optionKey, loveHotKeyID,
-                        GetApplicationEventTarget(), 0, &loveHotKeyRef);
+			GetApplicationEventTarget(), 0, &loveHotKeyRef);
 	// O
 	RegisterEventHotKey(0x1F, shiftKey+optionKey, playPauseHotKeyID,
-                        GetApplicationEventTarget(), 0, &playPauseHotKeyRef);
+			GetApplicationEventTarget(), 0, &playPauseHotKeyRef);
 	// S
 	RegisterEventHotKey(0x01, shiftKey+optionKey, chooseStationHotKeyID,
-                        GetApplicationEventTarget(), 0, &chooseStationHotKeyRef);
+			GetApplicationEventTarget(), 0, &chooseStationHotKeyRef);
 	// B
 	RegisterEventHotKey(0x0B, shiftKey+optionKey, banHotKeyID,
-                        GetApplicationEventTarget(), 0, &banHotKeyRef);
+			GetApplicationEventTarget(), 0, &banHotKeyRef);
 	// I
 	RegisterEventHotKey(0x22, shiftKey+optionKey, songInfoHotKeyID,
-                        GetApplicationEventTarget(), 0, &songInfoHotKeyRef);
+			GetApplicationEventTarget(), 0, &songInfoHotKeyRef);
 	// Q
 	RegisterEventHotKey(0x0C, shiftKey+optionKey, quitHotKeyID,
-                        GetApplicationEventTarget(), 0, &quitHotKeyRef);
+			GetApplicationEventTarget(), 0, &quitHotKeyRef);
 	// Y
 	RegisterEventHotKey(0x10, shiftKey+optionKey, songLyricsHotKeyID,
-                        GetApplicationEventTarget(), 0, &songLyricsHotKeyRef);
+			GetApplicationEventTarget(), 0, &songLyricsHotKeyRef);
 }
 
 OSStatus myHotKeyHandler(EventHandlerCallRef nextHandler, EventRef anEvent, void *userData)
 {
 	EventHotKeyID hkRef;
 	GetEventParameter(anEvent, kEventParamDirectObject, typeEventHotKeyID,
-                      NULL, sizeof(hkRef), NULL, &hkRef);
+			NULL, sizeof(hkRef), NULL, &hkRef);
 
 	switch (hkRef.id) {
 		case 1:

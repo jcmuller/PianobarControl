@@ -25,7 +25,7 @@
 	if ([filterBy isEqual:@""])
 		[self setStations:stationsNotFiltered];
 	else
-    {
+	{
 		// First, find any occurrences on filterBy in stationsNotFiltered. Then, sort by Levenshtein's distance
 		NSPredicate *predicate = [NSPredicate predicateWithFormat:@"SELF contains[cd] %@", filterBy];
 		NSMutableArray *stationsFromSearch = [NSMutableArray arrayWithArray:[stationsNotFiltered filteredArrayUsingPredicate:predicate]];
@@ -33,9 +33,9 @@
 		NSEnumerator *enumerator = [stationsFromSearch objectEnumerator];
 		NSString *station = NULL;
 		while (station = [enumerator nextObject])
-        	[stationsNotFiltered removeObject:station];
-		
-        [station release];
+			[stationsNotFiltered removeObject:station];
+
+		[station release];
 
 		NSMutableArray *stationsLike = [NSMutableArray array];
 		float maxWeight = 0;
@@ -43,7 +43,7 @@
 		enumerator = [stationsNotFiltered objectEnumerator];
 		NSString *str = NULL;
 		while (str = [enumerator nextObject])
-        {
+		{
 			NSNumber *weight = [NSNumber numberWithFloat:[filterBy compareWithString:str]];
 			if ([weight floatValue] > maxWeight)
 				maxWeight = [weight floatValue];
@@ -56,7 +56,7 @@
 		NSArray *arr = NULL;
 		enumerator = [stationsLike objectEnumerator];
 		while (arr = [enumerator nextObject])
-        {
+		{
 			NSNumber *weight = [arr objectAtIndex:0];
 			if ([weight floatValue] <= maxWeight * 0.7)
 				[stationsFromSearch addObject:[NSString stringWithFormat:@"%@ (%@)", [arr objectAtIndex:1], weight]];
@@ -67,15 +67,15 @@
 	}
 
 	NSRegularExpression *regex = [NSRegularExpression regularExpressionWithPattern:@"\\[playing\\]"
-                                                                           options:0 error:nil];
+																		   options:0 error:nil];
 	for (int i = 0; i < [stations count]; i++)
-    {
+	{
 		NSString *station = (NSString*)[stations objectAtIndex:i];
 
 		if ([regex numberOfMatchesInString:station options:0 range:NSMakeRange(0, [station length])] == 1)
-        {
-            stationPlaying = [NSNumber numberWithInt:i];
-            break;
+		{
+			stationPlaying = [NSNumber numberWithInt:i];
+			break;
 		}
 	}
 
@@ -90,7 +90,7 @@
 }
 
 - (id)tableView:(NSTableView *)aTableView objectValueForTableColumn:(NSTableColumn *)aTableColumn
-            row:(NSInteger)rowIndex
+			row:(NSInteger)rowIndex
 {
 	if (rowIndex > -1 && rowIndex < stationsCount)
 		return [stations objectAtIndex:rowIndex];

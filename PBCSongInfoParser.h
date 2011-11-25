@@ -9,10 +9,11 @@
 #import <Foundation/Foundation.h>
 #import "SBJson.h"
 
-@interface PBCSongInfoParser : NSObject {
-    NSString *fileName;
+@interface PBCSongInfoParser : NSObject
+{
+	NSString *fileName;
 @private
-    NSDictionary *songDataDictionary;
+	NSDictionary *songDataDictionary;
 }
 
 - (void) parse;

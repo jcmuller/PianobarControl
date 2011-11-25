@@ -16,12 +16,12 @@
 	NSNumber *my_idx  = [self objectAtIndex:0];
 	NSNumber *obj_idx = [obj objectAtIndex:0];
 	NSComparisonResult retVal = NSOrderedSame;
-	
+
 	if ([my_idx floatValue] < [obj_idx floatValue])
 		retVal = NSOrderedAscending;
 	else if ([my_idx floatValue] > [obj_idx floatValue])
 		retVal = NSOrderedDescending;
-	
+
 	return retVal;
 }
 

@@ -13,22 +13,22 @@
 @implementation PBCApplication
 
 - (void)mediaKeyEvent:(int)key state:(BOOL)state repeat:(BOOL)repeat
-{    
-    if (state == 0)
-    {
-        switch(key)
-        {
-            case NX_KEYTYPE_PLAY:
-                [_delegate performSelector:@selector(playAction:)];
-                break;
-            case NX_KEYTYPE_FAST:
-                [_delegate performSelector:@selector(nextAction:)];
-                break;            
-            case NX_KEYTYPE_REWIND:
-                [_delegate performSelector:@selector(showInfoAction:)];
-                break;
-        }
-    }
+{
+	if (state == 0)
+	{
+		switch(key)
+		{
+			case NX_KEYTYPE_PLAY:
+				[_delegate performSelector:@selector(playAction:)];
+				break;
+			case NX_KEYTYPE_FAST:
+				[_delegate performSelector:@selector(nextAction:)];
+				break;
+			case NX_KEYTYPE_REWIND:
+				[_delegate performSelector:@selector(showInfoAction:)];
+				break;
+		}
+	}
 }
 
 - (void)sendEvent:(NSEvent*)event
@@ -39,10 +39,10 @@
 		int keyFlags  = ([event data1] & 0x0000FFFF);
 		int keyState  = (((keyFlags & 0xFF00) >> 8)) == 0xA;
 		int keyRepeat = (keyFlags & 0x1);
-		
+
 		[self mediaKeyEvent:keyCode state:keyState repeat:keyRepeat];
 	}
-    
+
 	[super sendEvent: event];
 }
 
