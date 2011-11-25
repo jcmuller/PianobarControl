@@ -26,6 +26,7 @@
 @synthesize aboutUrl;
 
 @synthesize currentSong;
+@synthesize sleepDisabledMenuItem;
 
 @synthesize songInfo;
 
@@ -61,6 +62,8 @@
 									repeats:YES];
 
 	songInfo = [[PBCSongInfoParser alloc] init];
+	sleepAssertionID = -1;
+	sleepEnabled = YES;
 }
 #pragma mark -
 
@@ -214,6 +217,37 @@
 	// Bring application forward
 	[self raiseApplication];
 }
+
+- (IBAction) toggleSleepAllow:(id)sender
+{
+	if (sleepEnabled)
+	{
+		IOReturn success = IOPMAssertionCreateWithName(
+													   kIOPMAssertionTypeNoDisplaySleep,
+													   kIOPMAssertionLevelOn,
+													   (CFStringRef)@"Don't wake me",
+													   &sleepAssertionID);
+		
+		if (success == kIOReturnSuccess)
+		{
+			NSLog(@"Disabling sleep...");
+			sleepEnabled = NO;
+			[sleepDisabledMenuItem setState:NSOnState];
+		}
+	}
+	else
+	{
+		IOReturn success = IOPMAssertionRelease(sleepAssertionID);
+		
+		if (success == kIOReturnSuccess)
+		{
+			NSLog(@"Enabling sleep...");
+			sleepEnabled = YES;
+			[sleepDisabledMenuItem setState:NSOffState];
+		}
+	}
+}
+
 #pragma mark -
 
 #pragma mark Arrow Key support in search box

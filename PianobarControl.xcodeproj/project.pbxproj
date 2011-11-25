@@ -14,6 +14,7 @@
 		5C11723A144497AD00ABC63B /* InfoPlist.strings in Resources */ = {isa = PBXBuildFile; fileRef = 5C117238144497AD00ABC63B /* InfoPlist.strings */; };
 		5C11723D144497AD00ABC63B /* TestingPianobar.m in Sources */ = {isa = PBXBuildFile; fileRef = 5C11723C144497AD00ABC63B /* TestingPianobar.m */; };
 		5C3AB7951323151400D09BF3 /* Carbon.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = 5C3AB7941323151400D09BF3 /* Carbon.framework */; };
+		5C45245814803A8C00ED06D5 /* IOKit.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = 5C45245714803A8B00ED06D5 /* IOKit.framework */; };
 		5C5F379E1337D93C00BD1208 /* NSString+Levenshtein.m in Sources */ = {isa = PBXBuildFile; fileRef = 5C5F379D1337D93C00BD1208 /* NSString+Levenshtein.m */; };
 		5C5F37FE1337DEAF00BD1208 /* NSArray+customSort.m in Sources */ = {isa = PBXBuildFile; fileRef = 5C5F37FD1337DEAF00BD1208 /* NSArray+customSort.m */; };
 		5C91A2641322D04400F2E054 /* PianobarControl.icns in Resources */ = {isa = PBXBuildFile; fileRef = 5C91A2631322D04400F2E054 /* PianobarControl.icns */; };
@@ -67,6 +68,7 @@
 		5C11723C144497AD00ABC63B /* TestingPianobar.m */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.objc; path = TestingPianobar.m; sourceTree = "<group>"; };
 		5C11723E144497AD00ABC63B /* TestingPianobar-Prefix.pch */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.h; path = "TestingPianobar-Prefix.pch"; sourceTree = "<group>"; };
 		5C3AB7941323151400D09BF3 /* Carbon.framework */ = {isa = PBXFileReference; lastKnownFileType = wrapper.framework; name = Carbon.framework; path = System/Library/Frameworks/Carbon.framework; sourceTree = SDKROOT; };
+		5C45245714803A8B00ED06D5 /* IOKit.framework */ = {isa = PBXFileReference; lastKnownFileType = wrapper.framework; name = IOKit.framework; path = System/Library/Frameworks/IOKit.framework; sourceTree = SDKROOT; };
 		5C5F379C1337D93C00BD1208 /* NSString+Levenshtein.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = "NSString+Levenshtein.h"; sourceTree = "<group>"; };
 		5C5F379D1337D93C00BD1208 /* NSString+Levenshtein.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = "NSString+Levenshtein.m"; sourceTree = "<group>"; };
 		5C5F37FC1337DEAF00BD1208 /* NSArray+customSort.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = "NSArray+customSort.h"; sourceTree = "<group>"; };
@@ -133,6 +135,7 @@
 			isa = PBXFrameworksBuildPhase;
 			buildActionMask = 2147483647;
 			files = (
+				5C45245814803A8C00ED06D5 /* IOKit.framework in Frameworks */,
 				8D11072F0486CEB800E47090 /* Cocoa.framework in Frameworks */,
 				5C3AB7951323151400D09BF3 /* Carbon.framework in Frameworks */,
 			);
@@ -170,6 +173,7 @@
 				29B97324FDCFA39411CA2CEA /* AppKit.framework */,
 				13E42FB307B3F0F600E4EEF1 /* CoreData.framework */,
 				29B97325FDCFA39411CA2CEA /* Foundation.framework */,
+				5C45245714803A8B00ED06D5 /* IOKit.framework */,
 				5C3AB7941323151400D09BF3 /* Carbon.framework */,
 			);
 			name = "Other Frameworks";

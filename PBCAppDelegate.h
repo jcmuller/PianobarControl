@@ -8,6 +8,7 @@
 
 #import <Cocoa/Cocoa.h>
 #import <Carbon/Carbon.h>
+#import <IOKit/pwr_mgt/IOPMLib.h>
 #import "PBCModel.h"
 #import "NSAttributedString+Hyperlink.h"
 #import "PBCSongInfoParser.h"
@@ -17,16 +18,22 @@
 	PBCModel *model;
 	NSStatusItem *statusItem;
 	PBCSongInfoParser *songInfo;
+	
+	BOOL sleepEnabled;
+	IOPMAssertionID sleepAssertionID;
 
 	IBOutlet NSMenu *statusMenu;
+	
+	IBOutlet NSMenuItem *currentSong;
+	IBOutlet NSMenuItem *sleepDisabledMenuItem;
+	
 	IBOutlet NSPanel *stationSelection;
 	IBOutlet NSTableView *stationsTable;
 	IBOutlet NSSearchField *filterBy;
 	IBOutlet NSPanel *aboutPanel;
 	IBOutlet NSTextField *aboutVersion;
 	IBOutlet NSTextField *aboutCopyRight;
-	IBOutlet NSTextField *aboutUrl;
-	IBOutlet NSMenuItem *currentSong;
+	IBOutlet NSTextField *aboutUrl;	
 }
 
 @property(nonatomic, retain) PBCModel *model;
@@ -42,6 +49,8 @@
 @property(nonatomic, retain) NSTextField *aboutUrl;
 
 @property(nonatomic, retain) NSMenuItem *currentSong;
+@property(nonatomic, retain) NSMenuItem *sleepDisabledMenuItem;
+
 @property(nonatomic, retain) PBCSongInfoParser *songInfo;
 
 - (void) performAction:(NSString *)action;
@@ -63,6 +72,8 @@
 - (IBAction) showInfoAction:(id)sender;
 - (IBAction) showLyricsAction:(id)sender;
 - (IBAction) chooseStationAction:(id)sender;
+- (IBAction) toggleSleepAllow:(id)sender;
+
 - (IBAction) choseStation:(id)sender;
 - (IBAction) filterStations:(id)sender;
 - (IBAction) showAboutPanel:(id)sender;
