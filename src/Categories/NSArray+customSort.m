@@ -8,7 +8,6 @@
 
 #import "NSArray+customSort.h"
 
-
 @implementation NSArray (customSort)
 
 - (NSComparisonResult) myCompare:(NSArray *)obj

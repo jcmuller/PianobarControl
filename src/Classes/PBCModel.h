@@ -9,7 +9,6 @@
 #import <Cocoa/Cocoa.h>
 #import "NSArray+customSort.h"
 
-
 @interface PBCModel : NSObject <NSTableViewDataSource>
 {
 	NSArray   *stations;
@@ -18,8 +17,6 @@
 }
 
 - (void) loadStations:(NSString *)filterBy;
-
-// for some reason, we have to mark 'em actions...
 - (IBAction) tableViewSelected:(id)sender;
 
 @property(nonatomic, retain) NSArray  *stations;

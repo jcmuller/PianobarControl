@@ -11,6 +11,7 @@
 @implementation PBCAppDelegate
 
 #pragma mark Attributes
+
 @synthesize model;
 
 @synthesize statusMenu;

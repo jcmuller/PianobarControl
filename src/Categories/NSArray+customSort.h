@@ -6,7 +6,6 @@
 //  Copyright (c) 2011 Juan C. Muller, Inc. All rights reserved.
 //
 
-
 @interface NSArray (customSort)
 
 - (NSComparisonResult) myCompare:(NSArray *)obj;
