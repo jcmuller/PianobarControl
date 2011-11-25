@@ -29,6 +29,21 @@
 	IBOutlet NSMenuItem *currentSong;
 }
 
+@property(nonatomic, retain) PBCModel *model;
+@property(nonatomic, retain) NSMenu *statusMenu;
+@property(nonatomic, retain) NSPanel *stationSelection;
+@property(nonatomic, retain) NSTableView *stationsTable;
+@property(nonatomic, retain) NSSearchField *filterBy;
+@property(nonatomic, retain) NSStatusItem *statusItem;
+
+@property(nonatomic, retain) NSPanel *aboutPanel;
+@property(nonatomic, retain) NSTextField *aboutVersion;
+@property(nonatomic, retain) NSTextField *aboutCopyRight;
+@property(nonatomic, retain) NSTextField *aboutUrl;
+
+@property(nonatomic, retain) NSMenuItem *currentSong;
+@property(nonatomic, retain) PBCSongInfoParser *songInfo;
+
 - (void) performAction:(NSString *)action;
 - (void) playStation:(NSString*)stationId;
 - (void) playStationAndHideSelector:(NSString*)stationString;
@@ -56,21 +71,8 @@
 
 - (void) registerKeys;
 
-@property(nonatomic, retain) PBCModel *model;
-@property(nonatomic, retain) NSMenu *statusMenu;
-@property(nonatomic, retain) NSPanel *stationSelection;
-@property(nonatomic, retain) NSTableView *stationsTable;
-@property(nonatomic, retain) NSSearchField *filterBy;
-@property(nonatomic, retain) NSStatusItem *statusItem;
-
-@property(nonatomic, retain) NSPanel *aboutPanel;
-@property(nonatomic, retain) NSTextField *aboutVersion;
-@property(nonatomic, retain) NSTextField *aboutCopyRight;
-@property(nonatomic, retain) NSTextField *aboutUrl;
-
-@property(nonatomic, retain) NSMenuItem *currentSong;
-
-@property(nonatomic, retain) PBCSongInfoParser *songInfo;
+- (void) alternateIcon;
+- (void) resetIcon:(id)sender;
 
 @end
 

@@ -93,6 +93,7 @@
 
 - (IBAction) showLyricsAction:(id)sender
 {
+	[self alternateIcon];
 	[[NSWorkspace sharedWorkspace] openURL:[songInfo searchLyricsURL]];
 }
 
@@ -105,6 +106,8 @@
 
 - (IBAction) chooseStationAction:(id)sender
 {
+	[self alternateIcon];
+
 	if (![stationSelection isVisible])
 	{
 		// Reset filter
@@ -266,12 +269,18 @@
 
 - (void) performAction:(NSString*)action
 {
+	[self alternateIcon];
+	
 	NSError	 *error;
-	NSString *pianobarFifo = [NSString stringWithFormat:@"%@/%@", NSHomeDirectory(), @".config/pianobar/ctl"];
+	NSString *pianobarFifo = [NSString stringWithFormat:@"%@/%@",
+							  NSHomeDirectory(), @".config/pianobar/ctl"];
 	NSLog(@"Pianobar fifo path: %@ action: %@", pianobarFifo, action);
 
-	if (![action writeToFile:pianobarFifo atomically:NO encoding:NSUTF8StringEncoding error:&error])
-   NSLog(@"We have a problem: %@\r\n", [error localizedFailureReason]);
+	if (![action writeToFile:pianobarFifo
+				  atomically:NO
+					encoding:NSUTF8StringEncoding
+					   error:&error])
+		NSLog(@"We have a problem: %@\r\n", [error localizedFailureReason]);
 }
 
 - (void) playStation:(NSString*)stationId
@@ -307,6 +316,22 @@
 	[self playStationAndHideSelector:selected];
 }
 #pragma mark -
+
+- (void) alternateIcon
+{
+	[statusItem setImage:[NSImage imageNamed:@"pandora-logo-16.png"]];
+	
+	[NSTimer scheduledTimerWithTimeInterval:0.2
+									 target:self
+								   selector:@selector(resetIcon:)
+								   userInfo:nil
+									repeats:NO];
+}
+
+- (void) resetIcon:(id)sender
+{
+	[statusItem setImage:[NSImage imageNamed:@"pandora-logo-16_gray.png"]];
+}
 
 #pragma mark Hotkeys
 - (void) registerKeys

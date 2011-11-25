@@ -14,10 +14,13 @@
 
 - (void)mediaKeyEvent:(int)key state:(BOOL)state repeat:(BOOL)repeat
 {
+	NSLog(@"media key: %d", key);
+	
 	if (state == 0)
 	{
 		switch(key)
 		{
+			// IOKit/hidsystem/ev_keymap.h
 			case NX_KEYTYPE_PLAY:
 				[_delegate performSelector:@selector(playAction:)];
 				break;
@@ -33,7 +36,7 @@
 
 - (void)sendEvent:(NSEvent*)event
 {
-	if( [event type] == NSSystemDefined && [event subtype] == 8 )
+	if ([event type] == NSSystemDefined && [event subtype] == 8)
 	{
 		int keyCode   = (([event data1] & 0xFFFF0000) >> 16);
 		int keyFlags  = ([event data1] & 0x0000FFFF);
