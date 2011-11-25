@@ -3,18 +3,20 @@
 //  PianobarControl
 //
 //  Created by Juan C. Müller on 3/5/11.
+//  Copyright (c) 2011 Juan C. Muller, Inc. All rights reserved.
 //
 
 #import <Cocoa/Cocoa.h>
 #import <Carbon/Carbon.h>
-#import "PianobarControlModel.h"
+#import "PBCModel.h"
 #import "NSAttributedString+Hyperlink.h"
-#import "JMSongInfoParser.h"
+#import "PBCSongInfoParser.h"
 
-@interface PianobarControlAppDelegate : NSObject <NSApplicationDelegate> {
-	PianobarControlModel *model;
+@interface PBCAppDelegate : NSObject <NSApplicationDelegate>
+{
+	PBCModel *model;
 	NSStatusItem *statusItem;    
-    JMSongInfoParser *songInfo;
+    PBCSongInfoParser *songInfo;
 
 	IBOutlet NSMenu *statusMenu;
 	IBOutlet NSPanel *stationSelection;
@@ -31,7 +33,9 @@
 - (void) playStation:(NSString*)stationId;
 - (void) playStationAndHideSelector:(NSString*)stationString;
 - (void) raiseApplication;
-- (void) setHyperlinkForTextField:(NSTextField*)aTextField url:(NSURL*)anUrl string:(NSString*)aString;
+- (void) setHyperlinkForTextField:(NSTextField*)aTextField 
+                              url:(NSURL*)anUrl
+                           string:(NSString*)aString;
 
 /* This will, how did you guess, set the current song title */
 - (void) setCurrentSongTitle:(id)sender;
@@ -52,7 +56,7 @@
 
 - (void) registerKeys;
 
-@property(nonatomic, retain) PianobarControlModel *model;
+@property(nonatomic, retain) PBCModel *model;
 @property(nonatomic, retain) NSMenu *statusMenu;
 @property(nonatomic, retain) NSPanel *stationSelection;
 @property(nonatomic, retain) NSTableView *stationsTable;
@@ -66,7 +70,7 @@
 
 @property(nonatomic, retain) NSMenuItem *currentSong;
 
-@property(nonatomic, retain) JMSongInfoParser *songInfo;
+@property(nonatomic, retain) PBCSongInfoParser *songInfo;
 
 @end
 

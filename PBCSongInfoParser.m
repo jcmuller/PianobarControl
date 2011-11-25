@@ -3,23 +3,22 @@
 //  PianobarControl
 //
 //  Created by Juan C. Müller on 9/4/11.
-//  Copyright 2011 __MyCompanyName__. All rights reserved.
+//  Copyright (c) 2011 Juan C. Muller, Inc. All rights reserved.
 //
 
-#import "JMSongInfoParser.h"
+#import "PBCSongInfoParser.h"
 
-@implementation JMSongInfoParser
+@implementation PBCSongInfoParser
 
 @synthesize fileName;
 @synthesize songDataDictionary;
 
-- (id)init
+- (id) init
 {
     self = [super init];
+    
     if (self)
-    {
         fileName = @"/tmp/current_song_data";
-    }
     
     return self;
 }
@@ -73,7 +72,8 @@
                                                                        (CFStringRef)@";/?:@&=+$,", 
                                                                        kCFStringEncodingUTF8
                                                                        );
-    NSURL *searchUrl = [NSURL URLWithString:[NSString stringWithFormat:@"http://google.com/search?q=%@", enc]];
+    NSURL *searchUrl = [NSURL URLWithString:
+                        [NSString stringWithFormat:@"http://google.com/search?q=%@", enc]];
     return searchUrl;
 }
 

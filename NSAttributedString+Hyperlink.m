@@ -11,8 +11,8 @@
 
 @implementation NSAttributedString (Hyperlink)
 
-+(id)hyperlinkFromString:(NSString*)inString withURL:(NSURL*)aURL {
-    NSMutableAttributedString* attrString = [[NSMutableAttributedString alloc] initWithString: inString];
++ (id) hyperlinkFromString:(NSString*)inString withURL:(NSURL*)aURL {
+    NSMutableAttributedString *attrString = [[NSMutableAttributedString alloc] initWithString: inString];
     NSRange range = NSMakeRange(0, [attrString length]);
 	
     [attrString beginEditing];
@@ -21,7 +21,7 @@
     // make the text appear in blue
     [attrString addAttribute:NSForegroundColorAttributeName value:[NSColor blueColor] range:range];
 	
-	// Center it
+	// center it
 	[attrString setAlignment:NSCenterTextAlignment range:range];
 
     // next make the text appear with an underline

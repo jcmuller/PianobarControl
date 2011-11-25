@@ -3,7 +3,7 @@
 //  PianobarControl
 //
 //  Created by Juan C. Müller on 3/21/11.
-//  Copyright 2011 __MyCompanyName__. All rights reserved.
+//  Copyright (c) 2011 Juan C. Muller, Inc. All rights reserved.
 //
 
 #import "NSArray+customSort.h"
@@ -11,7 +11,8 @@
 
 @implementation NSArray (customSort)
 
-- (NSComparisonResult) myCompare:(NSArray *)obj {
+- (NSComparisonResult) myCompare:(NSArray *)obj
+{
 	NSNumber *my_idx  = [self objectAtIndex:0];
 	NSNumber *obj_idx = [obj objectAtIndex:0];
 	NSComparisonResult retVal = NSOrderedSame;

@@ -3,13 +3,11 @@
 //  PianobarControl
 //
 //  Created by Juan C. Müller on 3/21/11.
-//  Copyright 2011 __MyCompanyName__. All rights reserved.
+//  Copyright (c) 2011 Juan C. Muller, Inc. All rights reserved.
 //
 
 
-@interface NSArray (customSort) {
-
-}
+@interface NSArray (customSort)
 
 - (NSComparisonResult) myCompare:(NSArray *)obj;
 

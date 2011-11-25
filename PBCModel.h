@@ -3,16 +3,18 @@
 //  PianobarControl
 //
 //  Created by Juan C. Müller on 3/7/11.
+//  Copyright (c) 2011 Juan C. Muller, Inc. All rights reserved.
 //
 
 #import <Cocoa/Cocoa.h>
 #import "NSArray+customSort.h"
 
 
-@interface PianobarControlModel : NSObject <NSTableViewDataSource> {
-	NSArray *stations;
+@interface PBCModel : NSObject <NSTableViewDataSource>
+{
+	NSArray   *stations;
 	NSInteger stationsCount;
-	NSNumber *stationPlaying;
+	NSNumber  *stationPlaying;
 }
 
 - (void) loadStations:(NSString *)filterBy;
@@ -20,7 +22,7 @@
 // for some reason, we have to mark 'em actions...
 - (IBAction) tableViewSelected:(id)sender;
 
-@property(nonatomic, retain) NSArray *stations;
+@property(nonatomic, retain) NSArray  *stations;
 @property(nonatomic, retain) NSNumber *stationPlaying;
 
 @end

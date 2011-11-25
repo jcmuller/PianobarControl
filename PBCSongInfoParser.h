@@ -3,16 +3,16 @@
 //  PianobarControl
 //
 //  Created by Juan C. Müller on 9/4/11.
-//  Copyright 2011 __MyCompanyName__. All rights reserved.
+//  Copyright (c) 2011 Juan C. Muller, Inc. All rights reserved.
 //
 
 #import <Foundation/Foundation.h>
 #import "SBJson.h"
 
-@interface JMSongInfoParser : NSObject {
-    NSString* fileName;
+@interface PBCSongInfoParser : NSObject {
+    NSString *fileName;
 @private
-    NSDictionary* songDataDictionary;
+    NSDictionary *songDataDictionary;
 }
 
 - (void) parse;
@@ -27,6 +27,5 @@
 
 @property(nonatomic, retain) NSString *fileName;
 @property(nonatomic, retain) NSDictionary *songDataDictionary;
-
 
 @end
