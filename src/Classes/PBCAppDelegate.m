@@ -13,27 +13,26 @@
 #pragma mark Attributes
 
 @synthesize model;
+@synthesize statusItem;
+@synthesize songInfo;
 
 @synthesize statusMenu;
+@synthesize currentSong;
+@synthesize sleepDisabledMenuItem;
 
 @synthesize stationSelection;
 @synthesize stationsTable;
 @synthesize filterBy;
-@synthesize statusItem;
 
 @synthesize aboutPanel;
 @synthesize aboutVersion;
 @synthesize aboutCopyRight;
 @synthesize aboutUrl;
 
-@synthesize currentSong;
-@synthesize sleepDisabledMenuItem;
-
-@synthesize songInfo;
-
 #pragma mark -
 
 #pragma mark NSApplicationDelegate methods
+
 - (void) awakeFromNib
 {
 	model = [[PBCModel alloc] init];
@@ -120,8 +119,8 @@
 		// Set focus to filter
 		[filterBy becomeFirstResponder];
 
-		[filterBy setRecentsAutosaveName:@"PianobarControlSearch"];
-		NSLog(@"saved searches: %@", [filterBy recentSearches]);
+		// Disable saving searches
+		[filterBy setRecentsAutosaveName:nil];
 
 		// Load data
 		[model loadStations:[filterBy stringValue]];
@@ -506,14 +505,18 @@ OSStatus myHotKeyHandler(EventHandlerCallRef nextHandler, EventRef anEvent, void
 #pragma mark NSObject
 - (void)dealloc
 {
+	[aboutPanel release];
 	[aboutVersion release];
 	[aboutCopyRight release];
 	[aboutUrl release];
-	[statusItem release];
-	[statusMenu release];
+	[currentSong release];
+	[filterBy release];
+	[sleepDisabledMenuItem release];
+	[songInfo release];
 	[stationSelection release];
 	[stationsTable release];
-	[filterBy release];
+	[statusItem release];
+	[statusMenu release];
 	[model release];
 	[super dealloc];
 }

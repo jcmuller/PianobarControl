@@ -84,12 +84,12 @@
 #pragma mark -
 
 #pragma mark NSTableViewDataSource protocol methods
-- (NSInteger)numberOfRowsInTableView:(NSTableView *)aTableView
+- (NSInteger) numberOfRowsInTableView:(NSTableView *)aTableView
 {
 	return [stations count];
 }
 
-- (id)tableView:(NSTableView *)aTableView objectValueForTableColumn:(NSTableColumn *)aTableColumn
+- (id) tableView:(NSTableView *)aTableView objectValueForTableColumn:(NSTableColumn *)aTableColumn
 			row:(NSInteger)rowIndex
 {
 	if (rowIndex > -1 && rowIndex < stationsCount)
@@ -103,5 +103,15 @@
 }
 
 #pragma mark -
+
+#pragma mark NSObject
+- (void) dealloc
+{
+	[stations release];
+	[stationPlaying release];
+	[super dealloc];
+}
+#pragma mark -
+
 
 @end

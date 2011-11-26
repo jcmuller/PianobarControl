@@ -23,13 +23,13 @@
 	IOPMAssertionID sleepAssertionID;
 
 	IBOutlet NSMenu *statusMenu;
-	
 	IBOutlet NSMenuItem *currentSong;
 	IBOutlet NSMenuItem *sleepDisabledMenuItem;
 	
 	IBOutlet NSPanel *stationSelection;
 	IBOutlet NSTableView *stationsTable;
 	IBOutlet NSSearchField *filterBy;
+	
 	IBOutlet NSPanel *aboutPanel;
 	IBOutlet NSTextField *aboutVersion;
 	IBOutlet NSTextField *aboutCopyRight;
@@ -37,21 +37,21 @@
 }
 
 @property(nonatomic, retain) PBCModel *model;
+@property(nonatomic, retain) NSStatusItem *statusItem;
+@property(nonatomic, retain) PBCSongInfoParser *songInfo;
+
 @property(nonatomic, retain) NSMenu *statusMenu;
+@property(nonatomic, retain) NSMenuItem *currentSong;
+@property(nonatomic, retain) NSMenuItem *sleepDisabledMenuItem;
+
 @property(nonatomic, retain) NSPanel *stationSelection;
 @property(nonatomic, retain) NSTableView *stationsTable;
 @property(nonatomic, retain) NSSearchField *filterBy;
-@property(nonatomic, retain) NSStatusItem *statusItem;
 
 @property(nonatomic, retain) NSPanel *aboutPanel;
 @property(nonatomic, retain) NSTextField *aboutVersion;
 @property(nonatomic, retain) NSTextField *aboutCopyRight;
 @property(nonatomic, retain) NSTextField *aboutUrl;
-
-@property(nonatomic, retain) NSMenuItem *currentSong;
-@property(nonatomic, retain) NSMenuItem *sleepDisabledMenuItem;
-
-@property(nonatomic, retain) PBCSongInfoParser *songInfo;
 
 - (void) performAction:(NSString *)action;
 - (void) playStation:(NSString*)stationId;

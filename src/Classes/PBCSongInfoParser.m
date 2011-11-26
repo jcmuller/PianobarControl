@@ -65,13 +65,13 @@
 {
 	[self parse];
 	NSString *arguments = [NSString stringWithFormat:@"%@ %@ lyrics", [self artist], [self title]];
-	NSString *enc = (NSString*)CFURLCreateStringByAddingPercentEscapes(
-			NULL,
-			(CFStringRef)arguments,
-			NULL,
-			(CFStringRef)@";/?:@&=+$,",
-			kCFStringEncodingUTF8
-			);
+	NSString *enc = [(NSString*)CFURLCreateStringByAddingPercentEscapes(
+																		NULL,
+																		(CFStringRef)arguments,
+																		NULL,
+																		(CFStringRef)@";/?:@&=+$,",
+																		kCFStringEncodingUTF8
+																		) autorelease];
 	NSURL *searchUrl = [NSURL URLWithString:
 				 [NSString stringWithFormat:@"http://google.com/search?q=%@", enc]];
 	return searchUrl;
