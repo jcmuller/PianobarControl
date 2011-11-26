@@ -8,9 +8,6 @@
 
 /* Begin PBXBuildFile section */
 		1DDD58160DA1D0A300B32029 /* MainMenu.xib in Resources */ = {isa = PBXBuildFile; fileRef = 1DDD58140DA1D0A300B32029 /* MainMenu.xib */; };
-		5C117232144497AD00ABC63B /* SenTestingKit.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = 5C117231144497AD00ABC63B /* SenTestingKit.framework */; };
-		5C11723A144497AD00ABC63B /* InfoPlist.strings in Resources */ = {isa = PBXBuildFile; fileRef = 5C117238144497AD00ABC63B /* InfoPlist.strings */; };
-		5C11723D144497AD00ABC63B /* TestingPianobar.m in Sources */ = {isa = PBXBuildFile; fileRef = 5C11723C144497AD00ABC63B /* TestingPianobar.m */; };
 		5C1F73F814805BD200C03FD7 /* main.m in Sources */ = {isa = PBXBuildFile; fileRef = 5C1F73F714805BD200C03FD7 /* main.m */; };
 		5C1F740014805C0200C03FD7 /* NSArray+customSort.m in Sources */ = {isa = PBXBuildFile; fileRef = 5C1F73FB14805C0200C03FD7 /* NSArray+customSort.m */; };
 		5C1F740114805C0200C03FD7 /* NSAttributedString+Hyperlink.m in Sources */ = {isa = PBXBuildFile; fileRef = 5C1F73FD14805C0200C03FD7 /* NSAttributedString+Hyperlink.m */; };
@@ -38,10 +35,10 @@
 		5C1F744314805E6D00C03FD7 /* media_play_pause_resume.png in Resources */ = {isa = PBXBuildFile; fileRef = 5C1F743914805E6D00C03FD7 /* media_play_pause_resume.png */; };
 		5C1F744414805E6D00C03FD7 /* pandora-logo-16_gray.png in Resources */ = {isa = PBXBuildFile; fileRef = 5C1F743A14805E6D00C03FD7 /* pandora-logo-16_gray.png */; };
 		5C1F744514805E6D00C03FD7 /* pandora-logo-16.png in Resources */ = {isa = PBXBuildFile; fileRef = 5C1F743B14805E6D00C03FD7 /* pandora-logo-16.png */; };
-		5C1F744614805E6D00C03FD7 /* PianobarControl.png in Resources */ = {isa = PBXBuildFile; fileRef = 5C1F743C14805E6D00C03FD7 /* PianobarControl.png */; };
 		5C1F744714805E6D00C03FD7 /* thumbs_down.png in Resources */ = {isa = PBXBuildFile; fileRef = 5C1F743D14805E6D00C03FD7 /* thumbs_down.png */; };
 		5C1F744814805E6D00C03FD7 /* thumbs_up.png in Resources */ = {isa = PBXBuildFile; fileRef = 5C1F743E14805E6D00C03FD7 /* thumbs_up.png */; };
 		5C1F744914805E6D00C03FD7 /* view_choose.png in Resources */ = {isa = PBXBuildFile; fileRef = 5C1F743F14805E6D00C03FD7 /* view_choose.png */; };
+		5C348B181480660800CBAA71 /* PianobarControl.png in Resources */ = {isa = PBXBuildFile; fileRef = 5C348B171480660800CBAA71 /* PianobarControl.png */; };
 		5C3AB7951323151400D09BF3 /* Carbon.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = 5C3AB7941323151400D09BF3 /* Carbon.framework */; };
 		5C45245814803A8C00ED06D5 /* IOKit.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = 5C45245714803A8B00ED06D5 /* IOKit.framework */; };
 		8D11072B0486CEB800E47090 /* InfoPlist.strings in Resources */ = {isa = PBXBuildFile; fileRef = 089C165CFE840E0CC02AAC07 /* InfoPlist.strings */; };
@@ -56,13 +53,6 @@
 		256AC3F00F4B6AF500CF3369 /* PianobarControl_Prefix.pch */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = PianobarControl_Prefix.pch; sourceTree = "<group>"; };
 		29B97324FDCFA39411CA2CEA /* AppKit.framework */ = {isa = PBXFileReference; lastKnownFileType = wrapper.framework; name = AppKit.framework; path = /System/Library/Frameworks/AppKit.framework; sourceTree = "<absolute>"; };
 		29B97325FDCFA39411CA2CEA /* Foundation.framework */ = {isa = PBXFileReference; lastKnownFileType = wrapper.framework; name = Foundation.framework; path = /System/Library/Frameworks/Foundation.framework; sourceTree = "<absolute>"; };
-		5C117230144497AD00ABC63B /* TestingPianobar.octest */ = {isa = PBXFileReference; explicitFileType = wrapper.cfbundle; includeInIndex = 0; path = TestingPianobar.octest; sourceTree = BUILT_PRODUCTS_DIR; };
-		5C117231144497AD00ABC63B /* SenTestingKit.framework */ = {isa = PBXFileReference; lastKnownFileType = wrapper.framework; name = SenTestingKit.framework; path = Library/Frameworks/SenTestingKit.framework; sourceTree = DEVELOPER_DIR; };
-		5C117237144497AD00ABC63B /* TestingPianobar-Info.plist */ = {isa = PBXFileReference; lastKnownFileType = text.plist.xml; path = "TestingPianobar-Info.plist"; sourceTree = "<group>"; };
-		5C117239144497AD00ABC63B /* en */ = {isa = PBXFileReference; lastKnownFileType = text.plist.strings; name = en; path = en.lproj/InfoPlist.strings; sourceTree = "<group>"; };
-		5C11723B144497AD00ABC63B /* TestingPianobar.h */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.h; path = TestingPianobar.h; sourceTree = "<group>"; };
-		5C11723C144497AD00ABC63B /* TestingPianobar.m */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.objc; path = TestingPianobar.m; sourceTree = "<group>"; };
-		5C11723E144497AD00ABC63B /* TestingPianobar-Prefix.pch */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.h; path = "TestingPianobar-Prefix.pch"; sourceTree = "<group>"; };
 		5C1F73F714805BD200C03FD7 /* main.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; name = main.m; path = src/main.m; sourceTree = "<group>"; };
 		5C1F73FA14805C0200C03FD7 /* NSArray+customSort.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; name = "NSArray+customSort.h"; path = "src/Categories/NSArray+customSort.h"; sourceTree = "<group>"; };
 		5C1F73FB14805C0200C03FD7 /* NSArray+customSort.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; name = "NSArray+customSort.m"; path = "src/Categories/NSArray+customSort.m"; sourceTree = "<group>"; };
@@ -110,11 +100,11 @@
 		5C1F743914805E6D00C03FD7 /* media_play_pause_resume.png */ = {isa = PBXFileReference; lastKnownFileType = image.png; name = media_play_pause_resume.png; path = media/media_play_pause_resume.png; sourceTree = "<group>"; };
 		5C1F743A14805E6D00C03FD7 /* pandora-logo-16_gray.png */ = {isa = PBXFileReference; lastKnownFileType = image.png; name = "pandora-logo-16_gray.png"; path = "media/pandora-logo-16_gray.png"; sourceTree = "<group>"; };
 		5C1F743B14805E6D00C03FD7 /* pandora-logo-16.png */ = {isa = PBXFileReference; lastKnownFileType = image.png; name = "pandora-logo-16.png"; path = "media/pandora-logo-16.png"; sourceTree = "<group>"; };
-		5C1F743C14805E6D00C03FD7 /* PianobarControl.png */ = {isa = PBXFileReference; lastKnownFileType = image.png; name = PianobarControl.png; path = media/PianobarControl.png; sourceTree = "<group>"; };
 		5C1F743D14805E6D00C03FD7 /* thumbs_down.png */ = {isa = PBXFileReference; lastKnownFileType = image.png; name = thumbs_down.png; path = media/thumbs_down.png; sourceTree = "<group>"; };
 		5C1F743E14805E6D00C03FD7 /* thumbs_up.png */ = {isa = PBXFileReference; lastKnownFileType = image.png; name = thumbs_up.png; path = media/thumbs_up.png; sourceTree = "<group>"; };
 		5C1F743F14805E6D00C03FD7 /* view_choose.png */ = {isa = PBXFileReference; lastKnownFileType = image.png; name = view_choose.png; path = media/view_choose.png; sourceTree = "<group>"; };
 		5C1F744A14805F1400C03FD7 /* JSON.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; name = JSON.h; path = src/lib/json/Classes/JSON.h; sourceTree = SOURCE_ROOT; };
+		5C348B171480660800CBAA71 /* PianobarControl.png */ = {isa = PBXFileReference; lastKnownFileType = image.png; name = PianobarControl.png; path = media/PianobarControl.png; sourceTree = "<group>"; };
 		5C3AB7941323151400D09BF3 /* Carbon.framework */ = {isa = PBXFileReference; lastKnownFileType = wrapper.framework; name = Carbon.framework; path = System/Library/Frameworks/Carbon.framework; sourceTree = SDKROOT; };
 		5C45245714803A8B00ED06D5 /* IOKit.framework */ = {isa = PBXFileReference; lastKnownFileType = wrapper.framework; name = IOKit.framework; path = System/Library/Frameworks/IOKit.framework; sourceTree = SDKROOT; };
 		8D1107310486CEB800E47090 /* PianobarControl-Info.plist */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = text.plist.xml; path = "PianobarControl-Info.plist"; sourceTree = "<group>"; };
@@ -122,14 +112,6 @@
 /* End PBXFileReference section */
 
 /* Begin PBXFrameworksBuildPhase section */
-		5C11722C144497AD00ABC63B /* Frameworks */ = {
-			isa = PBXFrameworksBuildPhase;
-			buildActionMask = 2147483647;
-			files = (
-				5C117232144497AD00ABC63B /* SenTestingKit.framework in Frameworks */,
-			);
-			runOnlyForDeploymentPostprocessing = 0;
-		};
 		8D11072E0486CEB800E47090 /* Frameworks */ = {
 			isa = PBXFrameworksBuildPhase;
 			buildActionMask = 2147483647;
@@ -162,7 +144,6 @@
 			isa = PBXGroup;
 			children = (
 				8D1107320486CEB800E47090 /* PianobarControl.app */,
-				5C117230144497AD00ABC63B /* TestingPianobar.octest */,
 			);
 			name = Products;
 			sourceTree = "<group>";
@@ -175,7 +156,6 @@
 				5CF2990213241B6600704EB8 /* Categories */,
 				29B97315FDCFA39411CA2CEA /* Other Sources */,
 				29B97317FDCFA39411CA2CEA /* Resources */,
-				5C117235144497AD00ABC63B /* TestingPianobar */,
 				29B97323FDCFA39411CA2CEA /* Frameworks */,
 				19C28FACFE9D520D11CA2CBB /* Products */,
 			);
@@ -212,41 +192,20 @@
 				29B97325FDCFA39411CA2CEA /* Foundation.framework */,
 				5C45245714803A8B00ED06D5 /* IOKit.framework */,
 				5C3AB7941323151400D09BF3 /* Carbon.framework */,
-				5C117231144497AD00ABC63B /* SenTestingKit.framework */,
 			);
 			name = Frameworks;
-			sourceTree = "<group>";
-		};
-		5C117235144497AD00ABC63B /* TestingPianobar */ = {
-			isa = PBXGroup;
-			children = (
-				5C11723B144497AD00ABC63B /* TestingPianobar.h */,
-				5C11723C144497AD00ABC63B /* TestingPianobar.m */,
-				5C117236144497AD00ABC63B /* Supporting Files */,
-			);
-			path = TestingPianobar;
-			sourceTree = "<group>";
-		};
-		5C117236144497AD00ABC63B /* Supporting Files */ = {
-			isa = PBXGroup;
-			children = (
-				5C117237144497AD00ABC63B /* TestingPianobar-Info.plist */,
-				5C117238144497AD00ABC63B /* InfoPlist.strings */,
-				5C11723E144497AD00ABC63B /* TestingPianobar-Prefix.pch */,
-			);
-			name = "Supporting Files";
 			sourceTree = "<group>";
 		};
 		5C91A3021322E0EF00F2E054 /* Images */ = {
 			isa = PBXGroup;
 			children = (
+				5C348B171480660800CBAA71 /* PianobarControl.png */,
 				5C1F743614805E6D00C03FD7 /* exit.png */,
 				5C1F743714805E6D00C03FD7 /* information.png */,
 				5C1F743814805E6D00C03FD7 /* media_next.png */,
 				5C1F743914805E6D00C03FD7 /* media_play_pause_resume.png */,
 				5C1F743A14805E6D00C03FD7 /* pandora-logo-16_gray.png */,
 				5C1F743B14805E6D00C03FD7 /* pandora-logo-16.png */,
-				5C1F743C14805E6D00C03FD7 /* PianobarControl.png */,
 				5C1F743D14805E6D00C03FD7 /* thumbs_down.png */,
 				5C1F743E14805E6D00C03FD7 /* thumbs_up.png */,
 				5C1F743F14805E6D00C03FD7 /* view_choose.png */,
@@ -312,24 +271,6 @@
 /* End PBXGroup section */
 
 /* Begin PBXNativeTarget section */
-		5C11722F144497AD00ABC63B /* TestingPianobar */ = {
-			isa = PBXNativeTarget;
-			buildConfigurationList = 5C117241144497AD00ABC63B /* Build configuration list for PBXNativeTarget "TestingPianobar" */;
-			buildPhases = (
-				5C11722B144497AD00ABC63B /* Sources */,
-				5C11722C144497AD00ABC63B /* Frameworks */,
-				5C11722D144497AD00ABC63B /* Resources */,
-				5C11722E144497AD00ABC63B /* ShellScript */,
-			);
-			buildRules = (
-			);
-			dependencies = (
-			);
-			name = TestingPianobar;
-			productName = TestingPianobar;
-			productReference = 5C117230144497AD00ABC63B /* TestingPianobar.octest */;
-			productType = "com.apple.product-type.bundle";
-		};
 		8D1107260486CEB800E47090 /* PianobarControl */ = {
 			isa = PBXNativeTarget;
 			buildConfigurationList = C01FCF4A08A954540054247B /* Build configuration list for PBXNativeTarget "PianobarControl" */;
@@ -372,20 +313,11 @@
 			projectRoot = "";
 			targets = (
 				8D1107260486CEB800E47090 /* PianobarControl */,
-				5C11722F144497AD00ABC63B /* TestingPianobar */,
 			);
 		};
 /* End PBXProject section */
 
 /* Begin PBXResourcesBuildPhase section */
-		5C11722D144497AD00ABC63B /* Resources */ = {
-			isa = PBXResourcesBuildPhase;
-			buildActionMask = 2147483647;
-			files = (
-				5C11723A144497AD00ABC63B /* InfoPlist.strings in Resources */,
-			);
-			runOnlyForDeploymentPostprocessing = 0;
-		};
 		8D1107290486CEB800E47090 /* Resources */ = {
 			isa = PBXResourcesBuildPhase;
 			buildActionMask = 2147483647;
@@ -399,40 +331,16 @@
 				5C1F744314805E6D00C03FD7 /* media_play_pause_resume.png in Resources */,
 				5C1F744414805E6D00C03FD7 /* pandora-logo-16_gray.png in Resources */,
 				5C1F744514805E6D00C03FD7 /* pandora-logo-16.png in Resources */,
-				5C1F744614805E6D00C03FD7 /* PianobarControl.png in Resources */,
 				5C1F744714805E6D00C03FD7 /* thumbs_down.png in Resources */,
 				5C1F744814805E6D00C03FD7 /* thumbs_up.png in Resources */,
 				5C1F744914805E6D00C03FD7 /* view_choose.png in Resources */,
+				5C348B181480660800CBAA71 /* PianobarControl.png in Resources */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;
 		};
 /* End PBXResourcesBuildPhase section */
 
-/* Begin PBXShellScriptBuildPhase section */
-		5C11722E144497AD00ABC63B /* ShellScript */ = {
-			isa = PBXShellScriptBuildPhase;
-			buildActionMask = 2147483647;
-			files = (
-			);
-			inputPaths = (
-			);
-			outputPaths = (
-			);
-			runOnlyForDeploymentPostprocessing = 0;
-			shellPath = /bin/sh;
-			shellScript = "# Run the unit tests in this test bundle.\n\"${SYSTEM_DEVELOPER_DIR}/Tools/RunUnitTests\"\n";
-		};
-/* End PBXShellScriptBuildPhase section */
-
 /* Begin PBXSourcesBuildPhase section */
-		5C11722B144497AD00ABC63B /* Sources */ = {
-			isa = PBXSourcesBuildPhase;
-			buildActionMask = 2147483647;
-			files = (
-				5C11723D144497AD00ABC63B /* TestingPianobar.m in Sources */,
-			);
-			runOnlyForDeploymentPostprocessing = 0;
-		};
 		8D11072C0486CEB800E47090 /* Sources */ = {
 			isa = PBXSourcesBuildPhase;
 			buildActionMask = 2147483647;
@@ -479,66 +387,9 @@
 			name = MainMenu.xib;
 			sourceTree = "<group>";
 		};
-		5C117238144497AD00ABC63B /* InfoPlist.strings */ = {
-			isa = PBXVariantGroup;
-			children = (
-				5C117239144497AD00ABC63B /* en */,
-			);
-			name = InfoPlist.strings;
-			sourceTree = "<group>";
-		};
 /* End PBXVariantGroup section */
 
 /* Begin XCBuildConfiguration section */
-		5C11723F144497AD00ABC63B /* Debug */ = {
-			isa = XCBuildConfiguration;
-			buildSettings = {
-				ALWAYS_SEARCH_USER_PATHS = NO;
-				ARCHS = "$(ARCHS_STANDARD_64_BIT)";
-				CLANG_ENABLE_OBJC_ARC = YES;
-				COPY_PHASE_STRIP = NO;
-				FRAMEWORK_SEARCH_PATHS = "$(DEVELOPER_LIBRARY_DIR)/Frameworks";
-				GCC_DYNAMIC_NO_PIC = NO;
-				GCC_ENABLE_OBJC_EXCEPTIONS = YES;
-				GCC_PRECOMPILE_PREFIX_HEADER = YES;
-				GCC_PREFIX_HEADER = "TestingPianobar/TestingPianobar-Prefix.pch";
-				GCC_PREPROCESSOR_DEFINITIONS = (
-					"DEBUG=1",
-					"$(inherited)",
-				);
-				GCC_SYMBOLS_PRIVATE_EXTERN = NO;
-				GCC_VERSION = com.apple.compilers.llvm.clang.1_0;
-				GCC_WARN_64_TO_32_BIT_CONVERSION = YES;
-				GCC_WARN_ABOUT_MISSING_PROTOTYPES = YES;
-				INFOPLIST_FILE = "TestingPianobar/TestingPianobar-Info.plist";
-				MACOSX_DEPLOYMENT_TARGET = 10.7;
-				PRODUCT_NAME = "$(TARGET_NAME)";
-				WRAPPER_EXTENSION = octest;
-			};
-			name = Debug;
-		};
-		5C117240144497AD00ABC63B /* Release */ = {
-			isa = XCBuildConfiguration;
-			buildSettings = {
-				ALWAYS_SEARCH_USER_PATHS = NO;
-				ARCHS = "$(ARCHS_STANDARD_64_BIT)";
-				CLANG_ENABLE_OBJC_ARC = YES;
-				COPY_PHASE_STRIP = YES;
-				DEBUG_INFORMATION_FORMAT = "dwarf-with-dsym";
-				FRAMEWORK_SEARCH_PATHS = "$(DEVELOPER_LIBRARY_DIR)/Frameworks";
-				GCC_ENABLE_OBJC_EXCEPTIONS = YES;
-				GCC_PRECOMPILE_PREFIX_HEADER = YES;
-				GCC_PREFIX_HEADER = "TestingPianobar/TestingPianobar-Prefix.pch";
-				GCC_VERSION = com.apple.compilers.llvm.clang.1_0;
-				GCC_WARN_64_TO_32_BIT_CONVERSION = YES;
-				GCC_WARN_ABOUT_MISSING_PROTOTYPES = YES;
-				INFOPLIST_FILE = "TestingPianobar/TestingPianobar-Info.plist";
-				MACOSX_DEPLOYMENT_TARGET = 10.7;
-				PRODUCT_NAME = "$(TARGET_NAME)";
-				WRAPPER_EXTENSION = octest;
-			};
-			name = Release;
-		};
 		C01FCF4B08A954540054247B /* Debug */ = {
 			isa = XCBuildConfiguration;
 			buildSettings = {
@@ -606,15 +457,6 @@
 /* End XCBuildConfiguration section */
 
 /* Begin XCConfigurationList section */
-		5C117241144497AD00ABC63B /* Build configuration list for PBXNativeTarget "TestingPianobar" */ = {
-			isa = XCConfigurationList;
-			buildConfigurations = (
-				5C11723F144497AD00ABC63B /* Debug */,
-				5C117240144497AD00ABC63B /* Release */,
-			);
-			defaultConfigurationIsVisible = 0;
-			defaultConfigurationName = Release;
-		};
 		C01FCF4A08A954540054247B /* Build configuration list for PBXNativeTarget "PianobarControl" */ = {
 			isa = XCConfigurationList;
 			buildConfigurations = (
