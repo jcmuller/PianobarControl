@@ -14,56 +14,23 @@
 #import "PBCSongInfoParser.h"
 
 @interface PBCAppDelegate : NSObject <NSApplicationDelegate>
-{
-	PBCModel *model;
-	NSStatusItem *statusItem;
-	PBCSongInfoParser *songInfo;
-	
-	BOOL sleepEnabled;
-	IOPMAssertionID sleepAssertionID;
-
-	IBOutlet NSMenu *statusMenu;
-	IBOutlet NSMenuItem *currentSong;
-	IBOutlet NSMenuItem *sleepDisabledMenuItem;
-	
-	IBOutlet NSPanel *stationSelection;
-	IBOutlet NSTableView *stationsTable;
-	IBOutlet NSSearchField *filterBy;
-	
-	IBOutlet NSPanel *aboutPanel;
-	IBOutlet NSTextField *aboutVersion;
-	IBOutlet NSTextField *aboutCopyRight;
-	IBOutlet NSTextField *aboutUrl;	
-}
 
 @property(nonatomic, retain) PBCModel *model;
 @property(nonatomic, retain) NSStatusItem *statusItem;
 @property(nonatomic, retain) PBCSongInfoParser *songInfo;
 
-@property(nonatomic, retain) NSMenu *statusMenu;
-@property(nonatomic, retain) NSMenuItem *currentSong;
-@property(nonatomic, retain) NSMenuItem *sleepDisabledMenuItem;
+@property(nonatomic, retain) IBOutlet NSMenu *statusMenu;
+@property(nonatomic, retain) IBOutlet NSMenuItem *currentSong;
+@property(nonatomic, retain) IBOutlet NSMenuItem *sleepDisabledMenuItem;
 
-@property(nonatomic, retain) NSPanel *stationSelection;
-@property(nonatomic, retain) NSTableView *stationsTable;
-@property(nonatomic, retain) NSSearchField *filterBy;
+@property(nonatomic, retain) IBOutlet NSPanel *stationSelection;
+@property(nonatomic, retain) IBOutlet NSTableView *stationsTable;
+@property(nonatomic, retain) IBOutlet NSSearchField *filterBy;
 
-@property(nonatomic, retain) NSPanel *aboutPanel;
-@property(nonatomic, retain) NSTextField *aboutVersion;
-@property(nonatomic, retain) NSTextField *aboutCopyRight;
-@property(nonatomic, retain) NSTextField *aboutUrl;
-
-- (void) performAction:(NSString *)action;
-- (void) playStation:(NSString*)stationId;
-- (void) playStationAndHideSelector:(NSString*)stationString;
-- (void) raiseApplication;
-- (void) setHyperlinkForTextField:(NSTextField*)aTextField
-							  url:(NSURL*)anUrl
-						   string:(NSString*)aString;
-
-/* This will, how did you guess, set the current song title */
-- (void) setCurrentSongTitle:(id)sender;
-- (id) showMenu;
+@property(nonatomic, retain) IBOutlet NSPanel *aboutPanel;
+@property(nonatomic, retain) IBOutlet NSTextField *aboutVersion;
+@property(nonatomic, retain) IBOutlet NSTextField *aboutCopyRight;
+@property(nonatomic, retain) IBOutlet NSTextField *aboutUrl;
 
 - (IBAction) playAction:(id)sender;
 - (IBAction) nextAction:(id)sender;
@@ -78,12 +45,6 @@
 - (IBAction) filterStations:(id)sender;
 - (IBAction) showAboutPanel:(id)sender;
 - (IBAction) tableViewSelected:(id)sender;
-- (IBAction) doubleClicked:(id)sender;
-
-- (void) registerKeys;
-
-- (void) alternateIcon;
-- (void) resetIcon:(id)sender;
 
 @end
 

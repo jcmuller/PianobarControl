@@ -10,23 +10,15 @@
 #import "SBJson.h"
 
 @interface PBCSongInfoParser : NSObject
-{
-	NSString *fileName;
-@private
-	NSDictionary *songDataDictionary;
-}
 
 - (void) parse;
 - (NSURL*) searchLyricsURL;
 
-- (NSString*) artist;
-- (NSString*) title;
-- (NSString*) album;
-- (NSString*) rating;
-- (NSString*) love;
-- (NSString*) currentSongString;
-
-@property(nonatomic, retain) NSString *fileName;
-@property(nonatomic, retain) NSDictionary *songDataDictionary;
+@property(nonatomic, readonly, retain) NSString* artist;
+@property(nonatomic, readonly, retain) NSString* title;
+@property(nonatomic, readonly, retain) NSString* album;
+@property(nonatomic, readonly, retain) NSString* rating;
+@property(nonatomic, readonly, retain) NSString* love;
+@property(nonatomic, readonly, retain) NSString* currentSongString;
 
 @end

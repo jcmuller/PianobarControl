@@ -8,26 +8,48 @@
 
 #import "PBCAppDelegate.h"
 
+static BOOL sleepEnabled;
+static IOPMAssertionID sleepAssertionID;
+
+@interface PBCAppDelegate()
+
+- (void) performAction:(NSString *)action;
+- (void) playStation:(NSString*)stationId;
+- (void) playStationAndHideSelector:(NSString*)stationString;
+- (void) raiseApplication;
+- (void) setHyperlinkForTextField:(NSTextField*)aTextField
+							  url:(NSURL*)anUrl
+						   string:(NSString*)aString;
+
+- (void) setCurrentSongTitle:(id)sender;
+- (id) showMenu;
+- (void) registerKeys;
+- (void) alternateIcon;
+- (void) resetIcon:(id)sender;
+- (void) doubleClicked:(id)sender;
+
+@end
+
 @implementation PBCAppDelegate
 
 #pragma mark Attributes
 
-@synthesize model;
-@synthesize statusItem;
-@synthesize songInfo;
+@synthesize model = _model;
+@synthesize statusItem = _statusItem;
+@synthesize songInfo = _songInfo;
 
-@synthesize statusMenu;
-@synthesize currentSong;
-@synthesize sleepDisabledMenuItem;
+@synthesize statusMenu = _statusMenu;
+@synthesize currentSong = _currentSong;
+@synthesize sleepDisabledMenuItem = _sleepDisabledMenuItem;
 
-@synthesize stationSelection;
-@synthesize stationsTable;
-@synthesize filterBy;
+@synthesize stationSelection = _stationSelection;
+@synthesize stationsTable = _stationsTable;
+@synthesize filterBy = _filterBy;
 
-@synthesize aboutPanel;
-@synthesize aboutVersion;
-@synthesize aboutCopyRight;
-@synthesize aboutUrl;
+@synthesize aboutPanel = _aboutPanel;
+@synthesize aboutVersion = _aboutVersion;
+@synthesize aboutCopyRight = _aboutCopyRight;
+@synthesize aboutUrl = _aboutUrl;
 
 #pragma mark -
 
@@ -35,19 +57,21 @@
 
 - (void) awakeFromNib
 {
-	model = [[PBCModel alloc] init];
+	[self setModel:[[[PBCModel alloc] init] autorelease]];
 
 	[NSApp setDelegate:self];
 
-	statusItem = [[[NSStatusBar systemStatusBar] statusItemWithLength:NSVariableStatusItemLength] retain];
+	NSStatusItem *statusItem = [[NSStatusBar systemStatusBar] statusItemWithLength:NSVariableStatusItemLength];
 	[statusItem setImage:[NSImage imageNamed:@"pandora-logo-16_gray.png"]];
 	[statusItem setAlternateImage:[NSImage imageNamed:@"pandora-logo-16.png"]];
 	[statusItem setHighlightMode:YES];
 
-	[statusItem setMenu:statusMenu];
-	[stationsTable setDoubleAction:@selector(doubleClicked:)];
+	[statusItem setMenu:[self statusMenu]];
+	[self setStatusItem:statusItem];
 
-	[stationsTable setDataSource:model];
+	[[self stationsTable] setDoubleAction:@selector(doubleClicked:)];
+
+	[[self stationsTable] setDataSource:[self model]];
 	refToSelf = self;
 
 	[self registerKeys];
@@ -61,7 +85,8 @@
 								   userInfo:nil
 									repeats:YES];
 
-	songInfo = [[PBCSongInfoParser alloc] init];
+	[self setSongInfo:[[[PBCSongInfoParser alloc] init] autorelease]];
+	
 	sleepAssertionID = -1;
 	sleepEnabled = YES;
 }
@@ -97,106 +122,106 @@
 - (IBAction) showLyricsAction:(id)sender
 {
 	[self alternateIcon];
-	[[NSWorkspace sharedWorkspace] openURL:[songInfo searchLyricsURL]];
+	[[NSWorkspace sharedWorkspace] openURL:[[self songInfo] searchLyricsURL]];
 }
 
 - (void) setCurrentSongTitle:(id)sender
 {
-	[songInfo parse];
-	if ([songInfo currentSongString] != nil)
-		[currentSong setTitle:[songInfo currentSongString]];
+	[[self songInfo] parse];
+	if ([[self songInfo] currentSongString] != nil)
+		[[self currentSong] setTitle:[[self songInfo] currentSongString]];
 }
 
 - (IBAction) chooseStationAction:(id)sender
 {
 	[self alternateIcon];
 
-	if (![stationSelection isVisible])
+	if (![[self stationSelection] isVisible])
 	{
 		// Reset filter
-		[filterBy setStringValue:@""];
+		[[self filterBy] setStringValue:@""];
 
 		// Set focus to filter
-		[filterBy becomeFirstResponder];
+		[[self filterBy] becomeFirstResponder];
 
 		// Disable saving searches
-		[filterBy setRecentsAutosaveName:nil];
+		[[self filterBy] setRecentsAutosaveName:nil];
 
 		// Load data
-		[model loadStations:[filterBy stringValue]];
+		[[self model] loadStations:[[self filterBy] stringValue]];
 
 		// Mark table as needing update
-		[stationsTable reloadData];
+		[[self stationsTable] reloadData];
 
 		// Select first row or playing station
-		if ([model stationPlaying] != nil)
+		if ([[self model] stationPlaying] != nil)
 		{
-			[stationsTable selectRowIndexes:[NSIndexSet indexSetWithIndex:[[model stationPlaying] intValue]] byExtendingSelection:NO];
+			[[self stationsTable] selectRowIndexes:[NSIndexSet indexSetWithIndex:[[[self model] stationPlaying] intValue]] byExtendingSelection:NO];
 			// Scroll to station
-			[stationsTable scrollRowToVisible:[[model stationPlaying] intValue]];
+			[[self stationsTable] scrollRowToVisible:[[[self model] stationPlaying] intValue]];
 		}
 		else
 		{
-			[stationsTable selectRowIndexes:[NSIndexSet indexSetWithIndex:0] byExtendingSelection:NO];
+			[[self stationsTable] selectRowIndexes:[NSIndexSet indexSetWithIndex:0] byExtendingSelection:NO];
 			// Scroll to top
-			[stationsTable scrollRowToVisible:0];
+			[[self stationsTable] scrollRowToVisible:0];
 		}
 
 		// Restore the default size of the window
-		[stationSelection setFrame:NSMakeRect(1, 1, 350, 700) display:NO animate:NO];
+		[[self stationSelection] setFrame:NSMakeRect(1, 1, 350, 700) display:NO animate:NO];
 
-		[stationSelection setMovableByWindowBackground:YES];
-		[stationSelection setMovable:YES];
-		[stationSelection setHasShadow:YES];
+		[[self stationSelection] setMovableByWindowBackground:YES];
+		[[self stationSelection] setMovable:YES];
+		[[self stationSelection] setHasShadow:YES];
 
 		// Position it nicely and display it
-		[stationSelection center];
-		[stationSelection setIsVisible:YES];
+		[[self stationSelection] center];
+		[[self stationSelection] setIsVisible:YES];
 	}
 
 	// Bring to front
-	[stationSelection makeKeyAndOrderFront:nil];
+	[[self stationSelection] makeKeyAndOrderFront:nil];
 
 	// Bring application forward
 	[self raiseApplication];
 }
 
 - (IBAction) choseStation:(id)sender {
-	int selectedRow = [stationsTable selectedRow];
+	int selectedRow = [[self stationsTable] selectedRow];
 
 	// If there is just one station in the search box, select it
-	if ([stationsTable numberOfRows] == 1)
-		[stationsTable selectRowIndexes:[NSIndexSet indexSetWithIndex:0] byExtendingSelection:NO];
+	if ([[self stationsTable] numberOfRows] == 1)
+		[[self stationsTable] selectRowIndexes:[NSIndexSet indexSetWithIndex:0] byExtendingSelection:NO];
 
 	// Sanity check...
 	if (selectedRow > -1)
 	{
-		NSString *selected = [[model stations] objectAtIndex:selectedRow];
+		NSString *selected = [[[self model] stations] objectAtIndex:selectedRow];
 		[self playStationAndHideSelector:selected];
 	}
 }
 
 - (IBAction) filterStations:(id)sender {
 	// Load data
-	[model loadStations:[filterBy stringValue]];
+	[[self model] loadStations:[[self filterBy] stringValue]];
 
 	// Mark table as needing update
-	[stationsTable reloadData];
+	[[self stationsTable] reloadData];
 
 	// Select first result if nothing is selected
-	if ([stationsTable selectedRow] < 0)
-		[stationsTable selectRowIndexes:[NSIndexSet indexSetWithIndex:0]
+	if ([[self stationsTable] selectedRow] < 0)
+		[[self stationsTable] selectRowIndexes:[NSIndexSet indexSetWithIndex:0]
 				   byExtendingSelection:NO];
 }
 
 - (IBAction) showAboutPanel:(id)sender
 {
-	if (![aboutPanel isVisible])
+	if (![[self aboutPanel] isVisible])
 	{
-		[aboutCopyRight setStringValue:[NSString stringWithFormat:
+		[[self aboutCopyRight] setStringValue:[NSString stringWithFormat:
 			@"Copyright %@", [[[NSBundle mainBundle] infoDictionary]
 			objectForKey:@"NSHumanReadableCopyright"]]];
-		[aboutVersion setStringValue:[NSString stringWithFormat:
+		[[self aboutVersion] setStringValue:[NSString stringWithFormat:
 			@"Version %@", [[[NSBundle mainBundle] infoDictionary]
 			objectForKey:@"CFBundleVersion"]]];
 
@@ -204,15 +229,15 @@
 		NSURL *url = [NSURL URLWithString:[urlString stringByAddingPercentEscapesUsingEncoding:NSUTF8StringEncoding]];
 
 		NSLog(@"urlString: %@ url: %@", urlString, url);
-		[self setHyperlinkForTextField:aboutUrl url:url string:(NSString*)urlString];
+		[self setHyperlinkForTextField:[self aboutUrl] url:url string:(NSString*)urlString];
 
 		// Position it nicely and display it
-		[aboutPanel center];
-		[aboutPanel setIsVisible:YES];
+		[[self aboutPanel] center];
+		[[self aboutPanel] setIsVisible:YES];
 	}
 
 	// Bring to front
-	[aboutPanel makeKeyAndOrderFront:nil];
+	[[self aboutPanel] makeKeyAndOrderFront:nil];
 
 	// Bring application forward
 	[self raiseApplication];
@@ -232,7 +257,7 @@
 		{
 			NSLog(@"Disabling sleep...");
 			sleepEnabled = NO;
-			[sleepDisabledMenuItem setState:NSOnState];
+			[[self sleepDisabledMenuItem] setState:NSOnState];
 		}
 	}
 	else
@@ -243,7 +268,7 @@
 		{
 			NSLog(@"Enabling sleep...");
 			sleepEnabled = YES;
-			[sleepDisabledMenuItem setState:NSOffState];
+			[[self sleepDisabledMenuItem] setState:NSOffState];
 		}
 	}
 }
@@ -256,7 +281,7 @@
 {
 	NSLog(@"command:%s", (char*)command);
 
-	NSInteger currentRow = [stationsTable selectedRow];
+	NSInteger currentRow = [[self stationsTable] selectedRow];
 
 	if (command == @selector(moveDown:))
 		currentRow++;
@@ -269,13 +294,13 @@
 	else
 		return NO;
 
-	if (currentRow >= [stationsTable numberOfRows])
-		currentRow = [stationsTable numberOfRows] - 1;
+	if (currentRow >= [[self stationsTable] numberOfRows])
+		currentRow = [[self stationsTable] numberOfRows] - 1;
 	if (currentRow < 0)
 		currentRow = 0;
 
-	[stationsTable selectRowIndexes:[NSIndexSet indexSetWithIndex:currentRow] byExtendingSelection:NO];
-	[stationsTable scrollRowToVisible:currentRow];
+	[[self stationsTable] selectRowIndexes:[NSIndexSet indexSetWithIndex:currentRow] byExtendingSelection:NO];
+	[[self stationsTable] scrollRowToVisible:currentRow];
 
 	return YES;
 }
@@ -287,12 +312,12 @@
 {
 	NSArray* elements = [stationString componentsSeparatedByString:@". "];
 	[self playStation:[elements objectAtIndex:0]];
-	[stationSelection setIsVisible:NO];
+	[[self stationSelection] setIsVisible:NO];
 }
 
 - (id) showMenu
 {
-	[statusItem popUpStatusItemMenu:statusMenu];
+	[[self statusItem] popUpStatusItemMenu:[self statusMenu]];
 	return nil;
 }
 
@@ -306,8 +331,7 @@
 	[self alternateIcon];
 	
 	NSError	 *error;
-	NSString *pianobarFifo = [NSString stringWithFormat:@"%@/%@",
-							  NSHomeDirectory(), @".config/pianobar/ctl"];
+	NSString *pianobarFifo = [NSHomeDirectory() stringByAppendingPathComponent:@".config/pianobar/ctl"];
 	NSLog(@"Pianobar fifo path: %@ action: %@", pianobarFifo, action);
 
 	if (![action writeToFile:pianobarFifo
@@ -343,17 +367,17 @@
 {
 }
 
-- (IBAction) doubleClicked:(id)sender
+- (void) doubleClicked:(id)sender
 {
 	int row = [sender selectedRow];
-	NSString *selected = [[model stations] objectAtIndex:row];
+	NSString *selected = [[[self model] stations] objectAtIndex:row];
 	[self playStationAndHideSelector:selected];
 }
 #pragma mark -
 
 - (void) alternateIcon
 {
-	[statusItem setImage:[NSImage imageNamed:@"pandora-logo-16.png"]];
+	[[self statusItem] setImage:[NSImage imageNamed:@"pandora-logo-16.png"]];
 	
 	[NSTimer scheduledTimerWithTimeInterval:0.2
 									 target:self
@@ -364,7 +388,7 @@
 
 - (void) resetIcon:(id)sender
 {
-	[statusItem setImage:[NSImage imageNamed:@"pandora-logo-16_gray.png"]];
+	[[self statusItem] setImage:[NSImage imageNamed:@"pandora-logo-16_gray.png"]];
 }
 
 #pragma mark Hotkeys
@@ -505,19 +529,19 @@ OSStatus myHotKeyHandler(EventHandlerCallRef nextHandler, EventRef anEvent, void
 #pragma mark NSObject
 - (void)dealloc
 {
-	[aboutPanel release];
-	[aboutVersion release];
-	[aboutCopyRight release];
-	[aboutUrl release];
-	[currentSong release];
-	[filterBy release];
-	[sleepDisabledMenuItem release];
-	[songInfo release];
-	[stationSelection release];
-	[stationsTable release];
-	[statusItem release];
-	[statusMenu release];
-	[model release];
+	[_aboutPanel release];
+	[_aboutVersion release];
+	[_aboutCopyRight release];
+	[_aboutUrl release];
+	[_currentSong release];
+	[_filterBy release];
+	[_sleepDisabledMenuItem release];
+	[_songInfo release];
+	[_stationSelection release];
+	[_stationsTable release];
+	[_statusItem release];
+	[_statusMenu release];
+	[_model release];
 	[super dealloc];
 }
 #pragma mark -

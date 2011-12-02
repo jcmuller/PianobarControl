@@ -10,11 +10,6 @@
 #import "NSArray+customSort.h"
 
 @interface PBCModel : NSObject <NSTableViewDataSource>
-{
-	NSArray   *stations;
-	NSInteger stationsCount;
-	NSNumber  *stationPlaying;
-}
 
 - (void) loadStations:(NSString *)filterBy;
 - (IBAction) tableViewSelected:(id)sender;

@@ -12,9 +12,6 @@
 
 @implementation PBCModel
 
-@synthesize stations;
-@synthesize stationPlaying;
-
 #pragma mark Model methods
 - (void) loadStations:(NSString*)filterBy
 {
@@ -68,32 +65,30 @@
 
 	NSRegularExpression *regex = [NSRegularExpression regularExpressionWithPattern:@"\\[playing\\]"
 																		   options:0 error:nil];
-	for (int i = 0; i < [stations count]; i++)
+	for (int i = 0; i < [[self stations] count]; i++)
 	{
-		NSString *station = (NSString*)[stations objectAtIndex:i];
+		NSString *station = (NSString*)[[self stations] objectAtIndex:i];
 
 		if ([regex numberOfMatchesInString:station options:0 range:NSMakeRange(0, [station length])] == 1)
 		{
-			stationPlaying = [NSNumber numberWithInt:i];
+			[self setStationPlaying:[NSNumber numberWithInt:i]];
 			break;
 		}
 	}
-
-	stationsCount = [stations count];
 }
 #pragma mark -
 
 #pragma mark NSTableViewDataSource protocol methods
 - (NSInteger) numberOfRowsInTableView:(NSTableView *)aTableView
 {
-	return [stations count];
+	return [[self stations] count];
 }
 
 - (id) tableView:(NSTableView *)aTableView objectValueForTableColumn:(NSTableColumn *)aTableColumn
 			row:(NSInteger)rowIndex
 {
-	if (rowIndex > -1 && rowIndex < stationsCount)
-		return [stations objectAtIndex:rowIndex];
+	if (rowIndex > -1 && rowIndex < [[self stations] count])
+		return [[self stations] objectAtIndex:rowIndex];
 	else
 		return nil;
 }
@@ -104,11 +99,14 @@
 
 #pragma mark -
 
+@synthesize stations = _stations;
+@synthesize stationPlaying = _stationPlaying;
+
 #pragma mark NSObject
 - (void) dealloc
 {
-	[stations release];
-	[stationPlaying release];
+	[_stations release];
+	[_stationPlaying release];
 	[super dealloc];
 }
 #pragma mark -
