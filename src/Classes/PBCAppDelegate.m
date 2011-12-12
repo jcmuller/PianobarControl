@@ -62,8 +62,8 @@ static IOPMAssertionID sleepAssertionID;
 	[NSApp setDelegate:self];
 
 	NSStatusItem *statusItem = [[NSStatusBar systemStatusBar] statusItemWithLength:NSVariableStatusItemLength];
-	[statusItem setImage:[NSImage imageNamed:@"pandora-logo-16_gray.png"]];
-	[statusItem setAlternateImage:[NSImage imageNamed:@"pandora-logo-16.png"]];
+	[statusItem setImage:[NSImage imageNamed:@"pianobar-black.png"]];
+	[statusItem setAlternateImage:[NSImage imageNamed:@"pianobar-white.png"]];
 	[statusItem setHighlightMode:YES];
 
 	[statusItem setMenu:[self statusMenu]];
@@ -377,7 +377,7 @@ static IOPMAssertionID sleepAssertionID;
 
 - (void) alternateIcon
 {
-	[[self statusItem] setImage:[NSImage imageNamed:@"pandora-logo-16.png"]];
+	[[self statusItem] setImage:[NSImage imageNamed:@"pianobar-white.png"]];
 	
 	[NSTimer scheduledTimerWithTimeInterval:0.2
 									 target:self
@@ -388,7 +388,7 @@ static IOPMAssertionID sleepAssertionID;
 
 - (void) resetIcon:(id)sender
 {
-	[[self statusItem] setImage:[NSImage imageNamed:@"pandora-logo-16_gray.png"]];
+	[[self statusItem] setImage:[NSImage imageNamed:@"pianobar-black.png"]];
 }
 
 #pragma mark Hotkeys

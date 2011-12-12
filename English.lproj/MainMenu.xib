@@ -86,7 +86,7 @@
 						<int key="NSMnemonicLoc">2147483647</int>
 						<object class="NSCustomResource" key="NSImage">
 							<string key="NSClassName">NSImage</string>
-							<string key="NSResourceName">media_play_pause_resume</string>
+							<string key="NSResourceName">playpause</string>
 						</object>
 						<reference key="NSOnImage" ref="353941537"/>
 						<reference key="NSMixedImage" ref="543903336"/>
@@ -99,7 +99,7 @@
 						<int key="NSMnemonicLoc">2147483647</int>
 						<object class="NSCustomResource" key="NSImage">
 							<string key="NSClassName">NSImage</string>
-							<string key="NSResourceName">media_next</string>
+							<string key="NSResourceName">next</string>
 						</object>
 						<reference key="NSOnImage" ref="353941537"/>
 						<reference key="NSMixedImage" ref="543903336"/>
@@ -112,7 +112,7 @@
 						<int key="NSMnemonicLoc">2147483647</int>
 						<object class="NSCustomResource" key="NSImage">
 							<string key="NSClassName">NSImage</string>
-							<string key="NSResourceName">thumbs_up</string>
+							<string key="NSResourceName">love</string>
 						</object>
 						<reference key="NSOnImage" ref="353941537"/>
 						<reference key="NSMixedImage" ref="543903336"/>
@@ -125,7 +125,7 @@
 						<int key="NSMnemonicLoc">2147483647</int>
 						<object class="NSCustomResource" key="NSImage">
 							<string key="NSClassName">NSImage</string>
-							<string key="NSResourceName">thumbs_down</string>
+							<string key="NSResourceName">ban</string>
 						</object>
 						<reference key="NSOnImage" ref="353941537"/>
 						<reference key="NSMixedImage" ref="543903336"/>
@@ -138,7 +138,7 @@
 						<int key="NSMnemonicLoc">2147483647</int>
 						<object class="NSCustomResource" key="NSImage">
 							<string key="NSClassName">NSImage</string>
-							<string key="NSResourceName">view_choose</string>
+							<string key="NSResourceName">station</string>
 						</object>
 						<reference key="NSOnImage" ref="353941537"/>
 						<reference key="NSMixedImage" ref="543903336"/>
@@ -151,7 +151,7 @@
 						<int key="NSMnemonicLoc">2147483647</int>
 						<object class="NSCustomResource" key="NSImage">
 							<string key="NSClassName">NSImage</string>
-							<string key="NSResourceName">information</string>
+							<string key="NSResourceName">info</string>
 						</object>
 						<reference key="NSOnImage" ref="353941537"/>
 						<reference key="NSMixedImage" ref="543903336"/>
@@ -162,14 +162,10 @@
 						<string key="NSKeyEquiv">Y</string>
 						<int key="NSKeyEquivModMask">524288</int>
 						<int key="NSMnemonicLoc">2147483647</int>
-						<reference key="NSOnImage" ref="353941537"/>
-						<reference key="NSMixedImage" ref="543903336"/>
-					</object>
-					<object class="NSMenuItem" id="1020789828">
-						<reference key="NSMenu" ref="1008883024"/>
-						<string key="NSTitle">Disable computer sleep</string>
-						<string key="NSKeyEquiv"/>
-						<int key="NSMnemonicLoc">2147483647</int>
+						<object class="NSCustomResource" key="NSImage">
+							<string key="NSClassName">NSImage</string>
+							<string key="NSResourceName">lyrics</string>
+						</object>
 						<reference key="NSOnImage" ref="353941537"/>
 						<reference key="NSMixedImage" ref="543903336"/>
 					</object>
@@ -188,10 +184,14 @@
 						<string key="NSTitle">About Pianobar Control</string>
 						<string key="NSKeyEquiv"/>
 						<int key="NSMnemonicLoc">2147483647</int>
-						<object class="NSCustomResource" key="NSImage">
-							<string key="NSClassName">NSImage</string>
-							<string key="NSResourceName">pandora-logo-16</string>
-						</object>
+						<reference key="NSOnImage" ref="353941537"/>
+						<reference key="NSMixedImage" ref="543903336"/>
+					</object>
+					<object class="NSMenuItem" id="1020789828">
+						<reference key="NSMenu" ref="1008883024"/>
+						<string key="NSTitle">Disable computer sleep</string>
+						<string key="NSKeyEquiv"/>
+						<int key="NSMnemonicLoc">2147483647</int>
 						<reference key="NSOnImage" ref="353941537"/>
 						<reference key="NSMixedImage" ref="543903336"/>
 					</object>
@@ -213,7 +213,7 @@
 						<int key="NSMnemonicLoc">2147483647</int>
 						<object class="NSCustomResource" key="NSImage">
 							<string key="NSClassName">NSImage</string>
-							<string key="NSResourceName">exit</string>
+							<string key="NSResourceName">quit</string>
 						</object>
 						<reference key="NSOnImage" ref="353941537"/>
 						<reference key="NSMixedImage" ref="543903336"/>
@@ -231,7 +231,7 @@
 				<nil key="NSUserInterfaceItemIdentifier"/>
 				<string key="NSWindowContentMinSize">{220, 215}</string>
 				<object class="NSView" key="NSWindowView" id="661240715">
-					<nil key="NSNextResponder"/>
+					<reference key="NSNextResponder"/>
 					<int key="NSvFlags">256</int>
 					<object class="NSMutableArray" key="NSSubviews">
 						<bool key="EncodedWithXMLCoder">YES</bool>
@@ -240,6 +240,7 @@
 							<int key="NSvFlags">266</int>
 							<string key="NSFrame">{{20, 458}, {410, 22}}</string>
 							<reference key="NSSuperview" ref="661240715"/>
+							<reference key="NSWindow"/>
 							<reference key="NSNextKeyView" ref="910781444"/>
 							<int key="NSViewLayerContentsRedrawPolicy">2</int>
 							<bool key="NSEnabled">YES</bool>
@@ -335,6 +336,7 @@
 											<int key="NSvFlags">256</int>
 											<string key="NSFrameSize">{408, 372}</string>
 											<reference key="NSSuperview" ref="652799336"/>
+											<reference key="NSWindow"/>
 											<reference key="NSNextKeyView" ref="999608927"/>
 											<int key="NSViewLayerContentsRedrawPolicy">2</int>
 											<bool key="NSEnabled">YES</bool>
@@ -343,6 +345,7 @@
 												<int key="NSvFlags">256</int>
 												<string key="NSFrameSize">{408, 17}</string>
 												<reference key="NSSuperview" ref="405283595"/>
+												<reference key="NSWindow"/>
 												<reference key="NSNextKeyView" ref="998078156"/>
 												<int key="NSViewLayerContentsRedrawPolicy">2</int>
 												<reference key="NSTableView" ref="583529769"/>
@@ -352,6 +355,7 @@
 												<int key="NSvFlags">-2147483392</int>
 												<string key="NSFrame">{{224, 0}, {16, 17}}</string>
 												<reference key="NSSuperview" ref="910781444"/>
+												<reference key="NSWindow"/>
 												<reference key="NSNextKeyView" ref="652799336"/>
 												<int key="NSViewLayerContentsRedrawPolicy">2</int>
 											</object>
@@ -429,6 +433,7 @@
 									</object>
 									<string key="NSFrame">{{1, 17}, {408, 372}}</string>
 									<reference key="NSSuperview" ref="910781444"/>
+									<reference key="NSWindow"/>
 									<reference key="NSNextKeyView" ref="583529769"/>
 									<int key="NSViewLayerContentsRedrawPolicy">2</int>
 									<reference key="NSDocView" ref="583529769"/>
@@ -440,6 +445,7 @@
 									<int key="NSvFlags">-2147483392</int>
 									<string key="NSFrame">{{224, 17}, {15, 102}}</string>
 									<reference key="NSSuperview" ref="910781444"/>
+									<reference key="NSWindow"/>
 									<reference key="NSNextKeyView" ref="107340002"/>
 									<int key="NSViewLayerContentsRedrawPolicy">2</int>
 									<reference key="NSTarget" ref="910781444"/>
@@ -451,6 +457,7 @@
 									<int key="NSvFlags">-2147483392</int>
 									<string key="NSFrame">{{-100, -100}, {397, 15}}</string>
 									<reference key="NSSuperview" ref="910781444"/>
+									<reference key="NSWindow"/>
 									<reference key="NSNextKeyView" ref="405283595"/>
 									<int key="NSViewLayerContentsRedrawPolicy">2</int>
 									<int key="NSsFlags">1</int>
@@ -468,6 +475,7 @@
 									</object>
 									<string key="NSFrame">{{1, 0}, {408, 17}}</string>
 									<reference key="NSSuperview" ref="910781444"/>
+									<reference key="NSWindow"/>
 									<reference key="NSNextKeyView" ref="431803622"/>
 									<int key="NSViewLayerContentsRedrawPolicy">2</int>
 									<reference key="NSDocView" ref="431803622"/>
@@ -478,6 +486,7 @@
 							</object>
 							<string key="NSFrame">{{20, 60}, {410, 390}}</string>
 							<reference key="NSSuperview" ref="661240715"/>
+							<reference key="NSWindow"/>
 							<reference key="NSNextKeyView" ref="652799336"/>
 							<int key="NSViewLayerContentsRedrawPolicy">2</int>
 							<int key="NSsFlags">133650</int>
@@ -485,6 +494,7 @@
 							<reference key="NSHScroller" ref="999608927"/>
 							<reference key="NSContentView" ref="652799336"/>
 							<reference key="NSHeaderClipView" ref="405283595"/>
+							<reference key="NSCornerView" ref="998078156"/>
 							<bytes key="NSScrollAmts">QSAAAEEgAABBmAAAQZgAAA</bytes>
 						</object>
 						<object class="NSButton" id="345799270">
@@ -492,6 +502,7 @@
 							<int key="NSvFlags">289</int>
 							<string key="NSFrame">{{340, 12}, {96, 32}}</string>
 							<reference key="NSSuperview" ref="661240715"/>
+							<reference key="NSWindow"/>
 							<int key="NSViewLayerContentsRedrawPolicy">2</int>
 							<bool key="NSEnabled">YES</bool>
 							<object class="NSButtonCell" key="NSCell" id="454856748">
@@ -513,6 +524,7 @@
 							<int key="NSvFlags">289</int>
 							<string key="NSFrame">{{244, 12}, {96, 32}}</string>
 							<reference key="NSSuperview" ref="661240715"/>
+							<reference key="NSWindow"/>
 							<reference key="NSNextKeyView" ref="345799270"/>
 							<int key="NSViewLayerContentsRedrawPolicy">2</int>
 							<bool key="NSEnabled">YES</bool>
@@ -537,6 +549,8 @@
 						</object>
 					</object>
 					<string key="NSFrameSize">{450, 500}</string>
+					<reference key="NSSuperview"/>
+					<reference key="NSWindow"/>
 					<reference key="NSNextKeyView" ref="913417907"/>
 					<int key="NSViewLayerContentsRedrawPolicy">2</int>
 				</object>
@@ -628,7 +642,6 @@
 							<string key="NSFrame">{{-3, 20}, {289, 14}}</string>
 							<reference key="NSSuperview" ref="246823136"/>
 							<reference key="NSWindow"/>
-							<reference key="NSNextKeyView"/>
 							<bool key="NSEnabled">YES</bool>
 							<object class="NSTextFieldCell" key="NSCell" id="620975111">
 								<int key="NSCellFlags">68288064</int>
@@ -658,6 +671,7 @@
 							<string key="NSFrame">{{109, 112}, {64, 64}}</string>
 							<reference key="NSSuperview" ref="246823136"/>
 							<reference key="NSWindow"/>
+							<reference key="NSNextKeyView" ref="365108458"/>
 							<bool key="NSEnabled">YES</bool>
 							<object class="NSImageCell" key="NSCell" id="710430824">
 								<int key="NSCellFlags">130560</int>
@@ -677,7 +691,7 @@
 					<string key="NSFrameSize">{283, 181}</string>
 					<reference key="NSSuperview"/>
 					<reference key="NSWindow"/>
-					<reference key="NSNextKeyView"/>
+					<reference key="NSNextKeyView" ref="240756918"/>
 				</object>
 				<string key="NSScreenRect">{{0, 0}, {1440, 878}}</string>
 				<string key="NSMaxSize">{10000000000000, 10000000000000}</string>
@@ -1393,7 +1407,6 @@
 							<string>banAction:</string>
 							<string>chooseStationAction:</string>
 							<string>choseStation:</string>
-							<string>doubleClicked:</string>
 							<string>filterStations:</string>
 							<string>loveAction:</string>
 							<string>nextAction:</string>
@@ -1418,7 +1431,6 @@
 							<string>id</string>
 							<string>id</string>
 							<string>id</string>
-							<string>id</string>
 						</object>
 					</object>
 					<object class="NSMutableDictionary" key="actionInfosByName">
@@ -1428,7 +1440,6 @@
 							<string>banAction:</string>
 							<string>chooseStationAction:</string>
 							<string>choseStation:</string>
-							<string>doubleClicked:</string>
 							<string>filterStations:</string>
 							<string>loveAction:</string>
 							<string>nextAction:</string>
@@ -1451,10 +1462,6 @@
 							</object>
 							<object class="IBActionInfo">
 								<string key="name">choseStation:</string>
-								<string key="candidateClassName">id</string>
-							</object>
-							<object class="IBActionInfo">
-								<string key="name">doubleClicked:</string>
 								<string key="candidateClassName">id</string>
 							</object>
 							<object class="IBActionInfo">
@@ -1605,28 +1612,28 @@
 				<string>NSMenuCheckmark</string>
 				<string>NSMenuMixedState</string>
 				<string>PianobarControl</string>
-				<string>exit</string>
-				<string>information</string>
-				<string>media_next</string>
-				<string>media_play_pause_resume</string>
-				<string>pandora-logo-16</string>
-				<string>thumbs_down</string>
-				<string>thumbs_up</string>
-				<string>view_choose</string>
+				<string>ban</string>
+				<string>info</string>
+				<string>love</string>
+				<string>lyrics</string>
+				<string>next</string>
+				<string>playpause</string>
+				<string>quit</string>
+				<string>station</string>
 			</object>
 			<object class="NSMutableArray" key="dict.values">
 				<bool key="EncodedWithXMLCoder">YES</bool>
 				<string>{9, 8}</string>
 				<string>{7, 2}</string>
-				<string>{128, 128}</string>
-				<string>{16, 16}</string>
-				<string>{16, 16}</string>
-				<string>{16, 16}</string>
-				<string>{16, 16}</string>
-				<string>{16, 16}</string>
-				<string>{16, 13}</string>
-				<string>{16, 13}</string>
-				<string>{16, 16}</string>
+				<string>{512, 512}</string>
+				<string>{12, 12}</string>
+				<string>{12, 12}</string>
+				<string>{12, 12}</string>
+				<string>{12, 12}</string>
+				<string>{12, 12}</string>
+				<string>{12, 12}</string>
+				<string>{12, 12}</string>
+				<string>{12, 12}</string>
 			</object>
 		</object>
 	</data>
