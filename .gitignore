@@ -13,3 +13,6 @@ xcuserdata/
 # osx noise
 .DS_Store
 profile
+
+# jekyll noise
+_site
