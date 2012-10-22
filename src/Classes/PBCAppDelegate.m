@@ -294,15 +294,22 @@ static IOPMAssertionID sleepAssertionID;
 	else
 		return NO;
 
-	if (currentRow >= [[self stationsTable] numberOfRows])
-		currentRow = [[self stationsTable] numberOfRows] - 1;
-	if (currentRow < 0)
-		currentRow = 0;
+	currentRow = [self ensureValidRowNumber:currentRow];
 
 	[[self stationsTable] selectRowIndexes:[NSIndexSet indexSetWithIndex:currentRow] byExtendingSelection:NO];
 	[[self stationsTable] scrollRowToVisible:currentRow];
 
 	return YES;
+}
+
+- (NSInteger) ensureValidRowNumber:(NSInteger)rowNumber
+{
+	if (rowNumber >= [[self stationsTable] numberOfRows])
+		rowNumber = [[self stationsTable] numberOfRows] - 1;
+	else if (rowNumber < 0)
+		rowNumber = 0;
+
+	return rowNumber;
 }
 
 #pragma mark -

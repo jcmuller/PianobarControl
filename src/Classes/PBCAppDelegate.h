@@ -46,6 +46,8 @@
 - (IBAction) showAboutPanel:(id)sender;
 - (IBAction) tableViewSelected:(id)sender;
 
+- (NSInteger) ensureValidRowNumber:(NSInteger)rowNumber;
+
 @end
 
 #pragma mark C elements for Hotkey support
