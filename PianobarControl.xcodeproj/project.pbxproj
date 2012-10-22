@@ -36,8 +36,6 @@
 		5C29C25914957FD0006FF5B6 /* next.png in Resources */ = {isa = PBXBuildFile; fileRef = 5C29C24D14957FD0006FF5B6 /* next.png */; };
 		5C29C25A14957FD0006FF5B6 /* pianobar-black.png in Resources */ = {isa = PBXBuildFile; fileRef = 5C29C24E14957FD0006FF5B6 /* pianobar-black.png */; };
 		5C29C25B14957FD0006FF5B6 /* pianobar-white.png in Resources */ = {isa = PBXBuildFile; fileRef = 5C29C24F14957FD0006FF5B6 /* pianobar-white.png */; };
-		5C29C25C14957FD0006FF5B6 /* PianobarControl.icns in Resources */ = {isa = PBXBuildFile; fileRef = 5C29C25014957FD0006FF5B6 /* PianobarControl.icns */; };
-		5C29C25D14957FD0006FF5B6 /* PianobarControl.png in Resources */ = {isa = PBXBuildFile; fileRef = 5C29C25114957FD0006FF5B6 /* PianobarControl.png */; };
 		5C29C25E14957FD0006FF5B6 /* playpause.png in Resources */ = {isa = PBXBuildFile; fileRef = 5C29C25214957FD0006FF5B6 /* playpause.png */; };
 		5C29C25F14957FD0006FF5B6 /* quit.png in Resources */ = {isa = PBXBuildFile; fileRef = 5C29C25314957FD0006FF5B6 /* quit.png */; };
 		5C29C26014957FD0006FF5B6 /* station.png in Resources */ = {isa = PBXBuildFile; fileRef = 5C29C25414957FD0006FF5B6 /* station.png */; };
@@ -97,7 +95,6 @@
 		5C1F742E14805D6F00C03FD7 /* PBCSongInfoParser.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; name = PBCSongInfoParser.h; path = src/Classes/PBCSongInfoParser.h; sourceTree = "<group>"; };
 		5C1F742F14805D6F00C03FD7 /* PBCSongInfoParser.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; name = PBCSongInfoParser.m; path = src/Classes/PBCSongInfoParser.m; sourceTree = "<group>"; };
 		5C1F743414805E6000C03FD7 /* PianobarControl.icns */ = {isa = PBXFileReference; lastKnownFileType = image.icns; name = PianobarControl.icns; path = media/PianobarControl.icns; sourceTree = "<group>"; };
-		5C1F744A14805F1400C03FD7 /* JSON.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; name = JSON.h; path = src/lib/json/Classes/JSON.h; sourceTree = SOURCE_ROOT; };
 		5C29C24914957FD0006FF5B6 /* ban.png */ = {isa = PBXFileReference; lastKnownFileType = image.png; name = ban.png; path = media/ban.png; sourceTree = "<group>"; };
 		5C29C24A14957FD0006FF5B6 /* info.png */ = {isa = PBXFileReference; lastKnownFileType = image.png; name = info.png; path = media/info.png; sourceTree = "<group>"; };
 		5C29C24B14957FD0006FF5B6 /* love.png */ = {isa = PBXFileReference; lastKnownFileType = image.png; name = love.png; path = media/love.png; sourceTree = "<group>"; };
@@ -246,7 +243,6 @@
 		5CFC17741440BC03003E432C /* SBJson */ = {
 			isa = PBXGroup;
 			children = (
-				5C1F744A14805F1400C03FD7 /* JSON.h */,
 				5C1F740314805CDB00C03FD7 /* NSObject+SBJson.h */,
 				5C1F740414805CDB00C03FD7 /* NSObject+SBJson.m */,
 				5C1F740514805CDB00C03FD7 /* SBJson.h */,
@@ -304,7 +300,7 @@
 		29B97313FDCFA39411CA2CEA /* Project object */ = {
 			isa = PBXProject;
 			attributes = {
-				LastUpgradeCheck = 0420;
+				LastUpgradeCheck = 0450;
 			};
 			buildConfigurationList = C01FCF4E08A954540054247B /* Build configuration list for PBXProject "PianobarControl" */;
 			compatibilityVersion = "Xcode 3.2";
@@ -342,8 +338,6 @@
 				5C29C25914957FD0006FF5B6 /* next.png in Resources */,
 				5C29C25A14957FD0006FF5B6 /* pianobar-black.png in Resources */,
 				5C29C25B14957FD0006FF5B6 /* pianobar-white.png in Resources */,
-				5C29C25C14957FD0006FF5B6 /* PianobarControl.icns in Resources */,
-				5C29C25D14957FD0006FF5B6 /* PianobarControl.png in Resources */,
 				5C29C25E14957FD0006FF5B6 /* playpause.png in Resources */,
 				5C29C25F14957FD0006FF5B6 /* quit.png in Resources */,
 				5C29C26014957FD0006FF5B6 /* station.png in Resources */,
@@ -406,6 +400,7 @@
 			isa = XCBuildConfiguration;
 			buildSettings = {
 				ALWAYS_SEARCH_USER_PATHS = NO;
+				COMBINE_HIDPI_IMAGES = YES;
 				COPY_PHASE_STRIP = NO;
 				GCC_DYNAMIC_NO_PIC = NO;
 				GCC_MODEL_TUNING = G5;
@@ -415,7 +410,7 @@
 				GCC_VERSION = com.apple.compilers.llvm.clang.1_0;
 				INFOPLIST_FILE = "PianobarControl-Info.plist";
 				INSTALL_PATH = "$(HOME)/Applications";
-				MACOSX_DEPLOYMENT_TARGET = 10.7;
+				MACOSX_DEPLOYMENT_TARGET = 10.8;
 				ONLY_ACTIVE_ARCH = NO;
 				PRODUCT_NAME = PianobarControl;
 				SDKROOT = macosx;
@@ -426,6 +421,7 @@
 			isa = XCBuildConfiguration;
 			buildSettings = {
 				ALWAYS_SEARCH_USER_PATHS = NO;
+				COMBINE_HIDPI_IMAGES = YES;
 				DEBUG_INFORMATION_FORMAT = "dwarf-with-dsym";
 				GCC_MODEL_TUNING = G5;
 				GCC_PRECOMPILE_PREFIX_HEADER = YES;
@@ -433,7 +429,7 @@
 				GCC_VERSION = com.apple.compilers.llvm.clang.1_0;
 				INFOPLIST_FILE = "PianobarControl-Info.plist";
 				INSTALL_PATH = "$(HOME)/Applications";
-				MACOSX_DEPLOYMENT_TARGET = 10.7;
+				MACOSX_DEPLOYMENT_TARGET = 10.8;
 				ONLY_ACTIVE_ARCH = YES;
 				PRODUCT_NAME = PianobarControl;
 				SDKROOT = macosx;
