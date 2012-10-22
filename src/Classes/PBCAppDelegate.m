@@ -283,14 +283,22 @@ static IOPMAssertionID sleepAssertionID;
 
 	NSInteger currentRow = [[self stationsTable] selectedRow];
 
-	if (command == @selector(moveDown:))
+	if (command == @selector(moveDown:) || command == @selector(moveRight:) ||
+		command == @selector(moveDownAndModifySelection:) ||
+		command == @selector(moveRightAndModifySelection:))
 		currentRow++;
-	else if (command == @selector(moveUp:))
+	else if (command == @selector(moveUp:) || command == @selector(moveLeft:) ||
+			 command == @selector(moveUpAndModifySelection:) ||
+			 command == @selector(moveLeftAndModifySelection:))
 		currentRow--;
-	else if (command == @selector(scrollPageUp:))
+	else if (command == @selector(scrollPageUp:) || command == @selector(moveToBeginningOfParagraph:))
 		currentRow -= 15;
-	else if (command == @selector(scrollPageDown:))
+	else if (command == @selector(scrollPageDown:) || command == @selector(moveToEndOfParagraph:))
 		currentRow += 15;
+	else if (command == @selector(moveToBeginningOfDocument:))
+		currentRow = 0;
+	else if (command == @selector(moveToEndOfDocument:))
+		currentRow = NSIntegerMax;
 	else
 		return NO;
 
