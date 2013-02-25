@@ -279,7 +279,7 @@ static IOPMAssertionID sleepAssertionID;
 
 - (BOOL)control:(NSControl *)control textView:(NSTextView *)textView doCommandBySelector:(SEL)command
 {
-	NSLog(@"command:%s", (char*)command);
+	NSLog(@"command:%s", sel_getName(command));
 
 	NSInteger currentRow = [[self stationsTable] selectedRow];
 
