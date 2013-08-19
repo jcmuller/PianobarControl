@@ -1,3 +1,4 @@
+[![Stories in Ready](https://badge.waffle.io/jcmuller/PianobarControl.png?label=ready)](https://waffle.io/jcmuller/PianobarControl)  
 PianobarControl
 ===============
 
@@ -5,15 +6,15 @@ This is a wrapper around [pianobar](https://github.com/PromyLOPh/pianobar) for O
 
 There are many global hot keys:
 
-*   ⌥⇧P: Pop up `PianobarControl` drop down
-*   ⌥⇧O: Play/pause `pianobar`
-*   ⌥⇧N: Next song
-*   ⌥⇧I: Show `Growl` notification with song information
-*   ⌥⇧L: Love song (thumbs up)
-*   ⌥⇧B: Ban song (thumbs down)
-*   ⌥⇧S: Select different station
-*   ⌥⇧Y: Open default web browser with a google search for the current song's lyrics
-*   ⌥⇧Q: Quit `PianobarControl`
+*   b%b'P: Pop up `PianobarControl` drop down
+*   b%b'O: Play/pause `pianobar`
+*   b%b'N: Next song
+*   b%b'I: Show `Growl` notification with song information
+*   b%b'L: Love song (thumbs up)
+*   b%b'B: Ban song (thumbs down)
+*   b%b'S: Select different station
+*   b%b'Y: Open default web browser with a google search for the current song's lyrics
+*   b%b'Q: Quit `PianobarControl`
 
 The multimedia keys work like: Play/Pause (as expected), Next (as expected), Previous -> show growl notification.
 
