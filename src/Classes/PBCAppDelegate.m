@@ -368,11 +368,30 @@ static IOPMAssertionID sleepAssertionID;
 	[aTextField setSelectable: YES];
 	[aTextField setAlignment:NSCenterTextAlignment];
 
+    // next lines should be done in the nib but for clarity I do those here instead
+    [aTextField setEditable:NO];
+    // for accepting mouse down on the link
+    [aTextField setAllowsEditingTextAttributes:YES];
+    [aTextField setSelectable:YES];
+    // display ellipses when text field is too small to display the whole link
+    [[aTextField cell] setLineBreakMode:NSLineBreakByTruncatingTail];
+    // NSTextView is embedded into NSScrollView in my example
+    // it is possible to use it without NSScrollView as well
+    [aTextField setEditable:NO];
+    // do not display background
+    [aTextField setDrawsBackground:NO];
+    [[aTextField enclosingScrollView] setDrawsBackground:NO];
+    // remove borders and scrollers
+    [[aTextField enclosingScrollView] setAutohidesScrollers:YES];
+    [[aTextField enclosingScrollView] setBorderType:NSNoBorder];
+    [[aTextField enclosingMenuItem] addCursorRect:[aTextField bounds] cursor:[NSCursor pointingHandCursor]];
+    
 	NSMutableAttributedString* string = [[NSMutableAttributedString alloc] init];
 	[string appendAttributedString: [NSAttributedString hyperlinkFromString:aString withURL:anUrl]];
 
 	// set the attributed string to the NSTextField
 	[aTextField setAttributedStringValue: string];
+
 	[string release];
 }
 #pragma mark -
